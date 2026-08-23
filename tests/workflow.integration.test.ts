@@ -3,7 +3,10 @@ import os from "node:os";
 import path from "node:path";
 import { describe, expect, test } from "vitest";
 import { createSampleAsset, probeMedia } from "../src/adapters/ffmpeg.js";
+import { FfmpegMediaToolkit } from "../src/adapters/ffmpeg.js";
+import { heuristicAnalyzer } from "../src/application/analyzer.js";
 import { runClipWorkflow } from "../src/application/workflow.js";
+import { WhisperCppTranscriptionProvider } from "../src/adapters/whisperCpp.js";
 
 describe("clip workflow", () => {
   test("renders a vertical candidate and QA report from generated authorized sample", async () => {
@@ -15,6 +18,10 @@ describe("clip workflow", () => {
       provenancePath: sample.provenancePath,
       outputRoot: path.join(dir, "output"),
       jobName: "integration"
+    }, {
+      media: new FfmpegMediaToolkit(),
+      transcription: new WhisperCppTranscriptionProvider(),
+      analyzer: heuristicAnalyzer
     });
 
     const probe = await probeMedia(result.candidatePath);

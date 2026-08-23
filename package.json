@@ -4,14 +4,21 @@
   "private": true,
   "type": "module",
   "description": "Local-first short-form clipping pipeline with traceable artifacts.",
+  "files": [
+    "dist",
+    "README.md",
+    "AGENTS.md",
+    "docs",
+    ".agents"
+  ],
   "bin": {
     "sf": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "type-check": "tsc -p tsconfig.json --noEmit",
+    "type-check": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json",
     "test": "vitest run",
-    "sf": "node dist/src/cli.js",
+    "sf": "node dist/cli.js",
     "sf:dev": "tsx src/cli.ts"
   },
   "dependencies": {

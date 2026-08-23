@@ -1,6 +1,5 @@
 import { copyFile, mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
-import { analyzeTranscript } from "../domain/scoring.js";
 import {
   AnalysisSchema,
   SourceSchema,
@@ -10,16 +9,17 @@ import {
   type Transcript
 } from "../domain/contracts.js";
 import { AppError } from "../domain/errors.js";
-import { probeMedia, qaVideo, renderVerticalClip } from "../adapters/ffmpeg.js";
 import { ensureDir, readJson, slug, writeJson } from "./files.js";
+import type { ClipWorkflowDependencies } from "./ports.js";
 
 const ProvenanceSchema = SourceSchema.shape.provenance;
 
 export type ClipOptions = {
   sourcePath: string;
-  transcriptPath: string;
+  transcriptPath?: string;
   provenancePath?: string;
   outputRoot: string;
+  cacheDir?: string;
   jobName?: string;
 };
 
@@ -32,7 +32,7 @@ export type ClipResult = {
   qaPath: string;
 };
 
-export async function runClipWorkflow(options: ClipOptions): Promise<ClipResult> {
+export async function runClipWorkflow(options: ClipOptions, dependencies: ClipWorkflowDependencies): Promise<ClipResult> {
   const sourcePath = path.resolve(options.sourcePath);
   const outputRoot = path.resolve(options.outputRoot);
   const jobId = slug(options.jobName ?? `${path.basename(sourcePath, path.extname(sourcePath))}-${new Date().toISOString()}`);
@@ -42,12 +42,12 @@ export async function runClipWorkflow(options: ClipOptions): Promise<ClipResult>
 
   const importedPath = path.join(mediaDir, path.basename(sourcePath));
   await copyFile(sourcePath, importedPath);
-  const media = await probeMedia(importedPath);
+  const media = await dependencies.media.probe(importedPath);
   const provenance = options.provenancePath
     ? ProvenanceSchema.parse(JSON.parse(await readFile(path.resolve(options.provenancePath), "utf8")))
     : {
         rights: "authorized" as const,
-        note: "User supplied this source and transcript for local clipping."
+        note: "User supplied this source for local clipping and is responsible for having rights or authorization."
       };
   const source: Source = SourceSchema.parse({
     id: jobId,
@@ -59,29 +59,34 @@ export async function runClipWorkflow(options: ClipOptions): Promise<ClipResult>
   });
   await writeJson(path.join(jobDir, "source.json"), source);
 
-  const transcriptInput = await readJson(path.resolve(options.transcriptPath), TranscriptSchema);
+  const transcriptInput = options.transcriptPath
+    ? await readJson(path.resolve(options.transcriptPath), TranscriptSchema)
+    : await dependencies.transcription.transcribe({
+        source,
+        cacheDir: path.resolve(options.cacheDir ?? ".sf-cache")
+      });
   const transcript: Transcript = TranscriptSchema.parse({ ...transcriptInput, sourceId: source.id });
   await writeJson(path.join(jobDir, "transcript.json"), transcript);
 
-  const candidates = analyzeTranscript(transcript);
+  const candidates = dependencies.analyzer.analyze(transcript);
   const selected = candidates[0];
   if (!selected) throw new AppError("No candidate segment could be selected", "NO_CANDIDATE");
   const analysis: Analysis = AnalysisSchema.parse({
     sourceId: source.id,
     generatedAt: new Date().toISOString(),
-    strategy: "heuristic-v0",
+    strategy: dependencies.analyzer.strategy,
     candidates,
     selectedCandidateId: selected.id
   });
   await writeJson(path.join(jobDir, "analysis.json"), analysis);
 
-  const candidatePath = await renderVerticalClip({
+  const candidatePath = await dependencies.media.renderVerticalClip({
     sourcePath: importedPath,
     transcript,
     candidate: selected,
     outputDir: jobDir
   });
-  const qa = await qaVideo({
+  const qa = await dependencies.media.qaVideo({
     videoPath: candidatePath,
     expectedDurationSeconds: selected.endSeconds - selected.startSeconds,
     expectedWidth: 1080,

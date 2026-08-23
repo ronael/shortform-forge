@@ -4,6 +4,7 @@ import { z } from "zod";
 import type { CandidateSegment, QaReport, Transcript } from "../domain/contracts.js";
 import { buildAssCaptions } from "../domain/captions.js";
 import { runProcess } from "./process.js";
+import type { MediaProbe, MediaToolkit, QaRequest, RenderRequest } from "../application/ports.js";
 
 const ProbeStreamSchema = z.object({
   codec_type: z.string(),
@@ -19,16 +20,6 @@ const ProbeSchema = z.object({
     size: z.string().optional()
   })
 });
-
-export type MediaProbe = {
-  durationSeconds: number;
-  width: number;
-  height: number;
-  hasAudio: boolean;
-  videoCodec?: string;
-  audioCodec?: string;
-  sizeBytes: number;
-};
 
 export async function probeMedia(videoPath: string): Promise<MediaProbe> {
   const result = await runProcess("ffprobe", [
@@ -53,6 +44,20 @@ export async function probeMedia(videoPath: string): Promise<MediaProbe> {
     ...(audio?.codec_name ? { audioCodec: audio.codec_name } : {}),
     sizeBytes: Number(parsed.format.size ?? 0)
   };
+}
+
+export class FfmpegMediaToolkit implements MediaToolkit {
+  probe(videoPath: string): Promise<MediaProbe> {
+    return probeMedia(videoPath);
+  }
+
+  renderVerticalClip(input: RenderRequest): Promise<string> {
+    return renderVerticalClip(input);
+  }
+
+  qaVideo(input: QaRequest): Promise<QaReport> {
+    return qaVideo(input);
+  }
 }
 
 export async function renderVerticalClip(input: {

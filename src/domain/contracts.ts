@@ -32,6 +32,8 @@ export const TranscriptSchema = z.object({
   sourceId: z.string().min(1),
   language: z.string().min(2).default("en"),
   provider: z.string().min(1),
+  providerVersion: z.string().min(1).optional(),
+  sourceHash: z.string().min(1).optional(),
   segments: z.array(TranscriptSegmentSchema).min(1)
 });
 

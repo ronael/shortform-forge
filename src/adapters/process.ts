@@ -32,13 +32,14 @@ export async function runProcess(command: string, args: string[], timeoutMs = 12
       }
       reject(error);
     });
-    child.on("close", (code) => {
+    child.on("close", (code, signal) => {
       clearTimeout(timer);
       if (code === 0) {
         resolve({ stdout, stderr });
         return;
       }
-      reject(new AppError(`${command} exited with code ${code}: ${stderr.trim()}`, "PROCESS_FAILED"));
+      const exit = code === null ? `signal ${signal ?? "unknown"}` : `code ${code}`;
+      reject(new AppError(`${command} exited with ${exit}: ${stderr.trim()}`, "PROCESS_FAILED"));
     });
   });
 }

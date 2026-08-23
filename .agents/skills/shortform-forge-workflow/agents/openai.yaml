@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shortform Forge Workflow"
+  short_description: "Run the local Shortform Forge clipping workflow."
+  default_prompt: "Use Shortform Forge to inspect an authorized source, produce a clipped candidate, run QA, and report artifacts."

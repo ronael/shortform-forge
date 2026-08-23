@@ -2,6 +2,7 @@ node_modules/
 dist/
 output/
 samples/
+.sf-cache/
 .env
 .DS_Store
 *.log
