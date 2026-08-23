@@ -13,6 +13,9 @@ import { heuristicAnalyzer } from "./application/analyzer.js";
 import { analyzeOpportunityFile, loadOpportunity } from "./application/analyzeOpportunity.js";
 import { generateScriptFromFile, loadBrief } from "./application/generateScript.js";
 import { produceFromScriptFile } from "./application/produceVideo.js";
+import { generateVoiceoverFromFile } from "./application/generateVoiceover.js";
+import { CommandTextToSpeechProvider } from "./adapters/commandTts.js";
+import { concatAudioFiles, probeDurationSeconds } from "./adapters/ffmpeg.js";
 import { buildScriptGenerationPrompt } from "./application/prompts/scriptGeneration.js";
 import { buildOpportunityBriefPrompt } from "./application/prompts/opportunityBrief.js";
 import { importDiscoverySignals, runDiscoverySearch, type DiscoveryWorkflowResult } from "./application/discoveryWorkflow.js";
@@ -166,20 +169,54 @@ export function createProgram(): Command {
     });
 
   program
+    .command("voiceover")
+    .description("Synthesize a script plan's voiceover locally and measure real section durations")
+    .argument("<file>", "ScriptPlan JSON or script-<signal-id>.json artifact from `sf script`")
+    .option("-o, --output <dir>", "voiceover output directory (voiceover.json + wav files)", "output/voiceover")
+    .option("--json", "print machine-readable result")
+    .action(async (file: string, options: { output: string; json?: boolean }) => {
+      await run(async () => {
+        const result = await generateVoiceoverFromFile({
+          filePath: file,
+          provider: new CommandTextToSpeechProvider(),
+          outputDir: path.resolve(options.output),
+          audio: { probeDurationSeconds, concatAudioFiles }
+        });
+        if (options.json) {
+          printJson({ status: "pass", audioPath: result.audioPath, voiceover: result.voiceover });
+          return;
+        }
+        console.log("Voiceover complete");
+        console.log("");
+        console.log(`provider: ${result.voiceover.provider}`);
+        console.log(`sections: ${result.voiceover.sections.length}`);
+        console.log(`total duration: ${result.voiceover.totalDurationSeconds.toFixed(1)}s`);
+        console.log(`audio: ${result.audioPath}`);
+      });
+    });
+
+  program
     .command("produce")
     .description("Render a script plan into a vertical video artifact")
     .argument("<file>", "ScriptPlan JSON or script-<signal-id>.json artifact from `sf script`")
     .option("--assets <dir>", "directory of local assets named after section purposes (hook.png, explanation.mp4, ...)")
+    .option("--voiceover <file>", "voiceover.json produced by `sf voiceover` (real audio replaces the silent track)")
+    .option("--template <name>", "composition strategy: generic | ai-news", "generic")
     .option("-o, --output <dir>", "output root directory", "output")
     .option("--run-id <id>", "stable run id")
     .option("--json", "print machine-readable result")
-    .action(async (file: string, options: { assets?: string; output: string; runId?: string; json?: boolean }) => {
+    .action(async (file: string, options: { assets?: string; voiceover?: string; template: string; output: string; runId?: string; json?: boolean }) => {
       await run(async () => {
+        if (options.template !== "generic" && options.template !== "ai-news") {
+          throw new Error(`Unknown template: ${options.template} (expected generic or ai-news)`);
+        }
         const result = await produceFromScriptFile({
           filePath: file,
           renderer: new FfmpegCompositionRenderer(),
           outputRoot: options.output,
+          template: options.template,
           ...(options.assets ? { assetsDir: options.assets } : {}),
+          ...(options.voiceover ? { voiceoverPath: options.voiceover } : {}),
           ...(options.runId ? { runId: options.runId } : {})
         });
         if (options.json) {

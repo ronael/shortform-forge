@@ -3,6 +3,8 @@ dist/
 output/
 samples/
 .sf-cache/
+.venv-tts/
+.tts-models/
 .env
 .DS_Store
 *.log

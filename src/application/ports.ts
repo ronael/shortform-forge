@@ -50,7 +50,13 @@ export interface PassageAnalyzer {
 
 export interface CompositionRenderer {
   readonly renderer: string;
-  render(plan: CompositionPlan, outputDir: string): Promise<VideoArtifact>;
+  render(plan: CompositionPlan, outputDir: string, options?: { audioPath?: string }): Promise<VideoArtifact>;
+}
+
+export interface TextToSpeechProvider {
+  readonly name: string;
+  /** Synthesizes text into an audio file at outputPath. */
+  synthesize(text: string, outputPath: string): Promise<void>;
 }
 
 export type ClipWorkflowDependencies = {

@@ -46,6 +46,37 @@ export async function probeMedia(videoPath: string): Promise<MediaProbe> {
   };
 }
 
+export async function probeDurationSeconds(filePath: string): Promise<number> {
+  const result = await runProcess("ffprobe", [
+    "-v",
+    "error",
+    "-print_format",
+    "json",
+    "-show_format",
+    filePath
+  ]);
+  const parsed = z.object({ format: z.object({ duration: z.string().optional() }) }).parse(JSON.parse(result.stdout));
+  const duration = Number(parsed.format.duration ?? 0);
+  if (!Number.isFinite(duration) || duration <= 0) throw new Error(`No readable duration in ${filePath}`);
+  return duration;
+}
+
+/** Concatenates audio files into one WAV (same durations order). */
+export async function concatAudioFiles(inputPaths: string[], outputPath: string): Promise<void> {
+  if (inputPaths.length === 0) throw new Error("concatAudioFiles requires at least one input");
+  const inputs = inputPaths.flatMap((inputPath) => ["-i", inputPath]);
+  const labels = inputPaths.map((_, index) => `[${index}:a]`).join("");
+  await runProcess("ffmpeg", [
+    "-y",
+    ...inputs,
+    "-filter_complex",
+    `${labels}concat=n=${inputPaths.length}:v=0:a=1[out]`,
+    "-map",
+    "[out]",
+    outputPath
+  ]);
+}
+
 export class FfmpegMediaToolkit implements MediaToolkit {
   probe(videoPath: string): Promise<MediaProbe> {
     return probeMedia(videoPath);

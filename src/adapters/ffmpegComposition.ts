@@ -11,7 +11,7 @@ import { runProcess } from "./process.js";
 export class FfmpegCompositionRenderer implements CompositionRenderer {
   readonly renderer = "ffmpeg-composition";
 
-  async render(plan: CompositionPlan, outputDir: string): Promise<VideoArtifact> {
+  async render(plan: CompositionPlan, outputDir: string, options?: { audioPath?: string }): Promise<VideoArtifact> {
     await ensureDir(outputDir);
     const captionsPath = path.join(outputDir, "captions.ass");
     const outputPath = path.join(outputDir, "video.mp4");
@@ -40,10 +40,14 @@ export class FfmpegCompositionRenderer implements CompositionRenderer {
     filters.push(`${concatInputs}concat=n=${assetLayers.length}:v=1:a=0[cat]`);
     filters.push(`[cat]subtitles='${escapeFilterPath(captionsPath)}'[out]`);
 
+    const audioInput = options?.audioPath
+      ? ["-i", options.audioPath]
+      : ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono"];
+
     await runProcess("ffmpeg", [
       "-y",
       ...inputs,
-      "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono",
+      ...audioInput,
       "-filter_complex", filters.join(";"),
       "-map", "[out]",
       "-map", `${assetLayers.length}:a`,

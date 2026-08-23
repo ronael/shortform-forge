@@ -2,11 +2,14 @@ import path from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 import { z } from "zod";
 import { ScriptPlanSchema, type ScriptPlan } from "../domain/script.js";
+import { VoiceoverSchema } from "../domain/voice.js";
 import type { CompositionPlan, VideoArtifact } from "../domain/composition.js";
 import { AppError } from "../domain/errors.js";
 import type { CompositionRenderer } from "./ports.js";
 import { buildCompositionPlan, type SectionAsset } from "./composeVideo.js";
-import { ensureDir, slug, writeJson } from "./files.js";
+import { composeAiNewsVideo } from "./templates/aiNews.js";
+import { retimeScript } from "./generateVoiceover.js";
+import { ensureDir, readJson, slug, writeJson } from "./files.js";
 
 const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 const VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".mkv", ".webm"]);
@@ -24,20 +27,33 @@ export async function produceFromScriptFile(input: {
   assetsDir?: string;
   background?: string;
   runId?: string;
+  template?: "generic" | "ai-news";
+  voiceoverPath?: string;
 }): Promise<{ plan: CompositionPlan; artifact: VideoArtifact; artifactDir: string }> {
   const resolved = path.resolve(input.filePath);
-  const script = await loadScriptPlan(resolved);
+  let script = await loadScriptPlan(resolved);
   const assets = input.assetsDir ? await resolveSectionAssets(path.resolve(input.assetsDir)) : [];
-  const plan = buildCompositionPlan(script, {
-    assets,
-    ...(input.background ? { background: input.background } : {})
-  });
+
+  let audioPath: string | undefined;
+  if (input.voiceoverPath) {
+    const voiceoverFile = path.resolve(input.voiceoverPath);
+    const voiceover = await readJson(voiceoverFile, VoiceoverSchema);
+    script = retimeScript(script, voiceover);
+    audioPath = path.join(path.dirname(voiceoverFile), "voiceover.wav");
+  }
+
+  const plan = input.template === "ai-news"
+    ? composeAiNewsVideo(script, { assets })
+    : buildCompositionPlan(script, {
+        assets,
+        ...(input.background ? { background: input.background } : {})
+      });
 
   const artifactDir = path.resolve(input.outputRoot, "produce", slug(input.runId ?? script.title));
   await ensureDir(artifactDir);
   await writeJson(path.join(artifactDir, "composition.json"), plan);
 
-  const artifact = await input.renderer.render(plan, artifactDir);
+  const artifact = await input.renderer.render(plan, artifactDir, audioPath ? { audioPath } : {});
   const withSource = { ...artifact, sourceScriptPath: resolved };
   await writeJson(path.join(artifactDir, "artifact.json"), withSource);
   return { plan, artifact: withSource, artifactDir };

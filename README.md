@@ -113,7 +113,31 @@ Produce a vertical video from a script plan:
 pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json --assets ./assets
 ```
 
-Assets are optional local files named after section purposes (`hook.png`, `explanation.mp4`, ...); sections without a matching file get a color background. Outputs land in `output/produce/<id>/`: `composition.json`, `video.mp4`, `qa.json`, `artifact.json`. Videos are silent (no TTS yet) and rendered locally with FFmpeg.
+Assets are optional local files named after section purposes (`hook.png`, `explanation.mp4`, ...); sections without a matching file get a color background. Outputs land in `output/produce/<id>/`: `composition.json`, `video.mp4`, `qa.json`, `artifact.json`. Videos are rendered locally with FFmpeg.
+
+Add a local voiceover (real audio, captions synced to measured speech):
+
+```bash
+export SF_TTS_COMMAND="python .tts-models/say.py {output}"   # any local TTS CLI: text on stdin, audio at {output}
+pnpm sf voiceover output/discovery/<run-id>/script-<signal-id>.json -o output/voiceover/<signal-id>
+pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json \
+  --voiceover output/voiceover/<signal-id>/voiceover.json \
+  --assets ./assets --template ai-news
+```
+
+The voiceover is synthesized per section and its durations are MEASURED (never assumed from the script); sections, captions and video length follow the real audio.
+
+Local Kokoro setup used for development (Apache-2.0 model, French voices, CPU):
+
+```bash
+python3 -m venv .venv-tts
+.venv-tts/bin/pip install kokoro-onnx soundfile
+mkdir -p .tts-models && cd .tts-models
+curl -sLO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
+curl -sLO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+```
+
+with `.tts-models/say.py` reading text on stdin and writing `$1` (`kokoro_onnx.Kokoro(...).create(text, voice="ff_siwis", lang="fr-fr")` + `soundfile.write`). Both `.venv-tts/` and `.tts-models/` are gitignored.
 
 Generate a legal local sample:
 

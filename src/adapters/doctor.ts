@@ -21,6 +21,16 @@ export async function runDoctor(): Promise<DoctorReport> {
   checks.push(await commandCheck("ASR", process.env.SF_WHISPER_CLI ?? "whisper-cli", ["-h"], "Install whisper.cpp, for example `brew install whisper-cpp`.", 30_000));
   checks.push(await commandCheck("yt-dlp", process.env.SF_YTDLP_BIN ?? "yt-dlp", ["--version"], "Install yt-dlp, for example `brew install yt-dlp` or `python3 -m pip install --user yt-dlp`."));
 
+  const ttsCommand = process.env.SF_TTS_COMMAND;
+  checks.push(ttsCommand
+    ? { name: "TTS", status: "pass", detail: ttsCommand }
+    : {
+        name: "TTS",
+        status: "warn",
+        detail: "SF_TTS_COMMAND is not set",
+        hint: "Set SF_TTS_COMMAND to a local TTS CLI reading text on stdin and writing audio at {output} to enable `sf voiceover`."
+      });
+
   const modelPath = process.env.SF_WHISPER_MODEL;
   if (!modelPath) {
     checks.push({

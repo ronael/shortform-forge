@@ -44,6 +44,14 @@ The resulting `script-<signal-id>.json` (title, hook, timed voiceover sections, 
 pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json --assets ./assets
 ```
 
+To add a real local voice (recommended before any human review), synthesize the voiceover first, then produce with it:
+
+```bash
+pnpm sf voiceover output/discovery/<run-id>/script-<signal-id>.json -o output/voiceover/<signal-id>   # needs SF_TTS_COMMAND
+pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json \
+  --voiceover output/voiceover/<signal-id>/voiceover.json --assets ./assets --template ai-news
+```
+
 Check `output/produce/<id>/qa.json` and review `video.mp4` before considering anything publishable.
 
 5. If no real clipping input is provided, generate legal sample media:
