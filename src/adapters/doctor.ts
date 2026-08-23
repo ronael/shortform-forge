@@ -18,7 +18,7 @@ export async function runDoctor(): Promise<DoctorReport> {
   checks.push(await commandCheck("Node", process.execPath, ["--version"], "Install Node.js 22+."));
   checks.push(await commandCheck("FFmpeg", "ffmpeg", ["-version"], "Install FFmpeg, for example `brew install ffmpeg`."));
   checks.push(await commandCheck("ffprobe", "ffprobe", ["-version"], "Install FFmpeg, which includes ffprobe."));
-  checks.push(await commandCheck("ASR", process.env.SF_WHISPER_CLI ?? "whisper-cli", ["-h"], "Install whisper.cpp, for example `brew install whisper-cpp`."));
+  checks.push(await commandCheck("ASR", process.env.SF_WHISPER_CLI ?? "whisper-cli", ["-h"], "Install whisper.cpp, for example `brew install whisper-cpp`.", 30_000));
   checks.push(await commandCheck("yt-dlp", process.env.SF_YTDLP_BIN ?? "yt-dlp", ["--version"], "Install yt-dlp, for example `brew install yt-dlp` or `python3 -m pip install --user yt-dlp`."));
 
   const modelPath = process.env.SF_WHISPER_MODEL;
@@ -42,9 +42,9 @@ export async function runDoctor(): Promise<DoctorReport> {
   };
 }
 
-async function commandCheck(name: string, command: string, args: string[], hint: string): Promise<DoctorCheck> {
+async function commandCheck(name: string, command: string, args: string[], hint: string, timeoutMs = 10_000): Promise<DoctorCheck> {
   try {
-    const result = await runProcess(command, args, 10_000);
+    const result = await runProcess(command, args, timeoutMs);
     const detail = (result.stdout || result.stderr).split("\n").find((line) => line.trim().length > 0)?.trim() ?? "available";
     return { name, status: "pass", detail };
   } catch (error) {
