@@ -95,6 +95,18 @@ node dist/cli.js --version
 ```
 
 The QA step checks file presence, readability, dimensions, duration, audio and caption sidecar presence.
+It also checks caption completeness by comparing the selected transcript words with the generated ASS dialogue text before rendering.
+
+The automated `make-sample` workflow uses FFmpeg test video, sine audio, and a transcript fixture. It is deterministic and validates rendering/QA, but it does not validate ASR quality.
+
+For a real local ASR smoke test with a legal short voice sample:
+
+```bash
+curl -L --fail https://raw.githubusercontent.com/ggml-org/whisper.cpp/master/samples/jfk.wav -o /tmp/sf-jfk.wav
+ffmpeg -y -f lavfi -i testsrc2=size=1280x720:rate=30:duration=12 -i /tmp/sf-jfk.wav -c:v libx264 -pix_fmt yuv420p -c:a aac -shortest /tmp/sf-jfk.mp4
+printf '%s\n' '{"rights":"open_license","note":"Local ASR smoke asset built from whisper.cpp sample jfk.wav and FFmpeg testsrc2.","sourceUrl":"https://github.com/ggml-org/whisper.cpp/blob/master/samples/jfk.wav"}' > /tmp/sf-jfk-provenance.json
+SF_WHISPER_MODEL=/path/to/ggml-tiny.en.bin SF_WHISPER_NO_GPU=1 pnpm sf clip /tmp/sf-jfk.mp4 --provenance /tmp/sf-jfk-provenance.json --output /tmp/sf-output --cache /tmp/sf-cache --job asr-smoke
+```
 
 ## V0 Limits
 

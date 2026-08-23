@@ -1,8 +1,8 @@
-import { mkdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
 import type { CandidateSegment, QaReport, Transcript } from "../domain/contracts.js";
-import { buildAssCaptions } from "../domain/captions.js";
+import { buildAssCaptions, checkCaptionCompleteness } from "../domain/captions.js";
 import { runProcess } from "./process.js";
 import type { MediaProbe, MediaToolkit, QaRequest, RenderRequest } from "../application/ports.js";
 
@@ -108,6 +108,8 @@ export async function qaVideo(input: {
   expectedWidth: number;
   expectedHeight: number;
   captionsPath: string;
+  transcript: Transcript;
+  candidate: CandidateSegment;
 }): Promise<QaReport> {
   const checks: QaReport["checks"] = [];
   const fileStat = await stat(input.videoPath).catch(() => undefined);
@@ -132,6 +134,21 @@ export async function qaVideo(input: {
   checks.push(captionStat && captionStat.size > 100
     ? { name: "captions", status: "pass", detail: `${captionStat.size} bytes ASS sidecar rendered into video` }
     : { name: "captions", status: "fail", detail: "caption sidecar missing or empty" });
+  const captions = captionStat ? await readFile(input.captionsPath, "utf8").catch(() => undefined) : undefined;
+  const completeness = captions ? checkCaptionCompleteness(captions, input.transcript, input.candidate) : undefined;
+  checks.push(completeness?.status === "pass"
+    ? {
+        name: "caption_completeness",
+        status: "pass",
+        detail: `${completeness.renderedWordCount}/${completeness.expectedWordCount} expected words represented`
+      }
+    : {
+        name: "caption_completeness",
+        status: "fail",
+        detail: completeness
+          ? `missing words: ${[...new Set(completeness.missingWords)].slice(0, 12).join(", ")}`
+          : "caption sidecar could not be read"
+      });
 
   return {
     status: checks.every((check) => check.status === "pass") ? "pass" : "fail",

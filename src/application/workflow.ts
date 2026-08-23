@@ -91,7 +91,9 @@ export async function runClipWorkflow(options: ClipOptions, dependencies: ClipWo
     expectedDurationSeconds: selected.endSeconds - selected.startSeconds,
     expectedWidth: 1080,
     expectedHeight: 1920,
-    captionsPath: path.join(jobDir, "captions.ass")
+    captionsPath: path.join(jobDir, "captions.ass"),
+    transcript,
+    candidate: selected
   });
   const qaPath = path.join(jobDir, "qa.json");
   await writeJson(qaPath, qa);

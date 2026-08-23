@@ -28,6 +28,8 @@ export type QaRequest = {
   expectedWidth: number;
   expectedHeight: number;
   captionsPath: string;
+  transcript: Transcript;
+  candidate: CandidateSegment;
 };
 
 export interface MediaToolkit {
