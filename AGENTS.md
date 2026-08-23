@@ -4,6 +4,8 @@
 
 Shortform Forge is not a TikTok generator. It is a local-first workflow engine for short-form content production, with TikTok likely as the first proving ground but without coupling the core to any platform.
 
+It is also not an agent. It is a capability toolkit: business capabilities (`discover`, `analyze`, `clip`) are invoked by an external orchestrator (Codex, Claude Code, Kimi, MCP, a human). Never build autonomous loops, schedulers, agent memory, or self-triggering workflows into the tool itself.
+
 Conceptual workflow: `DISCOVER -> DECIDE/SCORE -> PRODUCE -> QA -> HUMAN REVIEW -> PUBLISH -> MEASURE/LEARN`.
 
 Current V0 scope: manually triggered discovery of content signals plus clipping of authorized source media into a vertical candidate with captions, structured artifacts, and QA. Do not build autonomous 24/7 automation, fragile scraping, publishing APIs, dashboards, cloud infrastructure, billing, auth, or speculative platform abstractions yet.

@@ -18,6 +18,12 @@ Discovery V0 adds a separate signal workflow:
 
 A discovery signal is not a clipping source. External videos can indicate topics, formats, velocity, creators, or angles, but they do not imply download/reuse rights.
 
+Opportunity analysis closes the loop between discovery and production:
+
+`opportunity -> language model analysis -> validated ProductionBrief -> human/Codex decision`
+
+Deterministic code owns facts, metrics, prompts and validation; the language model only judges (why it works, hook type, adaptation ideas, format, risks).
+
 ## Future Context, Not Current Scope
 
 Possible monetization paths include Creator Rewards, authorized paid clipping, affiliate content, products, and other models. Do not code these until validated by a product need.

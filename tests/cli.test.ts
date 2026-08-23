@@ -10,5 +10,8 @@ describe("CLI", () => {
     expect(clip?.options.some((option) => option.flags.includes("--transcript") && option.mandatory !== true)).toBe(true);
     const discover = program.commands.find((command) => command.name() === "discover");
     expect(discover?.commands.map((command) => command.name())).toEqual(["youtube", "import"]);
+    const analyze = program.commands.find((command) => command.name() === "analyze");
+    expect(analyze).toBeDefined();
+    expect(analyze?.options.some((option) => option.flags.includes("--prompt"))).toBe(true);
   });
 });

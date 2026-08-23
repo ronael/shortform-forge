@@ -6,9 +6,9 @@ export type ProcessResult = {
   stderr: string;
 };
 
-export async function runProcess(command: string, args: string[], timeoutMs = 120_000): Promise<ProcessResult> {
+export async function runProcess(command: string, args: string[], timeoutMs = 120_000, stdin?: string): Promise<ProcessResult> {
   return new Promise((resolve, reject) => {
-    const child = spawn(command, args, { stdio: ["ignore", "pipe", "pipe"] });
+    const child = spawn(command, args, { stdio: [stdin === undefined ? "ignore" : "pipe", "pipe", "pipe"] });
     let stdout = "";
     let stderr = "";
     const timer = setTimeout(() => {
@@ -16,12 +16,16 @@ export async function runProcess(command: string, args: string[], timeoutMs = 12
       reject(new AppError(`${command} timed out after ${timeoutMs}ms`, "PROCESS_TIMEOUT"));
     }, timeoutMs);
 
-    child.stdout.setEncoding("utf8");
-    child.stderr.setEncoding("utf8");
-    child.stdout.on("data", (chunk) => {
+    child.stdout!.setEncoding("utf8");
+    child.stderr!.setEncoding("utf8");
+    if (stdin !== undefined && child.stdin) {
+      child.stdin.write(stdin);
+      child.stdin.end();
+    }
+    child.stdout!.on("data", (chunk) => {
       stdout += chunk;
     });
-    child.stderr.on("data", (chunk) => {
+    child.stderr!.on("data", (chunk) => {
       stderr += chunk;
     });
     child.on("error", (error: NodeJS.ErrnoException) => {

@@ -9,9 +9,9 @@ The current verticals are:
 
 ## Architecture
 
-- `src/domain`: Zod contracts, caption generation, clipping scoring, discovery metrics and opportunity scoring.
-- `src/application`: workflow orchestration, ports and artifact persistence.
-- `src/adapters`: FFmpeg/ffprobe, whisper.cpp ASR, yt-dlp discovery, doctor checks and process execution boundaries.
+- `src/domain`: Zod contracts, caption generation, clipping scoring, discovery metrics, opportunity scoring and production brief contracts.
+- `src/application`: workflow orchestration, ports, prompts and artifact persistence.
+- `src/adapters`: FFmpeg/ffprobe, whisper.cpp ASR, yt-dlp discovery, generic LLM CLI provider, doctor checks and process execution boundaries.
 - `src/cli.ts`: human/Codex-friendly CLI.
 
 External media, ASR, QA and scoring work stay behind ports so adapters can be replaced later without rewriting the workflow.
@@ -84,6 +84,20 @@ Discovery outputs are written to `output/discovery/<run-id>/`:
 - `opportunities.json`
 
 A discovery signal is not an authorized production source. Discovery artifacts are for topic, format, velocity and opportunity analysis; clipping still requires user-owned, authorized, open-licensed, or generated source media.
+
+Analyze a discovered opportunity into a production brief:
+
+```bash
+pnpm sf analyze output/discovery/<run-id>/opportunities.json --index 0
+```
+
+Analysis uses any local LLM CLI configured with `SF_LLM_COMMAND` (a command that reads the prompt on stdin, for example `SF_LLM_COMMAND="ollama run llama3.1"`). Without a provider, print the prompt and let the orchestrating agent answer it itself:
+
+```bash
+pnpm sf analyze output/discovery/<run-id>/opportunities.json --prompt
+```
+
+The validated brief is written to `brief-<signal-id>.json` next to the opportunities artifact.
 
 Generate a legal local sample:
 

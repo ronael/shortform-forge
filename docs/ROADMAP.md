@@ -8,10 +8,11 @@
 - Deterministic baseline scoring.
 - Automatic QA and human-review handoff.
 - Discovery V0 through normalized signals and deterministic opportunity scoring.
+- Opportunity analysis: scored opportunities turned into validated production briefs via a provider-agnostic language model port.
 
 ## Next
 
-1. Use discovery opportunities as inputs for Codex/human semantic judgment.
+1. Feed production briefs into script generation (still capability, not agent).
 2. Improve ASR setup ergonomics and model guidance.
 3. Add language-aware scoring, starting with French and English.
 

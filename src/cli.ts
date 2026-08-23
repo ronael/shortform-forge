@@ -7,7 +7,10 @@ import { createSampleAsset, FfmpegMediaToolkit } from "./adapters/ffmpeg.js";
 import { runDoctor } from "./adapters/doctor.js";
 import { WhisperCppTranscriptionProvider } from "./adapters/whisperCpp.js";
 import { YtDlpDiscoverySource } from "./adapters/ytDlpDiscovery.js";
+import { CommandLanguageModelProvider } from "./adapters/commandLlm.js";
 import { heuristicAnalyzer } from "./application/analyzer.js";
+import { analyzeOpportunityFile, loadOpportunity } from "./application/analyzeOpportunity.js";
+import { buildOpportunityBriefPrompt } from "./application/prompts/opportunityBrief.js";
 import { importDiscoverySignals, runDiscoverySearch, type DiscoveryWorkflowResult } from "./application/discoveryWorkflow.js";
 import { asAppError } from "./domain/errors.js";
 import { initOutputRoot, runClipWorkflow } from "./application/workflow.js";
@@ -73,6 +76,52 @@ export function createProgram(): Command {
           printDiscoveryResult(result, Boolean(options.json));
         });
       }));
+
+  program
+    .command("analyze")
+    .description("Turn a discovered opportunity into a production brief via a language model")
+    .argument("<file>", "Opportunity JSON or opportunities.json artifact from `sf discover`")
+    .option("--index <number>", "opportunity index when the file holds several", parseNonNegativeInt, 0)
+    .option("--prompt", "print the analysis prompt without calling a provider")
+    .option("--json", "print machine-readable result")
+    .action(async (file: string, options: { index: number; prompt?: boolean; json?: boolean }) => {
+      await run(async () => {
+        const resolved = path.resolve(file);
+        if (options.prompt) {
+          const opportunity = await loadOpportunity(resolved, options.index);
+          console.log(buildOpportunityBriefPrompt(opportunity));
+          return;
+        }
+        const result = await analyzeOpportunityFile({
+          filePath: resolved,
+          index: options.index,
+          provider: new CommandLanguageModelProvider()
+        });
+        if (options.json) {
+          printJson({ status: "pass", briefPath: result.briefPath, analysis: result.analysis });
+          return;
+        }
+        const { opportunity, brief } = result.analysis;
+        console.log("Opportunity analysis complete");
+        console.log("");
+        console.log(`opportunity: ${opportunity.signal.title} [score ${opportunity.score.score}]`);
+        console.log(`hook: ${brief.hook.type} (${brief.hook.strength}) — potential: ${brief.potential}, difficulty: ${brief.productionDifficulty}`);
+        console.log(`format: ${brief.recommendedFormat.type} ${brief.recommendedFormat.durationSeconds.min}-${brief.recommendedFormat.durationSeconds.max}s`);
+        console.log("");
+        console.log("Why interesting:");
+        for (const reason of brief.whyInteresting) console.log(`- ${reason}`);
+        console.log("");
+        console.log("Adaptation ideas:");
+        for (const idea of brief.adaptationIdeas) console.log(`- ${idea}`);
+        if (brief.risks.length > 0) {
+          console.log("");
+          console.log("Risks:");
+          for (const risk of brief.risks) console.log(`- ${risk}`);
+        }
+        console.log("");
+        console.log(`brief: ${result.briefPath}`);
+      });
+    });
 
   program
     .command("make-sample")
@@ -155,6 +204,12 @@ function printJson(value: unknown): void {
 function parsePositiveInt(value: string): number {
   const parsed = Number.parseInt(value, 10);
   if (!Number.isInteger(parsed) || parsed <= 0) throw new Error(`Expected a positive integer, got ${value}`);
+  return parsed;
+}
+
+function parseNonNegativeInt(value: string): number {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isInteger(parsed) || parsed < 0) throw new Error(`Expected a non-negative integer, got ${value}`);
   return parsed;
 }
 

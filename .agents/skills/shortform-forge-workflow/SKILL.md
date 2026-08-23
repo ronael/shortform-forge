@@ -24,7 +24,14 @@ pnpm sf discover youtube "<query>" --limit 30
 pnpm sf discover import signals.json
 ```
 
-Inspect `output/discovery/<run-id>/opportunities.json`, then use Codex/human judgment for semantic fit, rights risk, and production feasibility.
+Inspect `output/discovery/<run-id>/opportunities.json`, then analyze the top entries into production briefs:
+
+```bash
+pnpm sf analyze output/discovery/<run-id>/opportunities.json --index 0          # needs SF_LLM_COMMAND
+pnpm sf analyze output/discovery/<run-id>/opportunities.json --index 0 --prompt # print the prompt, answer it yourself
+```
+
+The resulting `brief-<signal-id>.json` (hook, adaptation ideas, format, difficulty, potential, risks) supports the Codex/human decision on what to produce.
 
 5. If no real clipping input is provided, generate legal sample media:
 
