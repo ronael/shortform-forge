@@ -1,0 +1,30 @@
+{
+  "name": "shortform-forge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first short-form clipping pipeline with traceable artifacts.",
+  "bin": {
+    "sf": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "type-check": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "sf": "node dist/src/cli.js",
+    "sf:dev": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
