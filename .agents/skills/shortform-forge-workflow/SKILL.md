@@ -31,7 +31,14 @@ pnpm sf analyze output/discovery/<run-id>/opportunities.json --index 0          
 pnpm sf analyze output/discovery/<run-id>/opportunities.json --index 0 --prompt # print the prompt, answer it yourself
 ```
 
-The resulting `brief-<signal-id>.json` (hook, adaptation ideas, format, difficulty, potential, risks) supports the Codex/human decision on what to produce.
+The resulting `brief-<signal-id>.json` (hook, adaptation ideas, format, difficulty, potential, risks) supports the Codex/human decision on what to produce. From an approved brief, generate a timed script plan:
+
+```bash
+pnpm sf script output/discovery/<run-id>/brief-<signal-id>.json          # needs SF_LLM_COMMAND
+pnpm sf script output/discovery/<run-id>/brief-<signal-id>.json --prompt # print the prompt, answer it yourself
+```
+
+The resulting `script-<signal-id>.json` (title, hook, timed voiceover sections, visual plan, caption guidance) is the input boundary for any future production step.
 
 5. If no real clipping input is provided, generate legal sample media:
 

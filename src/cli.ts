@@ -10,6 +10,8 @@ import { YtDlpDiscoverySource } from "./adapters/ytDlpDiscovery.js";
 import { CommandLanguageModelProvider } from "./adapters/commandLlm.js";
 import { heuristicAnalyzer } from "./application/analyzer.js";
 import { analyzeOpportunityFile, loadOpportunity } from "./application/analyzeOpportunity.js";
+import { generateScriptFromFile, loadBrief } from "./application/generateScript.js";
+import { buildScriptGenerationPrompt } from "./application/prompts/scriptGeneration.js";
 import { buildOpportunityBriefPrompt } from "./application/prompts/opportunityBrief.js";
 import { importDiscoverySignals, runDiscoverySearch, type DiscoveryWorkflowResult } from "./application/discoveryWorkflow.js";
 import { asAppError } from "./domain/errors.js";
@@ -120,6 +122,44 @@ export function createProgram(): Command {
         }
         console.log("");
         console.log(`brief: ${result.briefPath}`);
+      });
+    });
+
+  program
+    .command("script")
+    .description("Turn a production brief into a structured script plan via a language model")
+    .argument("<file>", "ProductionBrief JSON or brief-<signal-id>.json artifact from `sf analyze`")
+    .option("--prompt", "print the generation prompt without calling a provider")
+    .option("--json", "print machine-readable result")
+    .action(async (file: string, options: { prompt?: boolean; json?: boolean }) => {
+      await run(async () => {
+        const resolved = path.resolve(file);
+        if (options.prompt) {
+          const { brief } = await loadBrief(resolved);
+          console.log(buildScriptGenerationPrompt(brief));
+          return;
+        }
+        const result = await generateScriptFromFile({
+          filePath: resolved,
+          provider: new CommandLanguageModelProvider()
+        });
+        if (options.json) {
+          printJson({ status: "pass", scriptPath: result.scriptPath, script: result.script });
+          return;
+        }
+        const { plan } = result.script;
+        console.log("Script generation complete");
+        console.log("");
+        console.log(`title: ${plan.title}`);
+        console.log(`duration: ${plan.durationSeconds}s — ${plan.sections.length} sections`);
+        console.log(`hook (${plan.hook.durationSeconds}s): ${plan.hook.text}`);
+        console.log("");
+        console.log("Sections:");
+        for (const section of plan.sections) {
+          console.log(`- [${section.startSeconds}-${section.endSeconds}s] ${section.purpose}: ${section.voiceover.slice(0, 80)}`);
+        }
+        console.log("");
+        console.log(`script: ${result.scriptPath}`);
       });
     });
 

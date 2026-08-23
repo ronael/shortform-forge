@@ -13,5 +13,8 @@ describe("CLI", () => {
     const analyze = program.commands.find((command) => command.name() === "analyze");
     expect(analyze).toBeDefined();
     expect(analyze?.options.some((option) => option.flags.includes("--prompt"))).toBe(true);
+    const script = program.commands.find((command) => command.name() === "script");
+    expect(script).toBeDefined();
+    expect(script?.options.some((option) => option.flags.includes("--prompt"))).toBe(true);
   });
 });

@@ -99,6 +99,14 @@ pnpm sf analyze output/discovery/<run-id>/opportunities.json --prompt
 
 The validated brief is written to `brief-<signal-id>.json` next to the opportunities artifact.
 
+Generate a script plan from a brief:
+
+```bash
+pnpm sf script output/discovery/<run-id>/brief-<signal-id>.json
+```
+
+Same provider rules as `analyze` (`SF_LLM_COMMAND`, or `--prompt` to let the orchestrating agent write the plan). The validated plan is written to `script-<signal-id>.json` next to the brief.
+
 Generate a legal local sample:
 
 ```bash

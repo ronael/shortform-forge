@@ -6,6 +6,7 @@ import { OpportunityAnalysisSchema, ProductionBriefSchema, type OpportunityAnaly
 import { AppError } from "../domain/errors.js";
 import type { LanguageModelProvider } from "./languageModelPort.js";
 import { buildOpportunityBriefPrompt } from "./prompts/opportunityBrief.js";
+import { parseLlmJson } from "./llmJson.js";
 import { writeJson } from "./files.js";
 
 const OpportunitiesFileSchema = z.object({ opportunities: z.array(OpportunitySchema).min(1) });
@@ -13,7 +14,7 @@ const OpportunitiesFileSchema = z.object({ opportunities: z.array(OpportunitySch
 export async function analyzeOpportunity(opportunity: Opportunity, provider: LanguageModelProvider): Promise<OpportunityAnalysis> {
   const prompt = buildOpportunityBriefPrompt(opportunity);
   const response = await provider.generate(prompt);
-  const brief = parseBriefResponse(response);
+  const brief = parseLlmJson(response, ProductionBriefSchema, "ProductionBrief");
   return OpportunityAnalysisSchema.parse({
     opportunity,
     brief,
@@ -56,23 +57,4 @@ export async function loadOpportunity(filePath: string, index: number): Promise<
     "INVALID_INPUT",
     "Provide an Opportunity object or an { opportunities: [...] } file produced by `sf discover`."
   );
-}
-
-function parseBriefResponse(response: string) {
-  const start = response.indexOf("{");
-  const end = response.lastIndexOf("}");
-  if (start === -1 || end <= start) {
-    throw new AppError("Language model response did not contain a JSON object", "LLM_INVALID_RESPONSE");
-  }
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(response.slice(start, end + 1));
-  } catch {
-    throw new AppError("Language model response contained malformed JSON", "LLM_INVALID_RESPONSE");
-  }
-  const brief = ProductionBriefSchema.safeParse(parsed);
-  if (!brief.success) {
-    throw new AppError(`Language model response failed ProductionBrief validation: ${brief.error.issues[0]?.message ?? "unknown issue"}`, "LLM_INVALID_RESPONSE");
-  }
-  return brief.data;
 }

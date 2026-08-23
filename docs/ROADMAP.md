@@ -9,10 +9,11 @@
 - Automatic QA and human-review handoff.
 - Discovery V0 through normalized signals and deterministic opportunity scoring.
 - Opportunity analysis: scored opportunities turned into validated production briefs via a provider-agnostic language model port.
+- Script generation: production briefs turned into validated, timed script plans (voiceover sections, visual plan, caption guidance).
 
 ## Next
 
-1. Feed production briefs into script generation (still capability, not agent).
+1. Produce step: turn script plans into asset plans and video composition (capability, not agent).
 2. Improve ASR setup ergonomics and model guidance.
 3. Add language-aware scoring, starting with French and English.
 
