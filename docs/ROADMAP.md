@@ -7,12 +7,13 @@
 - Local ASR via whisper.cpp.
 - Deterministic baseline scoring.
 - Automatic QA and human-review handoff.
+- Discovery V0 through normalized signals and deterministic opportunity scoring.
 
 ## Next
 
-1. Improve ASR setup ergonomics and model guidance.
-2. Add language-aware scoring, starting with French and English.
-3. Improve reframing only when center-crop becomes a real quality blocker.
+1. Use discovery opportunities as inputs for Codex/human semantic judgment.
+2. Improve ASR setup ergonomics and model guidance.
+3. Add language-aware scoring, starting with French and English.
 
 ## Later
 

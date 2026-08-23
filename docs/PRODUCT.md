@@ -12,6 +12,12 @@ The current vertical is authorized clipping:
 
 The system must preserve structured artifacts under `output/<job>/`: source metadata, transcript, analysis, captions, candidate MP4, and QA.
 
+Discovery V0 adds a separate signal workflow:
+
+`source/search -> discover -> normalize -> derive metrics -> score/filter -> opportunities -> Codex/human judgment`
+
+A discovery signal is not a clipping source. External videos can indicate topics, formats, velocity, creators, or angles, but they do not imply download/reuse rights.
+
 ## Future Context, Not Current Scope
 
 Possible monetization paths include Creator Rewards, authorized paid clipping, affiliate content, products, and other models. Do not code these until validated by a product need.

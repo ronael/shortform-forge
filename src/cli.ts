@@ -6,7 +6,9 @@ import { fileURLToPath } from "node:url";
 import { createSampleAsset, FfmpegMediaToolkit } from "./adapters/ffmpeg.js";
 import { runDoctor } from "./adapters/doctor.js";
 import { WhisperCppTranscriptionProvider } from "./adapters/whisperCpp.js";
+import { YtDlpDiscoverySource } from "./adapters/ytDlpDiscovery.js";
 import { heuristicAnalyzer } from "./application/analyzer.js";
+import { importDiscoverySignals, runDiscoverySearch, type DiscoveryWorkflowResult } from "./application/discoveryWorkflow.js";
 import { asAppError } from "./domain/errors.js";
 import { initOutputRoot, runClipWorkflow } from "./application/workflow.js";
 
@@ -28,6 +30,49 @@ export function createProgram(): Command {
         if (report.status !== "pass") process.exitCode = 1;
       });
     });
+
+  program
+    .command("discover")
+    .description("Discover and score content signals")
+    .addCommand(new Command("youtube")
+      .description("Search YouTube via yt-dlp without downloading videos")
+      .argument("<query>", "search query")
+      .option("-l, --limit <number>", "number of results to request", parsePositiveInt, 30)
+      .option("-o, --output <dir>", "output root directory", "output")
+      .option("--top <number>", "number of opportunities to keep", parsePositiveInt, 20)
+      .option("--run-id <id>", "stable run id")
+      .option("--json", "print machine-readable result")
+      .action(async (query: string, options: { limit: number; output: string; top: number; runId?: string; json?: boolean }) => {
+        await run(async () => {
+          const result = await runDiscoverySearch({
+            source: new YtDlpDiscoverySource(),
+            query,
+            limit: options.limit,
+            outputRoot: options.output,
+            top: options.top,
+            ...(options.runId ? { runId: options.runId } : {})
+          });
+          printDiscoveryResult(result, Boolean(options.json));
+        });
+      }))
+    .addCommand(new Command("import")
+      .description("Import normalized ContentSignal objects from JSON and score them")
+      .argument("<file>", "JSON file containing an array or { signals: [...] }")
+      .option("-o, --output <dir>", "output root directory", "output")
+      .option("--top <number>", "number of opportunities to keep", parsePositiveInt, 20)
+      .option("--run-id <id>", "stable run id")
+      .option("--json", "print machine-readable result")
+      .action(async (file: string, options: { output: string; top: number; runId?: string; json?: boolean }) => {
+        await run(async () => {
+          const result = await importDiscoverySignals({
+            filePath: file,
+            outputRoot: options.output,
+            top: options.top,
+            ...(options.runId ? { runId: options.runId } : {})
+          });
+          printDiscoveryResult(result, Boolean(options.json));
+        });
+      }));
 
   program
     .command("make-sample")
@@ -105,4 +150,39 @@ async function run(action: () => Promise<void>): Promise<void> {
 
 function printJson(value: unknown): void {
   console.log(JSON.stringify(value, null, 2));
+}
+
+function parsePositiveInt(value: string): number {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isInteger(parsed) || parsed <= 0) throw new Error(`Expected a positive integer, got ${value}`);
+  return parsed;
+}
+
+function printDiscoveryResult(result: DiscoveryWorkflowResult, asJson: boolean): void {
+  if (asJson) {
+    printJson({
+      status: "pass",
+      run: result.run,
+      signals: result.signals.length,
+      opportunities: result.opportunities
+    });
+    return;
+  }
+  console.log("Discovery complete");
+  console.log("");
+  console.log(`source: ${result.run.source}`);
+  if (result.run.query) console.log(`query: ${result.run.query}`);
+  console.log(`signals: ${result.signals.length}`);
+  console.log(`opportunities: ${result.opportunities.length}`);
+  console.log(`warnings: ${result.warnings.length}`);
+  console.log("");
+  console.log("Top opportunities:");
+  for (const [index, opportunity] of result.opportunities.slice(0, 10).entries()) {
+    const creator = opportunity.signal.creator ? ` — ${opportunity.signal.creator}` : "";
+    console.log(`${index + 1}. [${opportunity.score.score}] ${opportunity.signal.title}${creator}`);
+    console.log(`   ${opportunity.signal.url}`);
+    console.log(`   ${opportunity.score.reasons.slice(0, 3).join("; ")}`);
+  }
+  console.log("");
+  console.log(`artifacts: ${result.run.artifactDir}`);
 }

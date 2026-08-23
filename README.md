@@ -2,13 +2,16 @@
 
 Local-first V0 for producing traceable short-form video candidates from authorized source footage.
 
-The current vertical is clipping: authorized source video -> local ASR or transcript import -> heuristic passage analysis -> vertical render with captions -> automatic QA -> candidate MP4 plus structured artifacts.
+The current verticals are:
+
+- discovery: external content signals -> normalization -> derived metrics -> opportunity shortlist.
+- clipping: authorized source video -> local ASR or transcript import -> heuristic passage analysis -> vertical render with captions -> automatic QA -> candidate MP4 plus structured artifacts.
 
 ## Architecture
 
-- `src/domain`: Zod contracts, caption generation and heuristic scoring.
+- `src/domain`: Zod contracts, caption generation, clipping scoring, discovery metrics and opportunity scoring.
 - `src/application`: workflow orchestration, ports and artifact persistence.
-- `src/adapters`: FFmpeg/ffprobe, whisper.cpp ASR, doctor checks and process execution boundaries.
+- `src/adapters`: FFmpeg/ffprobe, whisper.cpp ASR, yt-dlp discovery, doctor checks and process execution boundaries.
 - `src/cli.ts`: human/Codex-friendly CLI.
 
 External media, ASR, QA and scoring work stay behind ports so adapters can be replaced later without rewriting the workflow.
@@ -20,6 +23,7 @@ External media, ASR, QA and scoring work stay behind ports so adapters can be re
 - FFmpeg with ffprobe on `PATH`
 - whisper.cpp `whisper-cli` on `PATH`
 - a local ggml Whisper model, configured with `SF_WHISPER_MODEL=/path/to/ggml-model.bin`
+- yt-dlp on `PATH` for YouTube discovery
 
 No API key is required for the V0. ASR uses local whisper.cpp. Manual transcript import remains supported as an override/cache path.
 
@@ -27,6 +31,14 @@ Check setup:
 
 ```bash
 pnpm sf doctor
+```
+
+If `SF_WHISPER_MODEL` is not set, `doctor` reports a warning: discovery and transcript-override clipping still work, but local ASR clipping needs a model.
+
+Discovery through YouTube uses `yt-dlp` without downloading videos:
+
+```bash
+brew install yt-dlp
 ```
 
 On macOS, whisper.cpp can be installed with Homebrew:
@@ -52,6 +64,26 @@ pnpm run build
 ```
 
 ## Commands
+
+Discover YouTube signals:
+
+```bash
+pnpm sf discover youtube "ai tools" --limit 30
+```
+
+Import normalized signals gathered elsewhere:
+
+```bash
+pnpm sf discover import signals.json
+```
+
+Discovery outputs are written to `output/discovery/<run-id>/`:
+
+- `run.json`
+- `signals.json`
+- `opportunities.json`
+
+A discovery signal is not an authorized production source. Discovery artifacts are for topic, format, velocity and opportunity analysis; clipping still requires user-owned, authorized, open-licensed, or generated source media.
 
 Generate a legal local sample:
 
@@ -111,9 +143,19 @@ SF_WHISPER_MODEL=/path/to/ggml-tiny.en.bin SF_WHISPER_NO_GPU=1 pnpm sf clip /tmp
 ## V0 Limits
 
 - No autonomous downloader, platform publishing or scheduler.
+- YouTube discovery uses `yt-dlp` metadata/search only; it does not download videos.
 - ASR is local whisper.cpp only; no diarization or paid ASR provider is wired in.
 - Scoring is deterministic and heuristic, not a claim about virality.
 - Reframing is center-crop 9:16, not face/object tracking.
+
+## Discovery Choice
+
+Selected: `yt-dlp`, Unlicense, mature, actively maintained, CLI-friendly, macOS-ready, no API key, supports YouTube search metadata through `ytsearchN:` and JSON output without downloading media.
+
+Rejected for now:
+
+- `youtube-search-python`: original project is archived; maintained forks are smaller and add Python for a use case `yt-dlp` already covers.
+- Custom YouTube HTTP client: unnecessary and more fragile than a maintained extractor.
 
 ## ASR Choice
 

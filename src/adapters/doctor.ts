@@ -3,7 +3,7 @@ import { runProcess } from "./process.js";
 
 export type DoctorCheck = {
   name: string;
-  status: "pass" | "fail";
+  status: "pass" | "warn" | "fail";
   detail: string;
   hint?: string;
 };
@@ -19,12 +19,13 @@ export async function runDoctor(): Promise<DoctorReport> {
   checks.push(await commandCheck("FFmpeg", "ffmpeg", ["-version"], "Install FFmpeg, for example `brew install ffmpeg`."));
   checks.push(await commandCheck("ffprobe", "ffprobe", ["-version"], "Install FFmpeg, which includes ffprobe."));
   checks.push(await commandCheck("ASR", process.env.SF_WHISPER_CLI ?? "whisper-cli", ["-h"], "Install whisper.cpp, for example `brew install whisper-cpp`."));
+  checks.push(await commandCheck("yt-dlp", process.env.SF_YTDLP_BIN ?? "yt-dlp", ["--version"], "Install yt-dlp, for example `brew install yt-dlp` or `python3 -m pip install --user yt-dlp`."));
 
   const modelPath = process.env.SF_WHISPER_MODEL;
   if (!modelPath) {
     checks.push({
       name: "model",
-      status: "fail",
+      status: "warn",
       detail: "SF_WHISPER_MODEL is not set",
       hint: "Set SF_WHISPER_MODEL=/path/to/ggml-model.bin. Models are available from https://huggingface.co/ggerganov/whisper.cpp/tree/main."
     });
@@ -36,7 +37,7 @@ export async function runDoctor(): Promise<DoctorReport> {
   }
 
   return {
-    status: checks.every((check) => check.status === "pass") ? "pass" : "fail",
+    status: checks.some((check) => check.status === "fail") ? "fail" : "pass",
     checks
   };
 }
