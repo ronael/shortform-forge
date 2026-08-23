@@ -8,9 +8,11 @@ import { runDoctor } from "./adapters/doctor.js";
 import { WhisperCppTranscriptionProvider } from "./adapters/whisperCpp.js";
 import { YtDlpDiscoverySource } from "./adapters/ytDlpDiscovery.js";
 import { CommandLanguageModelProvider } from "./adapters/commandLlm.js";
+import { FfmpegCompositionRenderer } from "./adapters/ffmpegComposition.js";
 import { heuristicAnalyzer } from "./application/analyzer.js";
 import { analyzeOpportunityFile, loadOpportunity } from "./application/analyzeOpportunity.js";
 import { generateScriptFromFile, loadBrief } from "./application/generateScript.js";
+import { produceFromScriptFile } from "./application/produceVideo.js";
 import { buildScriptGenerationPrompt } from "./application/prompts/scriptGeneration.js";
 import { buildOpportunityBriefPrompt } from "./application/prompts/opportunityBrief.js";
 import { importDiscoverySignals, runDiscoverySearch, type DiscoveryWorkflowResult } from "./application/discoveryWorkflow.js";
@@ -160,6 +162,38 @@ export function createProgram(): Command {
         }
         console.log("");
         console.log(`script: ${result.scriptPath}`);
+      });
+    });
+
+  program
+    .command("produce")
+    .description("Render a script plan into a vertical video artifact")
+    .argument("<file>", "ScriptPlan JSON or script-<signal-id>.json artifact from `sf script`")
+    .option("--assets <dir>", "directory of local assets named after section purposes (hook.png, explanation.mp4, ...)")
+    .option("-o, --output <dir>", "output root directory", "output")
+    .option("--run-id <id>", "stable run id")
+    .option("--json", "print machine-readable result")
+    .action(async (file: string, options: { assets?: string; output: string; runId?: string; json?: boolean }) => {
+      await run(async () => {
+        const result = await produceFromScriptFile({
+          filePath: file,
+          renderer: new FfmpegCompositionRenderer(),
+          outputRoot: options.output,
+          ...(options.assets ? { assetsDir: options.assets } : {}),
+          ...(options.runId ? { runId: options.runId } : {})
+        });
+        if (options.json) {
+          printJson({ status: "pass", artifactDir: result.artifactDir, artifact: result.artifact });
+          return;
+        }
+        console.log("Production complete");
+        console.log("");
+        console.log(`renderer: ${result.artifact.provenance.renderer}`);
+        console.log(`video: ${result.artifact.path}`);
+        console.log(`dimensions: ${result.artifact.width}x${result.artifact.height} @ ${result.artifact.fps}fps`);
+        console.log(`duration: ${result.artifact.durationSeconds}s`);
+        console.log(`composition: ${result.plan.layers.length} layers`);
+        console.log(`artifacts: ${result.artifactDir}`);
       });
     });
 

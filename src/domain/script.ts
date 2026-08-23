@@ -55,6 +55,7 @@ export const GeneratedScriptSchema = z.object({
   generatedAt: z.string().datetime()
 });
 
+export type CaptionStyle = z.infer<typeof CaptionStyleSchema>;
 export type ScriptSection = z.infer<typeof ScriptSectionSchema>;
 export type ScriptPlan = z.infer<typeof ScriptPlanSchema>;
 export type GeneratedScript = z.infer<typeof GeneratedScriptSchema>;

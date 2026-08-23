@@ -38,7 +38,13 @@ pnpm sf script output/discovery/<run-id>/brief-<signal-id>.json          # needs
 pnpm sf script output/discovery/<run-id>/brief-<signal-id>.json --prompt # print the prompt, answer it yourself
 ```
 
-The resulting `script-<signal-id>.json` (title, hook, timed voiceover sections, visual plan, caption guidance) is the input boundary for any future production step.
+The resulting `script-<signal-id>.json` (title, hook, timed voiceover sections, visual plan, caption guidance) is the input for production. Render it into a vertical video with local assets named after section purposes:
+
+```bash
+pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json --assets ./assets
+```
+
+Check `output/produce/<id>/qa.json` and review `video.mp4` before considering anything publishable.
 
 5. If no real clipping input is provided, generate legal sample media:
 

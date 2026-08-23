@@ -107,6 +107,14 @@ pnpm sf script output/discovery/<run-id>/brief-<signal-id>.json
 
 Same provider rules as `analyze` (`SF_LLM_COMMAND`, or `--prompt` to let the orchestrating agent write the plan). The validated plan is written to `script-<signal-id>.json` next to the brief.
 
+Produce a vertical video from a script plan:
+
+```bash
+pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json --assets ./assets
+```
+
+Assets are optional local files named after section purposes (`hook.png`, `explanation.mp4`, ...); sections without a matching file get a color background. Outputs land in `output/produce/<id>/`: `composition.json`, `video.mp4`, `qa.json`, `artifact.json`. Videos are silent (no TTS yet) and rendered locally with FFmpeg.
+
 Generate a legal local sample:
 
 ```bash

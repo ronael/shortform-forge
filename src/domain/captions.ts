@@ -1,7 +1,11 @@
 import type { CandidateSegment, Transcript } from "./contracts.js";
+import type { CaptionCuePlan } from "./composition.js";
+import type { CaptionStyle, ScriptSection } from "./script.js";
 
 const MAX_CHARS_PER_LINE = 28;
 const MAX_LINES_PER_CUE = 3;
+const HIGHLIGHT_COLOR = "&H0000E0FF";
+const BASE_COLOR = "&H00FFFFFF";
 
 export type CaptionCue = {
   startSeconds: number;
@@ -9,6 +13,77 @@ export type CaptionCue = {
   text: string;
   lines: string[];
 };
+
+const CAPTION_STYLES: Record<CaptionStyle, string> = {
+  dynamic: "Style: Caption,Arial,72,&H00FFFFFF,&H00FFFFFF,&H00000000,&H99000000,-1,0,0,0,100,100,0,0,1,5,2,2,90,90,250,1",
+  minimal: "Style: Caption,Arial,56,&H00FFFFFF,&H00FFFFFF,&H00000000,&H66000000,0,0,0,0,100,100,0,0,1,3,1,2,90,90,220,1",
+  "keyword-highlight": "Style: Caption,Arial,72,&H00FFFFFF,&H00FFFFFF,&H00000000,&H99000000,-1,0,0,0,100,100,0,0,1,5,2,2,90,90,250,1"
+};
+
+/** Builds timed caption cues from a script plan's voiceover sections. */
+export function cuesFromSections(sections: Pick<ScriptSection, "startSeconds" | "endSeconds" | "voiceover">[]): CaptionCuePlan[] {
+  return sections.flatMap((section) => {
+    const chunks = splitIntoCueTexts(section.voiceover);
+    const duration = section.endSeconds - section.startSeconds;
+    return chunks.map((chunk, index) => {
+      const cueStart = section.startSeconds + (duration * index) / chunks.length;
+      const cueEnd = index === chunks.length - 1 ? section.endSeconds : section.startSeconds + (duration * (index + 1)) / chunks.length;
+      return {
+        startSeconds: cueStart,
+        endSeconds: Math.max(cueStart + 0.25, cueEnd),
+        text: chunk
+      };
+    });
+  });
+}
+
+/** Renders caption cues as an ASS subtitle document with the given style. */
+export function buildAssFromCues(cues: CaptionCuePlan[], style: CaptionStyle, keywordsToEmphasize: string[] = []): string {
+  const events = cues.map((cue, index) => {
+    const escaped = wrapCaption(cue.text).map((line) => escapeAss(line));
+    const lines = style === "keyword-highlight"
+      ? escaped.map((line) => highlightKeywords(line, keywordsToEmphasize))
+      : escaped;
+    return `Dialogue: ${index},${formatAssTime(cue.startSeconds)},${formatAssTime(cue.endSeconds)},Caption,,0,0,0,,${lines.join("\\N")}`;
+  });
+  return `[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+${CAPTION_STYLES[style]}
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+${events.join("\n")}
+`;
+}
+
+export function captionStyleDefinition(style: CaptionStyle): string {
+  return CAPTION_STYLES[style];
+}
+
+export function wrapCaptionLines(text: string): string[] {
+  return wrapCaption(text);
+}
+
+export function highlightAssKeywords(line: string, keywords: string[]): string {
+  return highlightKeywords(line, keywords);
+}
+
+function highlightKeywords(line: string, keywords: string[]): string {
+  let result = line;
+  for (const keyword of keywords) {
+    if (!keyword) continue;
+    const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    result = result.replace(new RegExp(`(${escaped})`, "gi"), `{\\1c${HIGHLIGHT_COLOR}\\b1}$1{\\1c${BASE_COLOR}\\b0}`);
+  }
+  return result;
+}
 
 export function buildAssCaptions(transcript: Transcript, candidate: CandidateSegment): string {
   const events = buildCaptionCues(transcript, candidate)

@@ -20,9 +20,9 @@ A discovery signal is not a clipping source. External videos can indicate topics
 
 Opportunity analysis closes the loop between discovery and production:
 
-`opportunity -> language model analysis -> validated ProductionBrief -> script generation -> validated ScriptPlan -> human/Codex decision`
+`opportunity -> language model analysis -> validated ProductionBrief -> script generation -> validated ScriptPlan -> composition -> rendered VideoArtifact -> QA -> human review`
 
-Deterministic code owns facts, metrics, prompts and validation; the language model only judges (why it works, hook type, adaptation ideas) and writes (voiceover, visual plan).
+Deterministic code owns facts, metrics, prompts, temporal invariants and validation; the language model only judges (why it works, hook type, adaptation ideas) and writes (voiceover, visual plan). Rendering stays behind a `CompositionRenderer` port so the engine can change without touching the domain.
 
 ## Future Context, Not Current Scope
 

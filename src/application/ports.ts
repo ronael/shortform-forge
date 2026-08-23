@@ -1,4 +1,5 @@
 import type { Analysis, CandidateSegment, QaReport, Source, Transcript } from "../domain/contracts.js";
+import type { CompositionPlan, VideoArtifact } from "../domain/composition.js";
 
 export type MediaProbe = {
   durationSeconds: number;
@@ -45,6 +46,11 @@ export interface TranscriptionProvider {
 export interface PassageAnalyzer {
   analyze(transcript: Transcript): CandidateSegment[];
   readonly strategy: string;
+}
+
+export interface CompositionRenderer {
+  readonly renderer: string;
+  render(plan: CompositionPlan, outputDir: string): Promise<VideoArtifact>;
 }
 
 export type ClipWorkflowDependencies = {
