@@ -58,10 +58,12 @@ publishability.
 
 The actors POC requested 30 seconds but produced 23.43 seconds because the
 supplied script and measured TTS duration became the effective output duration.
-The unused 6.57 seconds are editorial capacity, not time to fill with silence or
-time stretching. A duration target must influence the script word budget before
-synthesis, then be checked against the measured voice track. Warn when the result
-misses the requested duration materially and recommend a script adjustment.
+The script contained 54 words; at the measured rate of about 138 words per
+minute, a 30-second result needs approximately 69 words. The unused 6.57 seconds
+are editorial capacity, not time to fill with silence or time stretching. A
+duration target must influence the script word budget before synthesis, then be
+checked against the measured voice track. Warn when the result misses the
+requested duration materially and recommend a script adjustment.
 
 The same POC used fixed four-second image blocks while narration sections had
 unequal durations. This can leave the previous subject visible after the dialogue
@@ -86,7 +88,7 @@ edit unless the comparison demonstrates a direct quality improvement.
 
 ## Dressing Provider Shortlist
 
-### 1. Revideo - technical POC passed, human review pending
+### 1. Revideo - capability proven, first template rejected
 
 Repository: https://github.com/midrender/revideo
 
@@ -103,11 +105,13 @@ music, and loudness within measurement tolerance. The retained candidate and
 scorecard are under `output/benchmarks/revideo-dressing-poc/`.
 
 The technical result supports Revideo as a lightweight downstream dressing
-provider. It is not the validated default until the dressed video passes human
-review. Revideo 0.11.0 also required explicit installation of its Vite plugin,
-UI, and telemetry packages, plus the browser video decoder for this H.264 input;
-an adapter should hide those runtime details if adopted. The temporary checkout
-and dependency environment are not retained.
+provider, but human review rejected this template: its light overlay backgrounds
+add visual noise and its alignment is not consistent enough. A later POC may
+reuse the engine with a strict alignment grid and no decorative backgrounds;
+this composition is not the default. Revideo 0.11.0 also required explicit
+installation of its Vite plugin, UI, and telemetry packages, plus the browser
+video decoder for this H.264 input; an adapter should hide those runtime details
+if adopted. The temporary checkout and dependency environment are not retained.
 
 ### 2. Creatomate - fastest external quality test
 

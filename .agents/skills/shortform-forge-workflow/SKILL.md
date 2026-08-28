@@ -24,9 +24,10 @@ provenance and record that status without blocking generation.
 
 For briefs requiring rank badges, separate metrics, title cards, branding, or a
 call to action, treat dressing as an optional downstream provider stage. The
-Revideo technical POC passed, but do not call it validated until its output has
-passed human review. The topic-only MoneyPrinterTurbo path is also unvalidated
-for automatic script and asset selection.
+Revideo engine passed technical QA, but its first template failed human review
+because light overlay backgrounds added noise and alignment was inconsistent.
+Do not reuse that template as the default. The topic-only MoneyPrinterTurbo path
+is also unvalidated for automatic script and asset selection.
 
 Treat the brief duration as an editorial constraint. Budget the script to reach
 the requested duration, synthesize and measure the real voice track, then warn
