@@ -52,6 +52,13 @@ pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json \
   --voiceover output/voiceover/<signal-id>/voiceover.json --assets ./assets --template ai-news
 ```
 
+For entertainment formats, add a licensed local music bed with explicit provenance:
+
+```bash
+pnpm sf produce script.json --voiceover voiceover/voiceover.json --assets ./assets \
+  --music music.mp3 --music-provenance "Title by Artist, license, source URL"
+```
+
 Check `output/produce/<id>/qa.json` and review `video.mp4` before considering anything publishable.
 
 5. If no real clipping input is provided, generate legal sample media:

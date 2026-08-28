@@ -113,6 +113,39 @@ Produce a vertical video from a script plan:
 pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json --assets ./assets
 ```
 
+For wide images, add `assets/manifest.json` to control the exact 9:16 crop and a light text scrim. Entries override the filename convention for their purpose:
+
+```json
+{
+  "assets": [
+    {
+      "purpose": "portrait-hero",
+      "file": "portrait.jpg",
+      "provenance": "authorized local portrait",
+      "fit": "cover",
+      "focalPoint": { "x": 0.42, "y": 0.3 },
+      "textBackdrop": "scrim"
+    }
+  ]
+}
+```
+
+Coordinates are normalized from the source image's top-left corner. Production writes `contact-sheet.jpg` beside the video for human framing review.
+Set a section's optional `assetKey` to the matching manifest `purpose`; otherwise its generic section purpose is used.
+When `SF_WHISPER_MODEL` is set, `sf produce --voiceover ...` attempts word-level caption alignment with whisper.cpp. It keeps the canonical script text and falls back automatically when alignment coverage is below 95 percent; `qa.json` records which timing source was used.
+
+### Optional expressive local voice
+
+The existing TTS command boundary can run Chatterbox Multilingual without coupling it to the core. Prefer its batch adapter so the model loads once for the whole video:
+
+```bash
+uv venv --python 3.11 .venv-chatterbox
+uv pip install --python .venv-chatterbox/bin/python chatterbox-tts "setuptools<81"
+SF_TTS_BATCH_COMMAND=".venv-chatterbox/bin/python tools/tts/chatterbox_batch_tts.py {request}" pnpm sf voiceover script.json
+```
+
+The default adapter uses the built-in voice, French, `exaggeration=0.7`, and `cfg_weight=0.3`. Chatterbox embeds a PerTh watermark in generated audio. Voice cloning is intentionally not enabled by this adapter.
+
 Assets are optional local files named after section purposes (`hook.png`, `explanation.mp4`, ...); sections without a matching file get a color background. Outputs land in `output/produce/<id>/`: `composition.json`, `video.mp4`, `qa.json`, `artifact.json`. Videos are rendered locally with FFmpeg.
 
 Add a local voiceover (real audio, captions synced to measured speech):
@@ -125,7 +158,23 @@ pnpm sf produce output/discovery/<run-id>/script-<signal-id>.json \
   --assets ./assets --template ai-news
 ```
 
-The voiceover is synthesized per section and its durations are MEASURED (never assumed from the script); sections, captions and video length follow the real audio.
+The voiceover is synthesized per section and its durations are MEASURED. Captions follow the measured speech, while the chosen editorial duration remains stable. Short visual holds are inserted between new voiceover sections; QA reports `SCRIPT_TOO_SHORT` when narration covers less than 85 percent of the target.
+
+Script generation suggests a duration range, target, and rationale. The operator can override the target explicitly:
+
+```bash
+pnpm sf script brief.json --target-duration 45
+```
+
+Add a licensed music bed with explicit provenance. FFmpeg loops and trims it to the editorial duration, ducks it under speech, and outputs stereo 48 kHz audio:
+
+```bash
+pnpm sf produce script.json --voiceover voiceover/voiceover.json \
+  --music music.mp3 \
+  --music-provenance "Title by Artist, CC BY 4.0, source URL"
+```
+
+Caption styling and dressing styling are separate. Ranked formats can use `editorial-ranking` or `comedy-ranking` dressing with structured `rank`, `eyebrow`, `metric`, and `supportingText` fields without changing the caption profile.
 
 Local Kokoro setup used for development (Apache-2.0 model, French voices, CPU):
 

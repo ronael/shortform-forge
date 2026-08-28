@@ -4,6 +4,7 @@ output/
 samples/
 .sf-cache/
 .venv-tts/
+.venv-chatterbox/
 .tts-models/
 .env
 .DS_Store
