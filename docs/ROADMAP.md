@@ -17,11 +17,12 @@
 ## Next
 
 1. Human validation loop on produced videos (watch, list blocking defects, fix).
-2. Run a dressing-only Revideo POC over the validated MoneyPrinterTurbo actors video, adding rank/name/value/title overlays without replacing its voice, captions, music, or edit.
-3. Run one topic-only MoneyPrinterTurbo POC to validate automatic script and asset selection; the completed actors POC used a supplied script and supplied assets.
-4. Word-level caption timing via whisper.cpp on generated audio.
-5. Asset resolver (local library first, then external sources with provenance).
-6. Improve ASR setup ergonomics and model guidance.
+2. Human-review the completed dressing-only Revideo POC over the validated MoneyPrinterTurbo actors video; technical QA passed without replacing its voice, captions, music, or edit.
+3. Run a 30-second MoneyPrinterTurbo POC whose script word budget targets the requested duration and whose asset cuts follow dialogue-section timestamps instead of fixed four-second blocks.
+4. Run one topic-only MoneyPrinterTurbo POC to validate automatic script and asset selection; the completed actors POC used a supplied script and supplied assets.
+5. Word-level caption timing via whisper.cpp on generated audio.
+6. Asset resolver (local library first, then external sources with provenance).
+7. Improve ASR setup ergonomics and model guidance.
 
 ## Later
 

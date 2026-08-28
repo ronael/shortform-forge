@@ -23,10 +23,17 @@ informational terminal warning before using bundled music with unverified
 provenance and record that status without blocking generation.
 
 For briefs requiring rank badges, separate metrics, title cards, branding, or a
-call to action, treat dressing as an optional downstream provider stage. Revideo
-is only the next POC candidate; do not call it validated until its output has
+call to action, treat dressing as an optional downstream provider stage. The
+Revideo technical POC passed, but do not call it validated until its output has
 passed human review. The topic-only MoneyPrinterTurbo path is also unvalidated
 for automatic script and asset selection.
+
+Treat the brief duration as an editorial constraint. Budget the script to reach
+the requested duration, synthesize and measure the real voice track, then warn
+when the measured result misses the target materially. Do not pad a short result
+with silence or time-stretch accepted speech. Adjust the script, pauses, and
+intentional visual holds instead. Time assets from the measured dialogue-section
+timestamps rather than applying one fixed clip duration to every scene.
 
 ## Procedure
 

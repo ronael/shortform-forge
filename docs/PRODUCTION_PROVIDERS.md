@@ -54,6 +54,21 @@ Bundled music with unverified provenance is allowed with an explicit terminal
 warning and recorded provenance status. This does not block generation or decide
 publishability.
 
+### Duration and Scene Timing
+
+The actors POC requested 30 seconds but produced 23.43 seconds because the
+supplied script and measured TTS duration became the effective output duration.
+The unused 6.57 seconds are editorial capacity, not time to fill with silence or
+time stretching. A duration target must influence the script word budget before
+synthesis, then be checked against the measured voice track. Warn when the result
+misses the requested duration materially and recommend a script adjustment.
+
+The same POC used fixed four-second image blocks while narration sections had
+unequal durations. This can leave the previous subject visible after the dialogue
+has moved on. Asset timing must use dialogue-section timestamps, with intentional
+holds or faster cuts where the brief calls for them, rather than one global clip
+duration.
+
 ## Target Composition
 
 Use the smallest chain that satisfies the brief:
@@ -71,7 +86,7 @@ edit unless the comparison demonstrates a direct quality improvement.
 
 ## Dressing Provider Shortlist
 
-### 1. Revideo - first local POC
+### 1. Revideo - technical POC passed, human review pending
 
 Repository: https://github.com/midrender/revideo
 
@@ -81,10 +96,18 @@ Repository: https://github.com/midrender/revideo
 - can express animated text, shapes, images, and reusable scene components;
 - best architectural fit for a replaceable local `DressingProvider`.
 
-POC: take the existing MoneyPrinterTurbo actors MP4 as the base layer and add only
-the title, rank, name, amount, and light scrim. Measure setup time, render time,
-output quality, audio preservation, and adapter complexity. Delete the temporary
-checkout and dependencies after retaining the final video and scorecard.
+The 2026-08-28 POC took the existing MoneyPrinterTurbo actors MP4 as the base
+layer and added only a title, rank, name, amount, and light scrim. It rendered in
+6.57 seconds at 1080x1920 and preserved the source duration, voice, captions,
+music, and loudness within measurement tolerance. The retained candidate and
+scorecard are under `output/benchmarks/revideo-dressing-poc/`.
+
+The technical result supports Revideo as a lightweight downstream dressing
+provider. It is not the validated default until the dressed video passes human
+review. Revideo 0.11.0 also required explicit installation of its Vite plugin,
+UI, and telemetry packages, plus the browser video decoder for this H.264 input;
+an adapter should hide those runtime details if adopted. The temporary checkout
+and dependency environment are not retained.
 
 ### 2. Creatomate - fastest external quality test
 
