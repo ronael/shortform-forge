@@ -17,8 +17,8 @@
 ## Next
 
 1. Human validation loop on produced videos (watch, list blocking defects, fix).
-2. Human-review the completed Revideo V2 dressing POC, which removes overlay backgrounds and uses one strict alignment grid; compare it with V1 before changing provider.
-3. Run a 30-second MoneyPrinterTurbo POC with about 69 words at the measured voice rate; derive each image/rank/name/metric group from the spoken rank anchors and fail QA on subject/plan disagreement.
+2. Human-review the completed 29.93-second Revideo animated ranking POC; it removes dressing backgrounds and synchronizes portraits, animated rank/name/metric groups, and captions from narration anchors.
+3. Convert the accepted duration range, word-budget calibration, semantic anchors, focal framing, and subject/plan QA from the POC into provider contracts only after human acceptance.
 4. Run one topic-only MoneyPrinterTurbo POC to validate automatic script and asset selection; the completed actors POC used a supplied script and supplied assets.
 5. Word-level caption timing via whisper.cpp on generated audio.
 6. Asset resolver (local library first, then external sources with provenance).

@@ -27,9 +27,11 @@ call to action, treat dressing as an optional downstream provider stage. The
 Revideo engine passed technical QA, but its first template failed human review
 because light overlay backgrounds added noise and alignment was inconsistent.
 Do not reuse that template as the default. A minimal V2 template without panels
-is awaiting human review; use its result to distinguish a brief/template failure
-from a provider failure. The topic-only MoneyPrinterTurbo path is also
-unvalidated for automatic script and asset selection.
+and an animated 29.93-second V3 ranking template are awaiting human review. The
+V3 result proves that Revideo can animate dressing and drive focal-aware portraits
+from narration anchors, but it is not the default until accepted. The topic-only
+MoneyPrinterTurbo path is also unvalidated for automatic script and asset
+selection.
 
 Treat the brief duration as an editorial constraint. Budget the script to reach
 the requested duration, synthesize and measure the real voice track, then warn
@@ -37,6 +39,11 @@ when the measured result misses the target materially. Do not pad a short result
 with silence or time-stretch accepted speech. Adjust the script, pauses, and
 intentional visual holds instead. Time assets from the measured dialogue-section
 timestamps rather than applying one fixed clip duration to every scene.
+
+Use a brief-defined acceptance range rather than requiring an exact frame count
+when natural speech is already close to target. For the current 30-second test,
+29 to 30.5 seconds is accepted; 23 seconds is not. Record both the measured voice
+duration and final muxed duration.
 
 For Top N formats, build the timeline narration-first:
 

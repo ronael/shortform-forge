@@ -130,6 +130,15 @@ Revideo's center-origin layout coordinates. Human review is pending at
 failure was primarily ours at the brief/template level; rejection would justify
 testing the same minimal brief with another dressing provider.
 
+An animated V3 POC proves the complete correction path at
+`output/benchmarks/revideo-animated-30s-poc/`. A 73-word script produced 29.88
+seconds of accepted Edge TTS speech and a 29.93-second final render. Revideo now
+drives focal-aware portraits, rank/name/metric reveals, and short caption groups
+from the same measured narration anchors. Technical QA passed; human review is
+pending. This test shows that Revideo can supply restrained animation and that
+the earlier 23-second and portrait-lag defects were upstream timeline inputs,
+not fixed limits of the dressing engine.
+
 ### 2. Creatomate - fastest external quality test
 
 Documentation: https://creatomate.com/docs/api/quick-start/create-a-video-by-template
