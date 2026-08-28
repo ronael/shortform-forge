@@ -7,6 +7,27 @@ description: Run Shortform Forge local discovery and clipping workflows. Use whe
 
 Use this skill to execute the existing Shortform Forge workflow, not to invent new product surfaces.
 
+## Production Provider Selection
+
+Read `docs/PRODUCTION_PROVIDERS.md` before choosing a renderer. For a
+`narrated-montage` brief (voice-led explainer, facts, story, advice, travel,
+motivation, simple listicle, faceless stock footage, or simple product
+narration), prefer the validated MoneyPrinterTurbo 1.3.5 path while it remains
+the best human-reviewed result. Do not rebuild its accepted voice and subtitle
+capabilities in the internal renderer for those formats.
+
+Use a temporary checkout/environment, retain only the input manifest, final
+video, voice track, subtitles, contact sheet, and scorecard under `output/`, and
+delete downloaded dependencies and intermediary clips after the run. Emit the
+informational terminal warning before using bundled music with unverified
+provenance and record that status without blocking generation.
+
+For briefs requiring rank badges, separate metrics, title cards, branding, or a
+call to action, treat dressing as an optional downstream provider stage. Revideo
+is only the next POC candidate; do not call it validated until its output has
+passed human review. The topic-only MoneyPrinterTurbo path is also unvalidated
+for automatic script and asset selection.
+
 ## Procedure
 
 1. Inspect repository state: `git status --short`, `pnpm run build`, and current README/docs if needed.

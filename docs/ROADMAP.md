@@ -17,16 +17,18 @@
 ## Next
 
 1. Human validation loop on produced videos (watch, list blocking defects, fix).
-2. Word-level caption timing via whisper.cpp on generated audio.
-3. Asset resolver (local library first, then external sources with provenance).
-4. Improve ASR setup ergonomics and model guidance.
+2. Run a dressing-only Revideo POC over the validated MoneyPrinterTurbo actors video, adding rank/name/value/title overlays without replacing its voice, captions, music, or edit.
+3. Run one topic-only MoneyPrinterTurbo POC to validate automatic script and asset selection; the completed actors POC used a supplied script and supplied assets.
+4. Word-level caption timing via whisper.cpp on generated audio.
+5. Asset resolver (local library first, then external sources with provenance).
+6. Improve ASR setup ergonomics and model guidance.
 
 ## Later
 
 - Discovery/trends.
 - Better scoring with LLM or hybrid ranking.
 - Evaluate [HeliosGen](https://github.com/segfault42/heliosgen) as an experimental `ImageProvider`/`VideoProvider` or provider-orchestration reference when AI generation enters scope. Its control plane is self-hostable, but current model execution primarily uses paid Kie.ai credits; verify output quality, cost, provider coupling, API automation, maintenance, and provenance before integration.
-- MoneyPrinterTurbo 1.3.5 POC completed on the actors Top 5 brief: keep it as an MIT-licensed capability reference, not a full-pipeline replacement. Its Edge TTS, subtitle timing, batch CLI, and generic stock-footage flow merit isolated provider tests, but the output lost brief-driven editorial dressing and letterboxed non-portrait assets. Bundled music with unclear YouTube-derived rights may be enabled explicitly, provided generation emits a prominent terminal warning and records the provenance status for human review without blocking generation or deciding publishability.
+- MoneyPrinterTurbo 1.3.5 is the validated baseline for `narrated-montage` videos and produced the closest result to the current publication bar in the actors Top 5 POC. Reuse it for voice-led explainers, facts, stories, advice, travel, motivation, simple listicles, and faceless stock-footage videos while other providers are tested. Treat structured editorial dressing as an optional downstream capability. Bundled music with unclear YouTube-derived rights may be enabled explicitly, provided generation emits a prominent terminal warning and records the provenance status for human review without blocking generation or deciding publishability.
 - Platform-specific publish preparation.
 - Measurement and learning loop.
 - Cloudflare control-plane/storage/orchestration if local workflows outgrow manual sessions.

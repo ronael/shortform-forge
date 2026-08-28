@@ -26,6 +26,7 @@ Before adding a significant dependency, check license, maintenance, adoption, ac
 - Architecture: `docs/ARCHITECTURE.md`
 - Engineering practices: `docs/ENGINEERING.md`
 - Roadmap boundaries: `docs/ROADMAP.md`
+- Production provider decisions: `docs/PRODUCTION_PROVIDERS.md`
 - Workflow skill: `.agents/skills/shortform-forge-workflow/SKILL.md`
 
 ## Required Validation
