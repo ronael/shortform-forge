@@ -122,6 +122,14 @@ installation of its Vite plugin, UI, and telemetry packages, plus the browser
 video decoder for this H.264 input; an adapter should hide those runtime details
 if adopted. The temporary checkout and dependency environment are not retained.
 
+A V2 technical POC now isolates the brief/template variable. It removes panels
+and secondary labels, uses one top-left grid with text shadow only, and switches
+the rank/name/metric group on narration anchors. Frame QA passed after correcting
+Revideo's center-origin layout coordinates. Human review is pending at
+`output/benchmarks/revideo-dressing-v2-poc/`. Acceptance would show that the V1
+failure was primarily ours at the brief/template level; rejection would justify
+testing the same minimal brief with another dressing provider.
+
 ### 2. Creatomate - fastest external quality test
 
 Documentation: https://creatomate.com/docs/api/quick-start/create-a-video-by-template

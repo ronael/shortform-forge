@@ -26,8 +26,10 @@ For briefs requiring rank badges, separate metrics, title cards, branding, or a
 call to action, treat dressing as an optional downstream provider stage. The
 Revideo engine passed technical QA, but its first template failed human review
 because light overlay backgrounds added noise and alignment was inconsistent.
-Do not reuse that template as the default. The topic-only MoneyPrinterTurbo path
-is also unvalidated for automatic script and asset selection.
+Do not reuse that template as the default. A minimal V2 template without panels
+is awaiting human review; use its result to distinguish a brief/template failure
+from a provider failure. The topic-only MoneyPrinterTurbo path is also
+unvalidated for automatic script and asset selection.
 
 Treat the brief duration as an editorial constraint. Budget the script to reach
 the requested duration, synthesize and measure the real voice track, then warn
