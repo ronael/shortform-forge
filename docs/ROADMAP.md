@@ -11,8 +11,8 @@
 - Opportunity analysis: scored opportunities turned into validated production briefs via a provider-agnostic language model port.
 - Script generation: production briefs turned into validated, timed script plans (voiceover sections, visual plan, caption guidance).
 - Produce V0: script plans rendered into 1080x1920 videos (color/image/video section backgrounds, title card, ASS captions, QA) via an FFmpeg adapter behind a `CompositionRenderer` port.
-- Voiceover: script sections synthesized locally through a provider-agnostic TTS port (`SF_TTS_COMMAND`), with REAL measured durations as the temporal backbone of the composition.
-- Produce V1: voiceover-driven re-timing, ai-news composition template, real voice track, captions synced to measured audio.
+- Voiceover: script sections synthesized locally through provider-agnostic single or batch TTS ports, with measured speech controlling caption timing while preserving the editorial duration.
+- Produce V1: editorial-duration composition, real voice track, independent dressing/caption profiles, focal framing, optional licensed music bed, and captions synced to measured audio.
 
 ## Next
 
@@ -25,6 +25,7 @@
 
 - Discovery/trends.
 - Better scoring with LLM or hybrid ranking.
+- Evaluate [HeliosGen](https://github.com/segfault42/heliosgen) as an experimental `ImageProvider`/`VideoProvider` or provider-orchestration reference when AI generation enters scope. Its control plane is self-hostable, but current model execution primarily uses paid Kie.ai credits; verify output quality, cost, provider coupling, API automation, maintenance, and provenance before integration.
 - Platform-specific publish preparation.
 - Measurement and learning loop.
 - Cloudflare control-plane/storage/orchestration if local workflows outgrow manual sessions.
