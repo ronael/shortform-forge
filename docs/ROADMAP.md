@@ -26,6 +26,7 @@
 - Discovery/trends.
 - Better scoring with LLM or hybrid ranking.
 - Evaluate [HeliosGen](https://github.com/segfault42/heliosgen) as an experimental `ImageProvider`/`VideoProvider` or provider-orchestration reference when AI generation enters scope. Its control plane is self-hostable, but current model execution primarily uses paid Kie.ai credits; verify output quality, cost, provider coupling, API automation, maintenance, and provenance before integration.
+- Evaluate [MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) as an MIT-licensed full-pipeline benchmark and isolated POC for `EditingProvider`, `AssetProvider`, TTS, captions, and music. Compare one identical production brief through its CLI/API against Shortform Forge before wrapping any capability; do not adopt its autonomous/publishing surface or bundled music, whose README flags unclear YouTube-derived rights, and require provenance for every imported asset.
 - Platform-specific publish preparation.
 - Measurement and learning loop.
 - Cloudflare control-plane/storage/orchestration if local workflows outgrow manual sessions.
