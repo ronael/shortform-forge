@@ -18,7 +18,7 @@
 
 1. Human validation loop on produced videos (watch, list blocking defects, fix).
 2. Redesign the Revideo dressing POC without light overlay backgrounds and with a strict alignment grid; the first template passed technical QA but failed human visual review.
-3. Run a 30-second MoneyPrinterTurbo POC with about 69 words at the measured voice rate and asset cuts following dialogue-section timestamps instead of fixed four-second blocks.
+3. Run a 30-second MoneyPrinterTurbo POC with about 69 words at the measured voice rate; derive each image/rank/name/metric group from the spoken rank anchors and fail QA on subject/plan disagreement.
 4. Run one topic-only MoneyPrinterTurbo POC to validate automatic script and asset selection; the completed actors POC used a supplied script and supplied assets.
 5. Word-level caption timing via whisper.cpp on generated audio.
 6. Asset resolver (local library first, then external sources with provenance).

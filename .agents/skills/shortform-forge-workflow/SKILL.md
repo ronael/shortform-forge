@@ -36,6 +36,18 @@ with silence or time-stretch accepted speech. Adjust the script, pauses, and
 intentional visual holds instead. Time assets from the measured dialogue-section
 timestamps rather than applying one fixed clip duration to every scene.
 
+For Top N formats, build the timeline narration-first:
+
+1. Synthesize the final voice track and obtain phrase or word timestamps.
+2. Locate each spoken rank announcement as a semantic cut anchor.
+3. Start the matching subject image, rank, name, and metric on the same anchor.
+4. End that complete visual group at the next rank anchor.
+5. Treat the hook and outro as independent visual sections.
+6. Run QA that fails when the spoken subject and visible subject disagree.
+
+Never hardcode timings from an earlier render; voice or script changes require a
+new timeline calculation.
+
 ## Procedure
 
 1. Inspect repository state: `git status --short`, `pnpm run build`, and current README/docs if needed.

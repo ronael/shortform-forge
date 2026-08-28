@@ -71,6 +71,15 @@ has moved on. Asset timing must use dialogue-section timestamps, with intentiona
 holds or faster cuts where the brief calls for them, rather than one global clip
 duration.
 
+For a ranking, each rank announcement is the semantic cut anchor. The subject
+image, rank, name, and metric must start together on that anchor and remain until
+the next rank announcement. Intro and outro are separate sections. In the
+23.43-second actors voice track, the measured anchors were approximately 3.64 s
+for Brad Pitt, 7.12 s for Scarlett Johansson, 10.58 s for Mark Wahlberg, 13.93 s
+for Tom Cruise, 16.91 s for Adam Sandler, and 19.89 s for the outro. These values
+are evidence, not reusable constants: every regenerated voice track must produce
+its own anchors before the visual timeline is assembled.
+
 ## Target Composition
 
 Use the smallest chain that satisfies the brief:
