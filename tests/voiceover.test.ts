@@ -86,6 +86,48 @@ describe("generateVoiceover + retimeScript", () => {
     ));
     expect(persisted.provider).toBe("fake-tts");
   });
+
+  test("preserves a longer editorial target and allocates visual holds", async () => {
+    const editorialScript = ScriptPlanSchema.parse({ ...script, durationSeconds: 10, sections: [
+      { ...script.sections[0]!, endSeconds: 4 },
+      { ...script.sections[1]!, startSeconds: 4, endSeconds: 10 }
+    ] });
+    const dir = await mkdtemp(path.join(os.tmpdir(), "sf-voice-editorial-"));
+    const captured: number[][] = [];
+    const result = await generateVoiceover({
+      script: editorialScript,
+      provider: fakeTts(),
+      outputDir: dir,
+      audio: {
+        ...fakeAudio,
+        concatAudioFiles: async (_paths, _output, durations = []) => { captured.push(durations); }
+      }
+    });
+    expect(result.voiceover.totalDurationSeconds).toBe(8);
+    expect(result.voiceover.timelineDurationSeconds).toBeCloseTo(10);
+    expect(captured[0]?.reduce((sum, value) => sum + value, 0)).toBeCloseTo(10);
+    expect(retimeScript(editorialScript, result.voiceover).durationSeconds).toBe(10);
+  });
+
+  test("keeps legacy voice audio contiguous and holds the final scene to target", () => {
+    const editorialScript = ScriptPlanSchema.parse({ ...script, durationSeconds: 10, sections: [
+      { ...script.sections[0]!, endSeconds: 4 },
+      { ...script.sections[1]!, startSeconds: 4, endSeconds: 10 }
+    ] });
+    const legacy = VoiceoverSchema.parse({
+      sections: [
+        { purpose: "hook", text: "Accroche.", audioPath: "a.wav", durationSeconds: 3 },
+        { purpose: "payoff", text: "Conclusion.", audioPath: "b.wav", durationSeconds: 4 }
+      ],
+      totalDurationSeconds: 7,
+      provider: "legacy",
+      generatedAt: new Date().toISOString()
+    });
+    const retimed = retimeScript(editorialScript, legacy);
+    expect(retimed.durationSeconds).toBe(10);
+    expect(retimed.sections[0]).toMatchObject({ startSeconds: 0, endSeconds: 3 });
+    expect(retimed.sections[1]).toMatchObject({ startSeconds: 3, endSeconds: 10 });
+  });
 });
 
 describe("produce with voiceover", () => {

@@ -7,7 +7,7 @@ import { loadScriptPlan } from "./produceVideo.js";
 
 export type AudioTools = {
   probeDurationSeconds(filePath: string): Promise<number>;
-  concatAudioFiles(inputPaths: string[], outputPath: string): Promise<void>;
+  concatAudioFiles(inputPaths: string[], outputPath: string, segmentDurationsSeconds?: number[]): Promise<void>;
 };
 
 /**
@@ -23,13 +23,20 @@ export async function generateVoiceover(input: {
 }): Promise<{ voiceover: Voiceover; audioPath: string }> {
   await ensureDir(input.outputDir);
   const sectionPaths: string[] = [];
-  const sections = [];
+  const measuredSections = [];
+  const batchItems = input.script.sections.map((section, index) => ({
+    text: section.voiceover,
+    outputPath: path.join(input.outputDir, `section-${index}.wav`)
+  }));
+  if (input.provider.synthesizeBatch) {
+    await input.provider.synthesizeBatch(batchItems);
+  }
   for (const [index, section] of input.script.sections.entries()) {
-    const audioPath = path.join(input.outputDir, `section-${index}.wav`);
-    await input.provider.synthesize(section.voiceover, audioPath);
+    const audioPath = batchItems[index]!.outputPath;
+    if (!input.provider.synthesizeBatch) await input.provider.synthesize(section.voiceover, audioPath);
     const durationSeconds = await input.audio.probeDurationSeconds(audioPath);
     sectionPaths.push(audioPath);
-    sections.push({
+    measuredSections.push({
       purpose: section.purpose,
       text: section.voiceover,
       audioPath,
@@ -37,12 +44,24 @@ export async function generateVoiceover(input: {
     });
   }
 
+  const timeline = allocateVoiceTimeline(input.script, measuredSections.map((section) => section.durationSeconds));
+  const sections = measuredSections.map((section, index) => ({
+    ...section,
+    timelineStartSeconds: timeline[index]!.startSeconds,
+    timelineEndSeconds: timeline[index]!.endSeconds
+  }));
+
   const audioPath = path.join(input.outputDir, "voiceover.wav");
-  await input.audio.concatAudioFiles(sectionPaths, audioPath);
+  await input.audio.concatAudioFiles(
+    sectionPaths,
+    audioPath,
+    timeline.map((section) => section.endSeconds - section.startSeconds)
+  );
 
   const voiceover = VoiceoverSchema.parse({
     sections,
     totalDurationSeconds: sections.reduce((sum, section) => sum + section.durationSeconds, 0),
+    timelineDurationSeconds: timeline.at(-1)!.endSeconds,
     ...(input.script.language ? { language: input.script.language } : {}),
     provider: input.provider.name,
     generatedAt: new Date().toISOString()
@@ -63,20 +82,48 @@ export async function generateVoiceoverFromFile(input: {
 }
 
 /**
- * Re-times script sections sequentially from 0 using the REAL audio durations.
- * Total duration becomes the measured voiceover length.
+ * Re-times sections from measured speech while preserving the editorial target.
+ * New voiceover artifacts carry visual holds between sections. Legacy artifacts
+ * stay contiguous and put any remaining hold on the final scene.
  */
 export function retimeScript(script: ScriptPlan, voiceover: Voiceover): ScriptPlan {
+  const hasTimeline = voiceover.sections.every((section) =>
+    section.timelineStartSeconds !== undefined && section.timelineEndSeconds !== undefined
+  );
+  const editorialDuration = Math.max(script.durationSeconds, voiceover.timelineDurationSeconds ?? voiceover.totalDurationSeconds);
   let cursor = 0;
   const sections = script.sections.map((section, index) => {
-    const duration = voiceover.sections[index]?.durationSeconds ?? section.endSeconds - section.startSeconds;
-    const retimed = { ...section, startSeconds: cursor, endSeconds: cursor + duration };
-    cursor += duration;
-    return retimed;
+    const voiceSection = voiceover.sections[index];
+    const startSeconds = hasTimeline ? voiceSection?.timelineStartSeconds ?? cursor : cursor;
+    const speechDuration = voiceSection?.durationSeconds ?? section.endSeconds - section.startSeconds;
+    const endSeconds = hasTimeline ? voiceSection?.timelineEndSeconds ?? startSeconds + speechDuration : startSeconds + speechDuration;
+    cursor = endSeconds;
+    return { ...section, startSeconds, endSeconds };
   });
+  if (!hasTimeline && sections.length > 0 && cursor < editorialDuration) {
+    const last = sections.at(-1)!;
+    sections[sections.length - 1] = { ...last, endSeconds: editorialDuration };
+  }
   return {
     ...script,
-    durationSeconds: Math.ceil(cursor * 100) / 100,
+    durationSeconds: Math.ceil(Math.max(editorialDuration, cursor) * 100) / 100,
     sections
   };
+}
+
+export function allocateVoiceTimeline(script: ScriptPlan, speechDurations: number[]): Array<{ startSeconds: number; endSeconds: number }> {
+  const speechTotal = speechDurations.reduce((sum, duration) => sum + duration, 0);
+  const targetDuration = Math.max(script.durationSeconds, speechTotal);
+  const slack = Math.max(0, targetDuration - speechTotal);
+  const plannedDurations = script.sections.map((section) => section.endSeconds - section.startSeconds);
+  const plannedTotal = plannedDurations.reduce((sum, duration) => sum + duration, 0) || script.sections.length;
+  let cursor = 0;
+  return script.sections.map((_, index) => {
+    const speechDuration = speechDurations[index] ?? plannedDurations[index] ?? 0;
+    const weight = (plannedDurations[index] ?? 1) / plannedTotal;
+    const allocatedDuration = speechDuration + slack * weight;
+    const result = { startSeconds: cursor, endSeconds: cursor + allocatedDuration };
+    cursor = result.endSeconds;
+    return result;
+  });
 }

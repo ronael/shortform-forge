@@ -61,4 +61,16 @@ describe("ScriptPlanSchema", () => {
     const plan = ScriptPlanSchema.parse(withoutLanguage);
     expect(plan.language).toBeUndefined();
   });
+
+  test("validates an editorial duration recommendation", () => {
+    const recommended = {
+      ...validPlan,
+      durationRecommendation: { minSeconds: 35, targetSeconds: 40, maxSeconds: 45, rationale: "Enough room for five ranked items." }
+    };
+    expect(ScriptPlanSchema.parse(recommended).durationRecommendation?.targetSeconds).toBe(40);
+    expect(() => ScriptPlanSchema.parse({
+      ...recommended,
+      durationRecommendation: { minSeconds: 45, targetSeconds: 40, maxSeconds: 35, rationale: "invalid" }
+    })).toThrow();
+  });
 });

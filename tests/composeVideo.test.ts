@@ -1,5 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { buildCompositionPlan } from "../src/application/composeVideo.js";
+import { buildCompositionAss } from "../src/adapters/ffmpegComposition.js";
+import { composeAiNewsVideo } from "../src/application/templates/aiNews.js";
 import { ScriptPlanSchema } from "../src/domain/script.js";
 import { cuesFromSections, buildAssFromCues } from "../src/domain/captions.js";
 
@@ -48,6 +50,38 @@ describe("buildCompositionPlan", () => {
     expect(assetLayers.every((layer) => layer.asset.kind === "color")).toBe(true);
   });
 
+  test("uses assetKey and does not duplicate the closing title over on-screen text", () => {
+    const ranked = ScriptPlanSchema.parse({
+      ...script,
+      sections: script.sections.map((section, index) => index === script.sections.length - 1
+        ? { ...section, assetKey: "rank-1", onScreenText: { text: "1 WINNER", position: "top", backdrop: "scrim" } }
+        : section)
+    });
+    const plan = composeAiNewsVideo(ranked, {
+      assets: [{ purpose: "rank-1", reference: imageAsset }]
+    });
+    const assets = plan.layers.filter((layer) => layer.kind === "asset");
+    expect(assets.at(-1)?.kind === "asset" && assets.at(-1)?.asset).toEqual(imageAsset);
+    const textLayers = plan.layers.filter((layer) => layer.kind === "text");
+    expect(textLayers.map((layer) => layer.kind === "text" ? layer.text : "")).toEqual(["1 WINNER", ranked.title]);
+  });
+
+  test("keeps structured dressing independent from captions", () => {
+    const ranked = ScriptPlanSchema.parse({
+      ...script,
+      dressingGuidance: { profile: "editorial-ranking", eyebrow: "FORBES", accentColor: "#ffd633" },
+      sections: script.sections.map((section, index) => index === 1
+        ? { ...section, onScreenText: { text: "BRAD PITT", rank: 5, metric: "41 M$", supportingText: "Films et participations", position: "top", backdrop: "scrim" } }
+        : section)
+    });
+    const plan = buildCompositionPlan(ranked, { assets: [] });
+    const ass = buildCompositionAss(plan);
+    expect(ass).toContain("Style: Rank");
+    expect(ass).toContain("BRAD PITT");
+    expect(ass).toContain("41 M$");
+    expect(plan.layers.find((layer) => layer.kind === "captions")).toMatchObject({ style: "keyword-highlight" });
+  });
+
   test("cuesFromSections splits long voiceover within section bounds", () => {
     const cues = cuesFromSections(script.sections);
     expect(cues.length).toBeGreaterThanOrEqual(3);
@@ -57,6 +91,16 @@ describe("buildCompositionPlan", () => {
       expect(cue.endSeconds).toBeLessThanOrEqual(9);
     }
     expect(cues.map((cue) => cue.text).join(" ")).toContain("Explication du concept");
+  });
+
+  test("caption profiles expose distinct pacing", () => {
+    const minimal = cuesFromSections(script.sections, "minimal");
+    const dynamic = cuesFromSections(script.sections, "dynamic");
+    const punchy = cuesFromSections(script.sections, "keyword-highlight");
+    expect(dynamic.length).toBeGreaterThanOrEqual(minimal.length);
+    expect(punchy.length).toBeGreaterThan(dynamic.length);
+    expect(buildAssFromCues(dynamic, "dynamic")).toContain("\\fscx94");
+    expect(buildAssFromCues(punchy, "keyword-highlight")).toContain("\\fscx104");
   });
 
   test("buildAssFromCues renders keyword highlights without breaking ASS", () => {

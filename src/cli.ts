@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { createSampleAsset, FfmpegMediaToolkit } from "./adapters/ffmpeg.js";
 import { runDoctor } from "./adapters/doctor.js";
 import { WhisperCppTranscriptionProvider } from "./adapters/whisperCpp.js";
+import { WhisperCppWordTimingProvider } from "./adapters/whisperCppWordTiming.js";
 import { YtDlpDiscoverySource } from "./adapters/ytDlpDiscovery.js";
 import { CommandLanguageModelProvider } from "./adapters/commandLlm.js";
 import { FfmpegCompositionRenderer } from "./adapters/ffmpegComposition.js";
@@ -14,7 +15,7 @@ import { analyzeOpportunityFile, loadOpportunity } from "./application/analyzeOp
 import { generateScriptFromFile, loadBrief } from "./application/generateScript.js";
 import { produceFromScriptFile } from "./application/produceVideo.js";
 import { generateVoiceoverFromFile } from "./application/generateVoiceover.js";
-import { CommandTextToSpeechProvider } from "./adapters/commandTts.js";
+import { CommandBatchTextToSpeechProvider, CommandTextToSpeechProvider } from "./adapters/commandTts.js";
 import { concatAudioFiles, probeDurationSeconds } from "./adapters/ffmpeg.js";
 import { buildScriptGenerationPrompt } from "./application/prompts/scriptGeneration.js";
 import { buildOpportunityBriefPrompt } from "./application/prompts/opportunityBrief.js";
@@ -134,19 +135,21 @@ export function createProgram(): Command {
     .command("script")
     .description("Turn a production brief into a structured script plan via a language model")
     .argument("<file>", "ProductionBrief JSON or brief-<signal-id>.json artifact from `sf analyze`")
+    .option("--target-duration <seconds>", "override the suggested editorial target", parsePositiveInt)
     .option("--prompt", "print the generation prompt without calling a provider")
     .option("--json", "print machine-readable result")
-    .action(async (file: string, options: { prompt?: boolean; json?: boolean }) => {
+    .action(async (file: string, options: { targetDuration?: number; prompt?: boolean; json?: boolean }) => {
       await run(async () => {
         const resolved = path.resolve(file);
         if (options.prompt) {
           const { brief } = await loadBrief(resolved);
-          console.log(buildScriptGenerationPrompt(brief));
+          console.log(buildScriptGenerationPrompt(brief, options.targetDuration));
           return;
         }
         const result = await generateScriptFromFile({
           filePath: resolved,
-          provider: new CommandLanguageModelProvider()
+          provider: new CommandLanguageModelProvider(),
+          ...(options.targetDuration ? { targetDurationSeconds: options.targetDuration } : {})
         });
         if (options.json) {
           printJson({ status: "pass", scriptPath: result.scriptPath, script: result.script });
@@ -157,6 +160,9 @@ export function createProgram(): Command {
         console.log("");
         console.log(`title: ${plan.title}`);
         console.log(`duration: ${plan.durationSeconds}s — ${plan.sections.length} sections`);
+        if (plan.durationRecommendation) {
+          console.log(`recommended: ${plan.durationRecommendation.minSeconds}-${plan.durationRecommendation.maxSeconds}s, target ${plan.durationRecommendation.targetSeconds}s — ${plan.durationRecommendation.rationale}`);
+        }
         console.log(`hook (${plan.hook.durationSeconds}s): ${plan.hook.text}`);
         console.log("");
         console.log("Sections:");
@@ -178,7 +184,9 @@ export function createProgram(): Command {
       await run(async () => {
         const result = await generateVoiceoverFromFile({
           filePath: file,
-          provider: new CommandTextToSpeechProvider(),
+          provider: process.env.SF_TTS_BATCH_COMMAND
+            ? new CommandBatchTextToSpeechProvider()
+            : new CommandTextToSpeechProvider(),
           outputDir: path.resolve(options.output),
           audio: { probeDurationSeconds, concatAudioFiles }
         });
@@ -201,14 +209,20 @@ export function createProgram(): Command {
     .argument("<file>", "ScriptPlan JSON or script-<signal-id>.json artifact from `sf script`")
     .option("--assets <dir>", "directory of local assets named after section purposes (hook.png, explanation.mp4, ...)")
     .option("--voiceover <file>", "voiceover.json produced by `sf voiceover` (real audio replaces the silent track)")
+    .option("--music <file>", "licensed local music bed")
+    .option("--music-provenance <text>", "rights, attribution, and source for --music")
+    .option("--music-gain-db <db>", "music gain below full scale", (value) => Number(value), -25)
     .option("--template <name>", "composition strategy: generic | ai-news", "generic")
     .option("-o, --output <dir>", "output root directory", "output")
     .option("--run-id <id>", "stable run id")
     .option("--json", "print machine-readable result")
-    .action(async (file: string, options: { assets?: string; voiceover?: string; template: string; output: string; runId?: string; json?: boolean }) => {
+    .action(async (file: string, options: { assets?: string; voiceover?: string; music?: string; musicProvenance?: string; musicGainDb: number; template: string; output: string; runId?: string; json?: boolean }) => {
       await run(async () => {
         if (options.template !== "generic" && options.template !== "ai-news") {
           throw new Error(`Unknown template: ${options.template} (expected generic or ai-news)`);
+        }
+        if (options.music && !options.musicProvenance) {
+          throw new Error("--music-provenance is required with --music");
         }
         const result = await produceFromScriptFile({
           filePath: file,
@@ -217,6 +231,12 @@ export function createProgram(): Command {
           template: options.template,
           ...(options.assets ? { assetsDir: options.assets } : {}),
           ...(options.voiceover ? { voiceoverPath: options.voiceover } : {}),
+          ...(options.music ? {
+            audioBedPath: options.music,
+            audioBedProvenance: options.musicProvenance!,
+            audioBedGainDb: options.musicGainDb
+          } : {}),
+          ...(options.voiceover && process.env.SF_WHISPER_MODEL ? { wordTimingProvider: new WhisperCppWordTimingProvider() } : {}),
           ...(options.runId ? { runId: options.runId } : {})
         });
         if (options.json) {

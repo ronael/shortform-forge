@@ -10,7 +10,9 @@ const ProbeStreamSchema = z.object({
   codec_type: z.string(),
   codec_name: z.string().optional(),
   width: z.number().optional(),
-  height: z.number().optional()
+  height: z.number().optional(),
+  channels: z.number().optional(),
+  sample_rate: z.string().optional()
 });
 
 const ProbeSchema = z.object({
@@ -42,6 +44,8 @@ export async function probeMedia(videoPath: string): Promise<MediaProbe> {
     hasAudio: Boolean(audio),
     ...(video.codec_name ? { videoCodec: video.codec_name } : {}),
     ...(audio?.codec_name ? { audioCodec: audio.codec_name } : {}),
+    ...(audio?.channels ? { audioChannels: audio.channels } : {}),
+    ...(audio?.sample_rate ? { audioSampleRate: Number(audio.sample_rate) } : {}),
     sizeBytes: Number(parsed.format.size ?? 0)
   };
 }
@@ -62,15 +66,21 @@ export async function probeDurationSeconds(filePath: string): Promise<number> {
 }
 
 /** Concatenates audio files into one WAV (same durations order). */
-export async function concatAudioFiles(inputPaths: string[], outputPath: string): Promise<void> {
+export async function concatAudioFiles(inputPaths: string[], outputPath: string, segmentDurationsSeconds?: number[]): Promise<void> {
   if (inputPaths.length === 0) throw new Error("concatAudioFiles requires at least one input");
   const inputs = inputPaths.flatMap((inputPath) => ["-i", inputPath]);
-  const labels = inputPaths.map((_, index) => `[${index}:a]`).join("");
+  const padded = inputPaths.map((_, index) => {
+    const duration = segmentDurationsSeconds?.[index];
+    return duration
+      ? `[${index}:a]apad,atrim=duration=${duration.toFixed(3)},asetpts=PTS-STARTPTS[p${index}]`
+      : `[${index}:a]anull[p${index}]`;
+  });
+  const labels = inputPaths.map((_, index) => `[p${index}]`).join("");
   await runProcess("ffmpeg", [
     "-y",
     ...inputs,
     "-filter_complex",
-    `${labels}concat=n=${inputPaths.length}:v=0:a=1[out]`,
+    `${padded.join(";")};${labels}concat=n=${inputPaths.length}:v=0:a=1[out]`,
     "-map",
     "[out]",
     outputPath

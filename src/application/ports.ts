@@ -8,6 +8,8 @@ export type MediaProbe = {
   hasAudio: boolean;
   videoCodec?: string;
   audioCodec?: string;
+  audioChannels?: number;
+  audioSampleRate?: number;
   sizeBytes: number;
 };
 
@@ -50,13 +52,33 @@ export interface PassageAnalyzer {
 
 export interface CompositionRenderer {
   readonly renderer: string;
-  render(plan: CompositionPlan, outputDir: string, options?: { audioPath?: string }): Promise<VideoArtifact>;
+  render(plan: CompositionPlan, outputDir: string, options?: {
+    audioPath?: string;
+    audioBed?: {
+      path: string;
+      provenance: string;
+      gainDb?: number;
+      ducking?: boolean;
+    };
+  }): Promise<VideoArtifact>;
 }
 
 export interface TextToSpeechProvider {
   readonly name: string;
   /** Synthesizes text into an audio file at outputPath. */
   synthesize(text: string, outputPath: string): Promise<void>;
+  /** Optional batch path for providers whose model is expensive to load. */
+  synthesizeBatch?(items: Array<{ text: string; outputPath: string }>): Promise<void>;
+}
+
+export type WordTimingResult = {
+  words: Array<{ text: string; startSeconds: number; endSeconds: number }>;
+  coverage: number;
+};
+
+export interface WordTimingProvider {
+  readonly name: string;
+  align(audioPath: string, canonicalText: string, language?: string): Promise<WordTimingResult>;
 }
 
 export type ClipWorkflowDependencies = {

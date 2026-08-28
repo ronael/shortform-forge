@@ -6,6 +6,11 @@ const MAX_CHARS_PER_LINE = 28;
 const MAX_LINES_PER_CUE = 3;
 const HIGHLIGHT_COLOR = "&H0000E0FF";
 const BASE_COLOR = "&H00FFFFFF";
+const MAX_WORDS_PER_CUE: Record<CaptionStyle, number> = {
+  minimal: 8,
+  dynamic: 5,
+  "keyword-highlight": 3
+};
 
 export type CaptionCue = {
   startSeconds: number;
@@ -14,20 +19,35 @@ export type CaptionCue = {
   lines: string[];
 };
 
+export type TimedWord = {
+  text: string;
+  startSeconds: number;
+  endSeconds: number;
+};
+
 const CAPTION_STYLES: Record<CaptionStyle, string> = {
   dynamic: "Style: Caption,Arial,72,&H00FFFFFF,&H00FFFFFF,&H00000000,&H99000000,-1,0,0,0,100,100,0,0,1,5,2,2,90,90,250,1",
   minimal: "Style: Caption,Arial,56,&H00FFFFFF,&H00FFFFFF,&H00000000,&H66000000,0,0,0,0,100,100,0,0,1,3,1,2,90,90,220,1",
   "keyword-highlight": "Style: Caption,Arial,72,&H00FFFFFF,&H00FFFFFF,&H00000000,&H99000000,-1,0,0,0,100,100,0,0,1,5,2,2,90,90,250,1"
 };
 
-/** Builds timed caption cues from a script plan's voiceover sections. */
-export function cuesFromSections(sections: Pick<ScriptSection, "startSeconds" | "endSeconds" | "voiceover">[]): CaptionCuePlan[] {
+/** Builds compact, proportionally timed caption cues from voiceover sections. */
+export function cuesFromSections(
+  sections: Pick<ScriptSection, "startSeconds" | "endSeconds" | "voiceover">[],
+  style: CaptionStyle = "dynamic"
+): CaptionCuePlan[] {
   return sections.flatMap((section) => {
-    const chunks = splitIntoCueTexts(section.voiceover);
+    const chunks = splitIntoCueTexts(section.voiceover, MAX_WORDS_PER_CUE[style]);
     const duration = section.endSeconds - section.startSeconds;
+    const weights = chunks.map((chunk) => Math.max(1, chunk.split(/\s+/).length));
+    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+    let elapsedWeight = 0;
     return chunks.map((chunk, index) => {
-      const cueStart = section.startSeconds + (duration * index) / chunks.length;
-      const cueEnd = index === chunks.length - 1 ? section.endSeconds : section.startSeconds + (duration * (index + 1)) / chunks.length;
+      const cueStart = section.startSeconds + duration * (elapsedWeight / totalWeight);
+      elapsedWeight += weights[index] ?? 0;
+      const cueEnd = index === chunks.length - 1
+        ? section.endSeconds
+        : section.startSeconds + duration * (elapsedWeight / totalWeight);
       return {
         startSeconds: cueStart,
         endSeconds: Math.max(cueStart + 0.25, cueEnd),
@@ -37,6 +57,23 @@ export function cuesFromSections(sections: Pick<ScriptSection, "startSeconds" | 
   });
 }
 
+export function cuesFromTimedWords(words: TimedWord[], style: CaptionStyle): CaptionCuePlan[] {
+  const groupSize = MAX_WORDS_PER_CUE[style];
+  const cues: CaptionCuePlan[] = [];
+  for (let index = 0; index < words.length; index += groupSize) {
+    const group = words.slice(index, index + groupSize);
+    const first = group[0];
+    const last = group.at(-1);
+    if (!first || !last) continue;
+    cues.push({
+      startSeconds: first.startSeconds,
+      endSeconds: Math.max(first.startSeconds + 0.12, last.endSeconds),
+      text: group.map((word) => word.text).join(" ")
+    });
+  }
+  return cues;
+}
+
 /** Renders caption cues as an ASS subtitle document with the given style. */
 export function buildAssFromCues(cues: CaptionCuePlan[], style: CaptionStyle, keywordsToEmphasize: string[] = []): string {
   const events = cues.map((cue, index) => {
@@ -44,7 +81,7 @@ export function buildAssFromCues(cues: CaptionCuePlan[], style: CaptionStyle, ke
     const lines = style === "keyword-highlight"
       ? escaped.map((line) => highlightKeywords(line, keywordsToEmphasize))
       : escaped;
-    return `Dialogue: ${index},${formatAssTime(cue.startSeconds)},${formatAssTime(cue.endSeconds)},Caption,,0,0,0,,${lines.join("\\N")}`;
+    return `Dialogue: ${index},${formatAssTime(cue.startSeconds)},${formatAssTime(cue.endSeconds)},Caption,,0,0,0,,${captionAnimation(style)}${lines.join("\\N")}`;
   });
   return `[Script Info]
 ScriptType: v4.00+
@@ -172,13 +209,13 @@ function selectedTranscriptText(transcript: Transcript, candidate: CandidateSegm
     .join(" ");
 }
 
-function splitIntoCueTexts(text: string): string[] {
+function splitIntoCueTexts(text: string, maxWords = 8): string[] {
   const words = text.split(/\s+/).filter(Boolean);
   const chunks: string[] = [];
   let currentWords: string[] = [];
   for (const word of words) {
     const nextWords = [...currentWords, word];
-    if (currentWords.length > 0 && wrapCaption(nextWords.join(" ")).length > MAX_LINES_PER_CUE) {
+    if (currentWords.length > 0 && (currentWords.length >= maxWords || wrapCaption(nextWords.join(" ")).length > MAX_LINES_PER_CUE)) {
       chunks.push(currentWords.join(" "));
       currentWords = [word];
     } else {
@@ -187,6 +224,12 @@ function splitIntoCueTexts(text: string): string[] {
   }
   if (currentWords.length > 0) chunks.push(currentWords.join(" "));
   return chunks.length > 0 ? chunks : [text];
+}
+
+export function captionAnimation(style: CaptionStyle): string {
+  if (style === "minimal") return "{\\fad(80,80)}";
+  if (style === "dynamic") return "{\\fad(45,60)\\fscx94\\fscy94\\t(0,120,\\fscx100\\fscy100)}";
+  return "{\\fad(35,55)\\fscx90\\fscy90\\t(0,105,\\fscx104\\fscy104)\\t(105,180,\\fscx100\\fscy100)}";
 }
 
 function wrapCaption(text: string): string[] {

@@ -5,7 +5,7 @@ import { describe, expect, test } from "vitest";
 import { FfmpegCompositionRenderer, qaComposition } from "../src/adapters/ffmpegComposition.js";
 import { probeMedia } from "../src/adapters/ffmpeg.js";
 import { runProcess } from "../src/adapters/process.js";
-import { produceFromScriptFile } from "../src/application/produceVideo.js";
+import { produceFromScriptFile, resolveSectionAssets } from "../src/application/produceVideo.js";
 import { buildCompositionPlan } from "../src/application/composeVideo.js";
 import { ScriptPlanSchema } from "../src/domain/script.js";
 
@@ -22,6 +22,38 @@ const script = ScriptPlanSchema.parse({
 });
 
 describe("produce integration", () => {
+  test("requires explicit provenance for a music bed", async () => {
+    await expect(produceFromScriptFile({
+      filePath: "script.json",
+      renderer: new FfmpegCompositionRenderer(),
+      outputRoot: "/tmp",
+      audioBedPath: "music.mp3"
+    })).rejects.toMatchObject({ code: "INVALID_INPUT" });
+  });
+
+  test("loads focal placement and scrim settings from an asset manifest", async () => {
+    const dir = await mkdtemp(path.join(os.tmpdir(), "sf-assets-"));
+    await writeFile(path.join(dir, "portrait.jpg"), "fixture", "utf8");
+    await writeFile(path.join(dir, "manifest.json"), JSON.stringify({
+      assets: [{
+        purpose: "hook",
+        file: "portrait.jpg",
+        provenance: "authorized test fixture",
+        fit: "cover",
+        focalPoint: { x: 0.2, y: 0.35 },
+        textBackdrop: "scrim"
+      }]
+    }), "utf8");
+
+    const assets = await resolveSectionAssets(dir);
+    expect(assets).toHaveLength(1);
+    expect(assets[0]).toMatchObject({
+      purpose: "hook",
+      placement: { fit: "cover", focalPoint: { x: 0.2, y: 0.35 } },
+      textBackdrop: "scrim"
+    });
+  });
+
   test("renders a real 1080x1920 mp4 from a script plan and passes QA", async () => {
     const dir = await mkdtemp(path.join(os.tmpdir(), "sf-produce-"));
     const assetsDir = path.join(dir, "assets");
@@ -51,6 +83,7 @@ describe("produce integration", () => {
 
     const qa = JSON.parse(await readFile(path.join(result.artifactDir, "qa.json"), "utf8")) as { status: string };
     expect(qa.status).toBe("pass");
+    expect((await stat(path.join(result.artifactDir, "contact-sheet.jpg"))).size).toBeGreaterThan(1_000);
     const artifact = JSON.parse(await readFile(path.join(result.artifactDir, "artifact.json"), "utf8")) as { sourceScriptPath: string };
     expect(artifact.sourceScriptPath).toBe(scriptPath);
   }, 60_000);
@@ -66,4 +99,26 @@ describe("produce integration", () => {
     const outputStat = await stat(captionsPath);
     expect(outputStat.size).toBeGreaterThan(0);
   });
+
+  test("mixes a licensed music bed without shortening the editorial duration", async () => {
+    const dir = await mkdtemp(path.join(os.tmpdir(), "sf-produce-music-"));
+    const scriptPath = path.join(dir, "script.json");
+    await writeFile(scriptPath, JSON.stringify({ ...script, musicGuidance: { mode: "on", mood: "test" } }), "utf8");
+    const musicPath = path.join(dir, "music.wav");
+    await runProcess("ffmpeg", ["-y", "-f", "lavfi", "-i", "sine=frequency=220:duration=1", musicPath]);
+    const result = await produceFromScriptFile({
+      filePath: scriptPath,
+      renderer: new FfmpegCompositionRenderer(),
+      outputRoot: dir,
+      runId: "music",
+      audioBedPath: musicPath,
+      audioBedProvenance: "generated integration fixture"
+    });
+    const probe = await probeMedia(result.artifact.path);
+    expect(probe.durationSeconds).toBeCloseTo(4, 0);
+    expect(probe.audioChannels).toBe(2);
+    expect(probe.audioSampleRate).toBe(48_000);
+    const qa = JSON.parse(await readFile(path.join(result.artifactDir, "qa.json"), "utf8")) as { checks: Array<{ name: string }> };
+    expect(qa.checks.some((check) => check.name === "music_bed")).toBe(true);
+  }, 60_000);
 });

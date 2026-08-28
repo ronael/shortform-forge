@@ -4,7 +4,9 @@ export const VoiceoverSectionSchema = z.object({
   purpose: z.string().min(1),
   text: z.string().min(1),
   audioPath: z.string().min(1),
-  durationSeconds: z.number().positive()
+  durationSeconds: z.number().positive(),
+  timelineStartSeconds: z.number().nonnegative().optional(),
+  timelineEndSeconds: z.number().positive().optional()
 });
 
 /**
@@ -15,6 +17,7 @@ export const VoiceoverSectionSchema = z.object({
 export const VoiceoverSchema = z.object({
   sections: z.array(VoiceoverSectionSchema).min(1),
   totalDurationSeconds: z.number().positive(),
+  timelineDurationSeconds: z.number().positive().optional(),
   language: z.string().min(2).optional(),
   provider: z.string().min(1),
   generatedAt: z.string().datetime()

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CaptionStyleSchema } from "./script.js";
+import { CaptionStyleSchema, DressingProfileSchema } from "./script.js";
 
 // V0 supports only color backgrounds and local files. The kind enum is the
 // extension point for future "url" | "generated" | "capture" assets.
@@ -19,25 +19,46 @@ export const CaptionCuePlanSchema = z.object({
   text: z.string().min(1)
 });
 
+export const AssetPlacementSchema = z.object({
+  fit: z.enum(["cover", "contain"]).default("cover"),
+  focalPoint: z.object({
+    x: z.number().min(0).max(1),
+    y: z.number().min(0).max(1)
+  }).default({ x: 0.5, y: 0.5 })
+});
+
+export const TextBackdropSchema = z.enum(["none", "scrim"]);
+
 export const LayerSchema = z.discriminatedUnion("kind", [
   z.object({
     kind: z.literal("asset"),
     startSeconds: z.number().nonnegative(),
     endSeconds: z.number().positive(),
-    asset: AssetReferenceSchema
+    asset: AssetReferenceSchema,
+    placement: AssetPlacementSchema.optional(),
+    textBackdrop: TextBackdropSchema.default("none")
   }),
   z.object({
     kind: z.literal("text"),
     startSeconds: z.number().nonnegative(),
     endSeconds: z.number().positive(),
     text: z.string().min(1),
-    position: z.enum(["top", "center", "bottom"])
+    profile: DressingProfileSchema.default("minimal"),
+    rank: z.number().int().positive().optional(),
+    eyebrow: z.string().min(1).optional(),
+    metric: z.string().min(1).optional(),
+    supportingText: z.string().min(1).optional(),
+    accentColor: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+    position: z.enum(["top", "center", "bottom"]),
+    backdrop: TextBackdropSchema.default("none")
   }),
   z.object({
     kind: z.literal("captions"),
     startSeconds: z.number().nonnegative(),
     endSeconds: z.number().positive(),
     style: CaptionStyleSchema,
+    backdrop: TextBackdropSchema.default("none"),
+    timingSource: z.enum(["word-aligned", "proportional-fallback"]).default("proportional-fallback"),
     keywordsToEmphasize: z.array(z.string().min(1)).default([]),
     cues: z.array(CaptionCuePlanSchema).min(1)
   })
@@ -48,6 +69,7 @@ export const CompositionPlanSchema = z.object({
   height: z.literal(1920),
   fps: z.literal(30),
   durationSeconds: z.number().positive(),
+  narrationDurationSeconds: z.number().positive().optional(),
   background: z.string().regex(/^#[0-9a-fA-F]{6}$/),
   layers: z.array(LayerSchema).min(1)
 }).superRefine((plan, ctx) => {
@@ -86,6 +108,8 @@ export const VideoArtifactSchema = z.object({
 
 export type AssetReference = z.infer<typeof AssetReferenceSchema>;
 export type CaptionCuePlan = z.infer<typeof CaptionCuePlanSchema>;
+export type AssetPlacement = z.infer<typeof AssetPlacementSchema>;
+export type TextBackdrop = z.infer<typeof TextBackdropSchema>;
 export type Layer = z.infer<typeof LayerSchema>;
 export type CompositionPlan = z.infer<typeof CompositionPlanSchema>;
 export type VideoArtifact = z.infer<typeof VideoArtifactSchema>;

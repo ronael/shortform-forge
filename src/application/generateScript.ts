@@ -18,9 +18,10 @@ const AnalysisFileSchema = z.object({
 export async function generateScript(
   brief: ProductionBrief,
   provider: LanguageModelProvider,
-  sourceSignalId?: string
+  sourceSignalId?: string,
+  targetDurationSeconds?: number
 ): Promise<GeneratedScript> {
-  const prompt = buildScriptGenerationPrompt(brief);
+  const prompt = buildScriptGenerationPrompt(brief, targetDurationSeconds);
   const response = await provider.generate(prompt);
   const plan = parseLlmJson(response, ScriptPlanSchema, "ScriptPlan");
   return GeneratedScriptSchema.parse({
@@ -35,10 +36,11 @@ export async function generateScript(
 export async function generateScriptFromFile(input: {
   filePath: string;
   provider: LanguageModelProvider;
+  targetDurationSeconds?: number;
 }): Promise<{ script: GeneratedScript; scriptPath: string }> {
   const resolved = path.resolve(input.filePath);
   const { brief, signalId } = await loadBrief(resolved);
-  const script = await generateScript(brief, input.provider, signalId);
+  const script = await generateScript(brief, input.provider, signalId, input.targetDurationSeconds);
   const scriptPath = path.join(path.dirname(resolved), `script-${signalId ?? slug(script.plan.title)}.json`);
   await writeJson(scriptPath, script);
   return { script, scriptPath };

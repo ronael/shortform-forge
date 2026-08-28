@@ -52,6 +52,30 @@ describe("CompositionPlanSchema", () => {
     expect(() => CompositionPlanSchema.parse(badColor)).toThrow();
   });
 
+  test("accepts focal placement and rejects coordinates outside the image", () => {
+    const placed = {
+      ...validPlan,
+      layers: [{
+        ...colorLayer,
+        placement: { fit: "cover", focalPoint: { x: 0.25, y: 0.4 } },
+        textBackdrop: "scrim"
+      }, captionsLayer]
+    };
+    expect(CompositionPlanSchema.parse(placed).layers[0]).toMatchObject({
+      placement: { focalPoint: { x: 0.25, y: 0.4 } },
+      textBackdrop: "scrim"
+    });
+    const invalid = {
+      ...placed,
+      layers: [{
+        ...colorLayer,
+        placement: { fit: "cover", focalPoint: { x: 1.2, y: 0.4 } },
+        textBackdrop: "scrim"
+      }, captionsLayer]
+    };
+    expect(() => CompositionPlanSchema.parse(invalid)).toThrow();
+  });
+
   test("rejects caption cues with inverted timing", () => {
     const badCue = {
       ...validPlan,
