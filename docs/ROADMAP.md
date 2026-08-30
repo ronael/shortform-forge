@@ -17,9 +17,9 @@
 ## Next
 
 1. Human validation loop on produced videos (watch, list blocking defects, fix).
-2. Human-review the completed 29.93-second Revideo animated ranking POC; it removes dressing backgrounds and synchronizes portraits, animated rank/name/metric groups, and captions from narration anchors.
-3. Convert the accepted duration range, word-budget calibration, semantic anchors, focal framing, and subject/plan QA from the POC into provider contracts only after human acceptance.
-4. Run one topic-only MoneyPrinterTurbo POC to validate automatic script and asset selection; the completed actors POC used a supplied script and supplied assets.
+2. Human-compare the completed Revideo V4 and Remotion 4.0.518 ranking POCs on a phone. Both reuse the same 29.9-second voice, images, captions, and semantic anchors; compare retention, title motion, caption energy, readability, and visual noise.
+3. Convert the accepted duration range, word-budget calibration, semantic anchors, dynamic text contrast, focal framing, and subject/plan QA from the accepted POC into provider contracts only after human acceptance.
+4. Resume the topic-only MoneyPrinterTurbo POC after configuring one supported LLM and one stock provider. The first truthful run reached script generation but was blocked by the missing Moonshot API key; automatic script and asset quality remain untested.
 5. Word-level caption timing via whisper.cpp on generated audio.
 6. Asset resolver (local library first, then external sources with provenance).
 7. Improve ASR setup ergonomics and model guidance.

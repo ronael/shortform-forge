@@ -139,6 +139,13 @@ pending. This test shows that Revideo can supply restrained animation and that
 the earlier 23-second and portrait-lag defects were upstream timeline inputs,
 not fixed limits of the dressing engine.
 
+A retention-oriented V4 at `output/benchmarks/revideo-retention-v4-poc/` pushes
+the same timeline further with a staged hook, giant rank flashes, a five-step
+progress rail, portrait motion, and animated short caption groups. It preserves
+the accepted Vivienne voice and avoids the rejected dressing panels. Technical
+QA passed after correcting a cumulative transition-wait offset; human review is
+pending.
+
 ### 2. Creatomate - fastest external quality test
 
 Documentation: https://creatomate.com/docs/api/quick-start/create-a-video-by-template
@@ -161,18 +168,33 @@ Documentation: https://shotstack.io/docs/guide/architecting-an-application/templ
 - good fit for deterministic overlays and brand templates;
 - compare with Creatomate rather than integrating both.
 
-### 4. Remotion and OverlayMotion - proven benchmark
+### 4. Remotion and OverlayMotion - direct POC completed
 
 Repositories and templates:
 
 - https://github.com/remotion-dev/remotion
 - https://overlaymotion.com/
 
-The existing OpenMontage actors render already proves that the Remotion ecosystem
-can produce the desired structured editorial dressing. It remains the visual
-benchmark and a source of template ideas. Recheck the current Remotion commercial
-license before making it a core dependency; OverlayMotion may reduce template
-work but does not remove that licensing consideration.
+The existing OpenMontage actors render proved that the Remotion ecosystem can
+produce structured editorial dressing. A direct Remotion 4.0.518 POC now reuses
+the exact Revideo V4 audio, images, captions, section anchors, dimensions, and
+duration. It renders spring-based title, rank, caption, progress, and portrait
+animations at 1080x1920 in 29.99 seconds; technical QA passed and the result is at
+`output/benchmarks/remotion-ranking-poc/`. The contact sheet exposes one bright
+portrait where white title contrast is weak, confirming that dynamic text
+contrast belongs in the production brief for either engine. Human comparison on
+a phone remains the provider decision gate. Recheck the current Remotion license
+before making it a core dependency; OverlayMotion may reduce template work but
+does not remove that consideration.
+
+## Topic-Only MoneyPrinterTurbo POC
+
+The first truthful topic-only run used only a French subject and no prepared
+script or media. MoneyPrinterTurbo 1.3.5 accepted the task but stopped during
+script generation because no Moonshot API key was configured. The retained
+evidence is under `output/benchmarks/moneyprinterturbo-topic-only-poc/`. This
+validates the CLI entry path only; automatic script and asset quality remain
+untested until one supported LLM and one stock provider are configured.
 
 ### 5. Editly - lower-priority local fallback
 
