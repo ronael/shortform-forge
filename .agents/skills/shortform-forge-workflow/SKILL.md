@@ -23,14 +23,13 @@ informational terminal warning before using bundled music with unverified
 provenance and record that status without blocking generation.
 
 For briefs requiring rank badges, separate metrics, title cards, branding, or a
-call to action, treat dressing as an optional downstream provider stage. The
-Revideo engine passed technical QA, but its first template failed human review
-because light overlay backgrounds added noise and alignment was inconsistent.
-Do not reuse that template as the default. A minimal V2 template without panels
-and an animated 29.93-second V3 ranking template are awaiting human review. The
-V3 result proves that Revideo can animate dressing and drive focal-aware portraits
-from narration anchors, but it is not the default until accepted. The topic-only
-MoneyPrinterTurbo path is also unvalidated for automatic script and asset
+call to action, treat dressing as an optional downstream provider stage. Remotion
+4.0.518 won the direct human-reviewed ranking comparison against Revideo V4: both
+were good, but Remotion kept text framing and alignment correct throughout the
+video. Prefer the accepted Remotion ranking profile while keeping the contract
+replaceable. Revideo V4 remains the technically valid local fallback and
+regression benchmark; never reuse its rejected V1 panel template. The topic-only
+MoneyPrinterTurbo path is still unvalidated for automatic script and asset
 selection.
 
 Treat the brief duration as an editorial constraint. Budget the script to reach

@@ -89,11 +89,17 @@ ProductionBrief
       |
       +-- narrated-montage --> MoneyPrinterTurbo --> QA
       |
-      +-- editorial-dressed --> MoneyPrinterTurbo --> DressingProvider --> QA
+      +-- editorial-dressed --> MoneyPrinterTurbo --> Remotion --> QA
 ```
 
 The dressing stage must preserve the validated voice, caption timing, music, and
 edit unless the comparison demonstrates a direct quality improvement.
+
+Human review on 2026-08-30 selected Remotion over Revideo V4 for the ranking
+profile. Both results were considered good, but Remotion won because its text
+framing and alignment remained correct throughout the video. This is a
+profile-level decision, not permanent coupling: keep the dressing contract
+replaceable and retain Revideo as the local fallback.
 
 ## Dressing Provider Shortlist
 
@@ -143,8 +149,10 @@ A retention-oriented V4 at `output/benchmarks/revideo-retention-v4-poc/` pushes
 the same timeline further with a staged hook, giant rank flashes, a five-step
 progress rail, portrait motion, and animated short caption groups. It preserves
 the accepted Vivienne voice and avoids the rejected dressing panels. Technical
-QA passed after correcting a cumulative transition-wait offset; human review is
-pending.
+QA passed after correcting a cumulative transition-wait offset. Human review
+considered the result good but selected Remotion because its text framing and
+alignment were more consistent. Revideo remains the fallback, not the preferred
+ranking dressing provider.
 
 ### 2. Creatomate - fastest external quality test
 
@@ -183,9 +191,11 @@ animations at 1080x1920 in 29.99 seconds; technical QA passed and the result is 
 `output/benchmarks/remotion-ranking-poc/`. The contact sheet exposes one bright
 portrait where white title contrast is weak, confirming that dynamic text
 contrast belongs in the production brief for either engine. Human comparison on
-a phone remains the provider decision gate. Recheck the current Remotion license
-before making it a core dependency; OverlayMotion may reduce template work but
-does not remove that consideration.
+a phone selected Remotion as the winner: all text was correctly framed and
+aligned throughout the video, with no visible layout error. Remotion is therefore
+the preferred `DressingProvider` candidate for structured ranking videos. Recheck
+the current Remotion license before making it a core dependency; OverlayMotion
+may reduce template work but does not remove that consideration.
 
 ## Topic-Only MoneyPrinterTurbo POC
 

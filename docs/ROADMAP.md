@@ -17,8 +17,8 @@
 ## Next
 
 1. Human validation loop on produced videos (watch, list blocking defects, fix).
-2. Human-compare the completed Revideo V4 and Remotion 4.0.518 ranking POCs on a phone. Both reuse the same 29.9-second voice, images, captions, and semantic anchors; compare retention, title motion, caption energy, readability, and visual noise.
-3. Convert the accepted duration range, word-budget calibration, semantic anchors, dynamic text contrast, focal framing, and subject/plan QA from the accepted POC into provider contracts only after human acceptance.
+2. Formalize the human-selected Remotion ranking profile behind a replaceable `DressingProvider` contract. Preserve the accepted MoneyPrinterTurbo/Vivienne voice and subtitle timing; carry over the 29-to-30.5-second range, narration anchors, focal framing, dynamic contrast, and Remotion's accepted text alignment.
+3. Keep Revideo V4 as the technically valid local fallback and regression benchmark; do not continue template iteration unless Remotion exposes a concrete cost, licensing, or operational blocker.
 4. Resume the topic-only MoneyPrinterTurbo POC after configuring one supported LLM and one stock provider. The first truthful run reached script generation but was blocked by the missing Moonshot API key; automatic script and asset quality remain untested.
 5. Word-level caption timing via whisper.cpp on generated audio.
 6. Asset resolver (local library first, then external sources with provenance).
