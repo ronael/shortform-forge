@@ -87,13 +87,17 @@ Use the smallest chain that satisfies the brief:
 ```text
 ProductionBrief
       |
-      +-- narrated-montage --> MoneyPrinterTurbo --> QA
-      |
-      +-- editorial-dressed --> MoneyPrinterTurbo --> Remotion --> QA
+      +-- real-video edit --> MoneyPrinterTurbo
+                                  |
+                                  +-- captions/text dressing --> Remotion --> QA
 ```
 
-The dressing stage must preserve the validated voice, caption timing, music, and
-edit unless the comparison demonstrates a direct quality improvement.
+MoneyPrinterTurbo owns the primary footage selection/order and visual edit.
+Remotion owns captions and structured text dressing only: titles, rank badges,
+names, metrics, progress, and calls to action. Full-frame illustrative motion
+design is not the default production path. The dressing stage must preserve the
+validated voice, narration timing, music, and edit unless a comparison
+demonstrates a direct quality improvement.
 
 Human review on 2026-08-30 selected Remotion over Revideo V4 for the ranking
 profile. Both results were considered good, but Remotion won because its text
@@ -220,8 +224,29 @@ composition, not automatic stock search or semantic timing.
 Remotion 4.0.518 rendered a pure motion-design interpretation at
 `output/benchmarks/popcorn-remotion-motion-poc/`, with no external visual asset.
 Technical contact-sheet QA passed for the explanatory scenes, text grid,
-subtitles, audio, and duration. Human comparison is pending; the result will show
-whether the accepted ranking provider also generalizes to educational questions.
+subtitles, audio, and duration. Human review rejected the full motion-design
+result as visually unattractive despite its checklist compliance. The same review
+accepted Remotion's subtitle and text handling, while preferring the
+MoneyPrinterTurbo real-video result as the visual base.
+
+The selected production composition for this format is therefore:
+
+```text
+focal-prepared real video
+        |
+MoneyPrinterTurbo visual edit
+        |
+Remotion captions and text dressing
+        |
+QA and human review
+```
+
+The Vivienne voice remains a good free baseline, but this render sounded too
+flat for social content. This is not yet evidence to replace the voice provider:
+the shared master was slowed to `0.82x` to stretch a 72-word script to 30 seconds.
+The next comparison must synthesize at natural rate and increase the script word
+budget to reach the duration target. Only test another free voice if the natural
+rate result still lacks energy.
 
 ### 5. Editly - lower-priority local fallback
 

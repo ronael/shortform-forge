@@ -17,10 +17,10 @@
 ## Next
 
 1. Human validation loop on produced videos (watch, list blocking defects, fix).
-2. Formalize the human-selected Remotion ranking profile behind a replaceable `DressingProvider` contract. Preserve the accepted MoneyPrinterTurbo/Vivienne voice and subtitle timing; carry over the 29-to-30.5-second range, narration anchors, focal framing, dynamic contrast, and Remotion's accepted text alignment.
+2. Produce the selected hybrid popcorn candidate: focal-prepared real-video montage in MoneyPrinterTurbo, followed by Remotion captions and restrained text dressing. Remotion must not replace the footage with pure motion design.
 3. Keep Revideo V4 as the technically valid local fallback and regression benchmark; do not continue template iteration unless Remotion exposes a concrete cost, licensing, or operational blocker.
 4. Resume the topic-only MoneyPrinterTurbo POC after configuring one supported LLM and one stock provider. The first truthful run reached script generation but was blocked by the missing Moonshot API key; automatic script and asset quality remain untested.
-5. Human-compare the completed popcorn social-question POCs: MoneyPrinterTurbo with eight focal-prepared real-video segments versus Remotion pure motion design, using the exact same 30.5-second Vivienne master and Edge subtitle timeline.
+5. Retest `fr-FR-VivienneMultilingualNeural` at natural `1.0x` rate with a longer script calibrated from the measured speech duration. The slowed `0.82x` popcorn master was good but too flat for social content; compare another free voice only if natural-rate Vivienne remains insufficiently expressive.
 6. Turn the MoneyPrinterTurbo horizontal-video failure into an explicit provider input constraint: require portrait clips or focal-aware preprocessing before composition.
 7. Word-level caption timing via whisper.cpp on generated audio.
 8. Asset resolver (local library first, then external sources with provenance).

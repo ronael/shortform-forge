@@ -28,22 +28,28 @@ delete downloaded dependencies and intermediary clips after the run. Emit the
 informational terminal warning before using bundled music with unverified
 provenance and record that status without blocking generation.
 
-For briefs requiring rank badges, separate metrics, title cards, branding, or a
-call to action, treat dressing as an optional downstream provider stage. Remotion
-4.0.518 won the direct human-reviewed ranking comparison against Revideo V4: both
-were good, but Remotion kept text framing and alignment correct throughout the
-video. Prefer the accepted Remotion ranking profile while keeping the contract
-replaceable. Revideo V4 remains the technically valid local fallback and
-regression benchmark; never reuse its rejected V1 panel template. The topic-only
-MoneyPrinterTurbo path is still unvalidated for automatic script and asset
-selection.
+For briefs requiring captions, rank badges, separate metrics, title cards,
+branding, or a call to action, treat dressing as a downstream provider stage.
+Use MoneyPrinterTurbo for the primary real-video edit, then Remotion for captions
+and structured editorial text. Remotion 4.0.518 won the direct human-reviewed
+ranking comparison against Revideo V4 because it kept text framing and alignment
+correct throughout the video. Its pure motion-design popcorn POC passed technical
+QA but failed human aesthetic review, so do not use full-frame Remotion motion
+design by default. Keep the dressing contract replaceable. Revideo V4 remains
+the technically valid local fallback and regression benchmark; never reuse its
+rejected V1 panel template. The topic-only MoneyPrinterTurbo path is still
+unvalidated for automatic script and asset selection.
 
 Treat the brief duration as an editorial constraint. Budget the script to reach
 the requested duration, synthesize and measure the real voice track, then warn
 when the measured result misses the target materially. Do not pad a short result
 with silence or time-stretch accepted speech. Adjust the script, pauses, and
-intentional visual holds instead. Time assets from the measured dialogue-section
-timestamps rather than applying one fixed clip duration to every scene.
+intentional visual holds instead. In particular, do not slow an accepted voice
+materially to reach 30 seconds: the popcorn POC used Vivienne at 0.82x and human
+review found it too flat for social content. Retest at natural rate with a longer
+script before changing voice provider. Time assets from the measured
+dialogue-section timestamps rather than applying one fixed clip duration to
+every scene.
 
 Use a brief-defined acceptance range rather than requiring an exact frame count
 when natural speech is already close to target. For the current 30-second test,
