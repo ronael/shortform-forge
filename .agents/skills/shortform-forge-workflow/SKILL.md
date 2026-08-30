@@ -16,6 +16,12 @@ narration), prefer the validated MoneyPrinterTurbo 1.3.5 path while it remains
 the best human-reviewed result. Do not rebuild its accepted voice and subtitle
 capabilities in the internal renderer for those formats.
 
+For real-video MoneyPrinterTurbo inputs, require portrait clips or perform
+focal-aware 9:16 preprocessing first. The social-question popcorn POC proved that
+version 1.3.5 letterboxes horizontal local clips instead of producing an
+acceptable vertical crop. Order prepared segments on narration anchors; fixed
+clip durations alone do not provide semantic alignment.
+
 Use a temporary checkout/environment, retain only the input manifest, final
 video, voice track, subtitles, contact sheet, and scorecard under `output/`, and
 delete downloaded dependencies and intermediary clips after the run. Emit the

@@ -206,6 +206,23 @@ evidence is under `output/benchmarks/moneyprinterturbo-topic-only-poc/`. This
 validates the CLI entry path only; automatic script and asset quality remain
 untested until one supported LLM and one stock provider are configured.
 
+## Social-Question Popcorn Comparison
+
+A second-format comparison now uses the same 72-word Vivienne master and Edge
+subtitle timeline for two 30.5-second outputs. MoneyPrinterTurbo 1.3.5 assembled
+real Pexels video clips at
+`output/benchmarks/popcorn-moneyprinter-video-poc/`. Its native render exposed a
+blocking asset-input constraint: horizontal clips are letterboxed rather than
+cropped around a focal point. Eight upstream 9:16 preparations removed that
+defect and produced a technically usable final. This validates real-video
+composition, not automatic stock search or semantic timing.
+
+Remotion 4.0.518 rendered a pure motion-design interpretation at
+`output/benchmarks/popcorn-remotion-motion-poc/`, with no external visual asset.
+Technical contact-sheet QA passed for the explanatory scenes, text grid,
+subtitles, audio, and duration. Human comparison is pending; the result will show
+whether the accepted ranking provider also generalizes to educational questions.
+
 ### 5. Editly - lower-priority local fallback
 
 Repository: https://github.com/mifi/editly

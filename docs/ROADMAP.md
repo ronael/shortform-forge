@@ -20,9 +20,11 @@
 2. Formalize the human-selected Remotion ranking profile behind a replaceable `DressingProvider` contract. Preserve the accepted MoneyPrinterTurbo/Vivienne voice and subtitle timing; carry over the 29-to-30.5-second range, narration anchors, focal framing, dynamic contrast, and Remotion's accepted text alignment.
 3. Keep Revideo V4 as the technically valid local fallback and regression benchmark; do not continue template iteration unless Remotion exposes a concrete cost, licensing, or operational blocker.
 4. Resume the topic-only MoneyPrinterTurbo POC after configuring one supported LLM and one stock provider. The first truthful run reached script generation but was blocked by the missing Moonshot API key; automatic script and asset quality remain untested.
-5. Word-level caption timing via whisper.cpp on generated audio.
-6. Asset resolver (local library first, then external sources with provenance).
-7. Improve ASR setup ergonomics and model guidance.
+5. Human-compare the completed popcorn social-question POCs: MoneyPrinterTurbo with eight focal-prepared real-video segments versus Remotion pure motion design, using the exact same 30.5-second Vivienne master and Edge subtitle timeline.
+6. Turn the MoneyPrinterTurbo horizontal-video failure into an explicit provider input constraint: require portrait clips or focal-aware preprocessing before composition.
+7. Word-level caption timing via whisper.cpp on generated audio.
+8. Asset resolver (local library first, then external sources with provenance).
+9. Improve ASR setup ergonomics and model guidance.
 
 ## Later
 
