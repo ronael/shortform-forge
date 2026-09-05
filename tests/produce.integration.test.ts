@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, stat, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, stat, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, test } from "vitest";
@@ -57,7 +57,7 @@ describe("produce integration", () => {
   test("renders a real 1080x1920 mp4 from a script plan and passes QA", async () => {
     const dir = await mkdtemp(path.join(os.tmpdir(), "sf-produce-"));
     const assetsDir = path.join(dir, "assets");
-    await runProcess("mkdir", ["-p", assetsDir]);
+    await mkdir(assetsDir, { recursive: true });
     const imagePath = path.join(assetsDir, "hook.png");
     await runProcess("ffmpeg", ["-y", "-f", "lavfi", "-i", "testsrc2=size=1080x1920:rate=30:duration=1", "-frames:v", "1", imagePath]);
 

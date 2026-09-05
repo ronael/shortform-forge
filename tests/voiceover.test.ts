@@ -42,11 +42,12 @@ describe("CommandTextToSpeechProvider", () => {
   test("pipes the text on stdin to the configured command and substitutes {output}", async () => {
     const dir = await mkdtemp(path.join(os.tmpdir(), "sf-tts-"));
     const out = path.join(dir, "out.wav");
-    const provider = new CommandTextToSpeechProvider("tee {output}");
+    const command = "node -e process.stdin.pipe(require('node:fs').createWriteStream(process.argv[1])) {output}";
+    const provider = new CommandTextToSpeechProvider(command);
     await provider.synthesize("Bonjour le monde", out);
     const captured = await (await import("node:fs/promises")).readFile(out, "utf8");
     expect(captured).toBe("Bonjour le monde");
-    expect(provider.name).toBe("tee {output}");
+    expect(provider.name).toBe(command);
   });
 
   test("fails explicitly when the command does not exist", async () => {

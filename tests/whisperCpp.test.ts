@@ -25,7 +25,7 @@ describe("whisper.cpp adapter", () => {
     const dir = await mkdtemp(path.join(os.tmpdir(), "sf-asr-"));
     const sourcePath = path.join(dir, "source.mp4");
     await writeFile(sourcePath, "fake");
-    const provider = new WhisperCppTranscriptionProvider({ binaryPath: "missing-whisper-cli" });
+    const provider = new WhisperCppTranscriptionProvider({ binaryPath: "missing-whisper-cli", modelPath: "" });
 
     await expect(provider.transcribe({
       cacheDir: path.join(dir, "cache"),
