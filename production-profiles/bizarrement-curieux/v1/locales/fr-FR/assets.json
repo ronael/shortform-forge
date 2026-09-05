@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-08-30",
+  "pexelsLicense": "https://www.pexels.com/license/",
+  "pixabayLicense": "https://pixabay.com/service/license-summary/",
+  "episodes": {
+    "pieuvre-sang-bleu": [
+      {"id": "1312397", "page": "https://www.pexels.com/video/video-of-an-octopus-underwater-1312397/", "source": "Pexels"},
+      {"id": "857157", "page": "https://www.pexels.com/video/weird-walking-octopus-857157/", "source": "Pexels"},
+      {"id": "17841948", "page": "https://www.pexels.com/video/octopus-swimming-underwater-17841948/", "source": "Pexels"}
+    ],
+    "wombat-cubes": [
+      {"id": "271008", "page": "https://pixabay.com/videos/common-wombat-wombat-animal-271008/", "source": "Pixabay"},
+      {"id": "317566", "page": "https://pixabay.com/videos/common-wombat-wombat-animal-317566/", "source": "Pixabay"}
+    ],
+    "chat-gout-sucre": [
+      {"id": "5306162", "page": "https://www.pexels.com/video/close-up-video-of-cats-eating-5306162/", "source": "Pexels"},
+      {"id": "33791303", "page": "https://www.pexels.com/video/domestic-cats-eating-from-metal-bowl-outdoors-33791303/", "source": "Pexels"},
+      {"id": "35595266", "page": "https://www.pexels.com/video/brown-tabby-cat-eating-in-urban-setting-35595266/", "source": "Pexels"}
+    ],
+    "oignon-larmes": [
+      {"id": "8862081", "page": "https://www.pexels.com/video/a-person-cutting-an-onion-8862081/", "source": "Pexels"},
+      {"id": "3195946", "page": "https://www.pexels.com/video/a-person-slicing-an-onion-into-diced-3195946/", "source": "Pexels"},
+      {"id": "5262792", "page": "https://www.pexels.com/video/a-man-peeling-white-onion-using-knife-5262792/", "source": "Pexels"}
+    ],
+    "canard-pattes-froides": [
+      {"id": "19389647", "page": "https://www.pexels.com/video/ducks-in-snow-19389647/", "source": "Pexels"},
+      {"id": "36480396", "page": "https://www.pexels.com/video/winter-ducks-swimming-in-icy-pond-36480396/", "source": "Pexels"},
+      {"id": "31647765", "page": "https://www.pexels.com/video/peaceful-ducks-swimming-in-a-tranquil-pond-31647765/", "source": "Pexels"}
+    ]
+  }
+}

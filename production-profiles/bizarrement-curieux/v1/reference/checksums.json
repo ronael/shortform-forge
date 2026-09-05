@@ -1,0 +1,282 @@
+{
+  "profile": "bizarrement-curieux-v1",
+  "generatedAt": "2026-08-31",
+  "files": [
+    {
+      "locale": "fr-FR",
+      "path": "qa-report.json",
+      "bytes": 1429,
+      "sha256": "c09fd202adf8d43fbf3612690c0580afb283fe0ba55b1afc1885b46edd729629"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/canard-pattes-froides-voice.mp3",
+      "bytes": 161280,
+      "sha256": "b42303e4f5f1cc2a81e2f0f037d571f71fd12a60ed0bbc09574bb94d6c65b367"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/canard-pattes-froides.mp4",
+      "bytes": 44490618,
+      "sha256": "80f9c428ea2e93b442fa2fec16db182a22fc92dd318ee9e4ac61edfc2f33e04a"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/canard-pattes-froides.srt",
+      "bytes": 839,
+      "sha256": "8c54a856615a06fa3ac7183e17e59dc252fc71b482c212fcc8fcd06a3e462203"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/chat-gout-sucre-voice.mp3",
+      "bytes": 170208,
+      "sha256": "7cc7f8d308bde280485f9eec9f0f986df9382f43fc4bf15f2dfbc2bc0095cfec"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/chat-gout-sucre.mp4",
+      "bytes": 38889412,
+      "sha256": "ae6cc3f7646e5a2d4e48a3eeb95401b69b2ec31cd1ee53f2881789801adf3b26"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/chat-gout-sucre.srt",
+      "bytes": 856,
+      "sha256": "22f538fb13d794a897124f21c292810f37e9d69d03ca97cacf9ca07b3c89e1c2"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/contacts/canard-pattes-froides.jpg",
+      "bytes": 90228,
+      "sha256": "8b067022d7489267e6f7b0257590f694fa1b5096d3aba586616a619081d2feb9"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/contacts/chat-gout-sucre.jpg",
+      "bytes": 97342,
+      "sha256": "8964146261321e1004cac9234de3ca224de39be4f9333a8f48334197abac3a22"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/contacts/oignon-larmes.jpg",
+      "bytes": 82323,
+      "sha256": "03eff795c9e24b8eac62fb15d8181ae9aa2afb33b59b08a842f8b4f44602fad6"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/contacts/pieuvre-sang-bleu.jpg",
+      "bytes": 127984,
+      "sha256": "4064cdb2ae10773810e1b32abf260df7c3976330e8e0c66424238251b39d545e"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/contacts/wombat-cubes.jpg",
+      "bytes": 159310,
+      "sha256": "07c5aaaa36485de46b257aa5c77b496be5578e9f10349875011f50f48a873eb3"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/oignon-larmes-voice.mp3",
+      "bytes": 169920,
+      "sha256": "b5aba20ea74c3a9f778ad17f644b02340bd82236d9e278e3bd7ceaa5be66b7bd"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/oignon-larmes.mp4",
+      "bytes": 32453846,
+      "sha256": "777925d84e7fd51707866e50a75d6eddfec44572a5c317ddcc3bc644d4054de4"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/oignon-larmes.srt",
+      "bytes": 848,
+      "sha256": "66032354796757a0be12129ca4b2c89e9c1121bb8c92748c9f45ccc24f0f2ca9"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/pieuvre-sang-bleu-voice.mp3",
+      "bytes": 173376,
+      "sha256": "868f079d8e46a47c4cabde09d7d387c79d7a78597ef925e2e557422e95be9e66"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/pieuvre-sang-bleu.mp4",
+      "bytes": 55496835,
+      "sha256": "6083929c959f05e014dc84ef72b9914264c81d7a2075d378d6c2248a90646004"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/pieuvre-sang-bleu.srt",
+      "bytes": 882,
+      "sha256": "63ca920822b77468af0fc2b4ca90e487eb6da0e2319aaa3793bbf6e5dac27811"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/wombat-cubes-voice.mp3",
+      "bytes": 169056,
+      "sha256": "45e21318df501e6fc7742c74d135872d16b0ef5f1de18e9b15bedd9a2c73762f"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/wombat-cubes.mp4",
+      "bytes": 77791741,
+      "sha256": "d5a13fc1ea377c8e01cc26e50572a994f3aec9f3d5c36d04bf1d7f608c88afde"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "result/wombat-cubes.srt",
+      "bytes": 873,
+      "sha256": "0e49349f5ffa03b6e79cd674a735075909a11852c919db1db7ff64b99d147871"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "source/jingle.wav",
+      "bytes": 114318,
+      "sha256": "d93289c726cd33dee1d796060b3b3b103cc18ed93321c7a09aa6210d7fe20312"
+    },
+    {
+      "locale": "fr-FR",
+      "path": "source/music-bed.wav",
+      "bytes": 2880078,
+      "sha256": "b2cea924b4c464472980204cd386052b07248fba6ffd9a5565dd7eac7236e581"
+    },
+    {
+      "locale": "en-US",
+      "path": "qa-report.json",
+      "bytes": 1274,
+      "sha256": "e5d24e13ba1f58665201fa213284a6111a64b6d4e3937d855e51c269fa206978"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/cats-sweet-taste-voice.mp3",
+      "bytes": 172944,
+      "sha256": "254f2f70807241f755ebc89e078d66ec889f0ce34937581ea810d969b4203c1b"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/cats-sweet-taste.mp4",
+      "bytes": 35775974,
+      "sha256": "e2c58ddbe451bf502966b1da2c4f0637c7c6fe2ddb8eae5d0bd203210d8b5337"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/cats-sweet-taste.srt",
+      "bytes": 641,
+      "sha256": "98ccb47333fe5da73688e1f0270f13f98588b9c77c9297db79ebc5cc89e6dbe1"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/contacts/cats-sweet-taste.jpg",
+      "bytes": 98146,
+      "sha256": "cca05249cb272c3b0d6d113063e16e6941f9a5d832bf909d7e01d4d745ddf446"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/contacts/ducks-cold-feet.jpg",
+      "bytes": 97857,
+      "sha256": "3133edef01251943e6cbf5e3b72635e02b8fabb013f5cbd2930176096c51cacc"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/contacts/octopus-blue-blood.jpg",
+      "bytes": 117969,
+      "sha256": "00f29202c4e0820c534a7ae4b77b2167ae3fcbb1905fdfe6280938f35f30df56"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/contacts/onions-make-you-cry.jpg",
+      "bytes": 82748,
+      "sha256": "819671aaabeacf40860e78f4d89032585c603513b22314664c36caf360e87700"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/contacts/wombat-cube-poop.jpg",
+      "bytes": 182330,
+      "sha256": "f8a0b3f295035b8ae92ce9760241b950be0553eabb2fcf32918be7c5dba8aa21"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/ducks-cold-feet-voice.mp3",
+      "bytes": 176256,
+      "sha256": "61c5e3f9b4dcd659df1ad34c85bf2dc41149029bca0e9143951a6a9eb7498cce"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/ducks-cold-feet.mp4",
+      "bytes": 43880294,
+      "sha256": "51223d9405e80b9b9124b5fae8b55242d5e9b7332a32838936c7077d671259c4"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/ducks-cold-feet.srt",
+      "bytes": 709,
+      "sha256": "d76c74f9dd7949d56de069e633bd59492c5745aaf34c405d2cf4ce994e364815"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/octopus-blue-blood-voice.mp3",
+      "bytes": 175968,
+      "sha256": "70e2b4a0d35b7f23610ee6a9757f656ef48024779a50457d2d4d39f04a9f62d9"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/octopus-blue-blood.mp4",
+      "bytes": 54147254,
+      "sha256": "aa1ab3c01b4eff00dcaced9b84d8cf4fcb7c27d146082857af60d3d4f7a6204b"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/octopus-blue-blood.srt",
+      "bytes": 669,
+      "sha256": "9ddb7ba6430e37e2f225fd4006e584322a432183654ea89bacedda631c2dcbcc"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/onions-make-you-cry-voice.mp3",
+      "bytes": 173808,
+      "sha256": "7e482c1372335829dbe947720c2f9dc086656578aa5defc78f591c1bf75f90bf"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/onions-make-you-cry.mp4",
+      "bytes": 32765531,
+      "sha256": "9a4073e680c9f23e4293df4bffc64c550eb72d1825eececed8b5edc0d17d275f"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/onions-make-you-cry.srt",
+      "bytes": 722,
+      "sha256": "f23ac2115733118c05dab4b8ed268d8a87d985e47ab22f53a8bb1a065589c411"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/wombat-cube-poop-voice.mp3",
+      "bytes": 179136,
+      "sha256": "9eb000f10aa4d275f0f9ab10e01246b291c6597873541ce2550577441889e1eb"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/wombat-cube-poop.mp4",
+      "bytes": 75860182,
+      "sha256": "5805367667b5ce3103af126b35840605213702c6b637b77cec276d3425ea2b59"
+    },
+    {
+      "locale": "en-US",
+      "path": "result/wombat-cube-poop.srt",
+      "bytes": 686,
+      "sha256": "f70081630db5ade48076ae69d0b84904584416aa2e55c00fca63e1b73db6f841"
+    },
+    {
+      "locale": "en-US",
+      "path": "source/jingle.wav",
+      "bytes": 114318,
+      "sha256": "d93289c726cd33dee1d796060b3b3b103cc18ed93321c7a09aa6210d7fe20312"
+    },
+    {
+      "locale": "en-US",
+      "path": "source/music-bed.wav",
+      "bytes": 2880078,
+      "sha256": "b2cea924b4c464472980204cd386052b07248fba6ffd9a5565dd7eac7236e581"
+    }
+  ]
+}

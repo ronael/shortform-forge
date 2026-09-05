@@ -1,0 +1,1018 @@
+[
+  {
+    "id": "pieuvre-sang-bleu",
+    "question": "Pourquoi le sang de la pieuvre est-il bleu ?",
+    "script": "Pourquoi le sang de la pieuvre est-il bleu ? Ce n'est pas une illusion sous-marine. Pour transporter l'oxygène, nous utilisons l'hémoglobine, une protéine riche en fer qui rend notre sang rouge. La pieuvre utilise surtout l'hémocyanine. Cette protéine contient du cuivre et devient bleue lorsqu'elle fixe l'oxygène. Elle fonctionne particulièrement bien dans les eaux froides et pauvres en oxygène. Et pour faire circuler ce sang, la pieuvre possède même trois cœurs. Sous ses tentacules se cache donc réellement un sang bleu. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#48C7FF",
+    "sources": [
+      "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "https://www.smithsonianmag.com/science-nature/ten-wild-facts-about-octopuses-they-have-three-hearts-big-brains-and-blue-blood-7625828/"
+    ],
+    "title": [
+      "LE SANG DE LA PIEUVRE",
+      "EST-IL VRAIMENT BLEU ?"
+    ],
+    "accentTerms": [
+      "bleu",
+      "fer",
+      "rouge",
+      "hémocyanine",
+      "cuivre",
+      "oxygène",
+      "cœurs"
+    ],
+    "callouts": [
+      {
+        "start": 4.037,
+        "end": 9.987,
+        "eyebrow": "NOTRE SANG",
+        "title": "FER → ROUGE"
+      },
+      {
+        "start": 9.987,
+        "end": 16.337,
+        "eyebrow": "SON SECRET",
+        "title": "CUIVRE → BLEU"
+      },
+      {
+        "start": 19.975,
+        "end": 23.725,
+        "eyebrow": "ET EN PLUS",
+        "title": "TROIS CŒURS"
+      },
+      {
+        "start": 23.725,
+        "end": 26.525,
+        "eyebrow": "EN CLAIR",
+        "title": "UN VRAI SANG BLEU"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 1.1955555555555557,
+        "text": "Pourquoi le sang de la",
+        "accent": "la"
+      },
+      {
+        "id": "caption-02",
+        "start": 1.1955555555555557,
+        "end": 2.112,
+        "text": "pieuvre est-il bleu ?",
+        "accent": "bleu"
+      },
+      {
+        "id": "caption-03",
+        "start": 2.112,
+        "end": 3.0745,
+        "text": "Ce n'est pas",
+        "accent": "pas"
+      },
+      {
+        "id": "caption-04",
+        "start": 3.0745,
+        "end": 4.037,
+        "text": "une illusion sous-marine.",
+        "accent": "sous-marine."
+      },
+      {
+        "id": "caption-05",
+        "start": 4.037,
+        "end": 5.5245,
+        "text": "Pour transporter l'oxygène, nous",
+        "accent": "nous"
+      },
+      {
+        "id": "caption-06",
+        "start": 5.5245,
+        "end": 7.0120000000000005,
+        "text": "utilisons l'hémoglobine, une protéine",
+        "accent": "protéine"
+      },
+      {
+        "id": "caption-07",
+        "start": 7.0120000000000005,
+        "end": 8.499500000000001,
+        "text": "riche en fer qui",
+        "accent": "fer"
+      },
+      {
+        "id": "caption-08",
+        "start": 8.499500000000001,
+        "end": 9.987,
+        "text": "rend notre sang rouge.",
+        "accent": "rouge."
+      },
+      {
+        "id": "caption-09",
+        "start": 9.987,
+        "end": 12.512,
+        "text": "La pieuvre utilise surtout l'hémocyanine.",
+        "accent": "l'hémocyanine."
+      },
+      {
+        "id": "caption-10",
+        "start": 12.512,
+        "end": 13.902909090909091,
+        "text": "Cette protéine contient du",
+        "accent": "du"
+      },
+      {
+        "id": "caption-11",
+        "start": 13.902909090909091,
+        "end": 15.293818181818182,
+        "text": "cuivre et devient bleue",
+        "accent": "cuivre"
+      },
+      {
+        "id": "caption-12",
+        "start": 15.293818181818182,
+        "end": 16.337,
+        "text": "lorsqu'elle fixe l'oxygène.",
+        "accent": "l'oxygène."
+      },
+      {
+        "id": "caption-13",
+        "start": 16.337,
+        "end": 17.549666666666667,
+        "text": "Elle fonctionne particulièrement bien",
+        "accent": "bien"
+      },
+      {
+        "id": "caption-14",
+        "start": 17.549666666666667,
+        "end": 18.762333333333334,
+        "text": "dans les eaux froides",
+        "accent": "froides"
+      },
+      {
+        "id": "caption-15",
+        "start": 18.762333333333334,
+        "end": 19.975,
+        "text": "et pauvres en oxygène.",
+        "accent": "oxygène."
+      },
+      {
+        "id": "caption-16",
+        "start": 19.975,
+        "end": 21.225,
+        "text": "Et pour faire circuler",
+        "accent": "circuler"
+      },
+      {
+        "id": "caption-17",
+        "start": 21.225,
+        "end": 22.475,
+        "text": "ce sang, la pieuvre",
+        "accent": "pieuvre"
+      },
+      {
+        "id": "caption-18",
+        "start": 22.475,
+        "end": 23.725,
+        "text": "possède même trois cœurs.",
+        "accent": "cœurs."
+      },
+      {
+        "id": "caption-19",
+        "start": 23.725,
+        "end": 25.125,
+        "text": "Sous ses tentacules se cache",
+        "accent": "cache"
+      },
+      {
+        "id": "caption-20",
+        "start": 25.125,
+        "end": 26.525,
+        "text": "donc réellement un sang bleu.",
+        "accent": "bleu."
+      },
+      {
+        "id": "caption-21",
+        "start": 26.525,
+        "end": 28.875,
+        "text": "Abonne-toi pour d'autres questions insolites.",
+        "accent": "insolites."
+      }
+    ],
+    "voiceEnd": 28.875,
+    "jingleStart": 28.675
+  },
+  {
+    "id": "wombat-cubes",
+    "question": "Pourquoi les wombats font-ils des crottes cubiques ?",
+    "script": "Pourquoi les wombats font-ils des crottes cubiques ? Non, ils n'ont pas un anus carré. Les cubes se forment bien avant la sortie, dans la dernière partie de leur intestin. Là, les parois n'ont pas partout la même épaisseur ni la même rigidité. Pendant les contractions, certaines zones étirent la matière tandis que d'autres la compriment. En séchant lentement, les faces et les coins apparaissent. Ces cubes servent ensuite de marques odorantes et roulent moins facilement. Le wombat les fabrique donc de l'intérieur. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#F5B942",
+    "sources": [
+      "https://hu.gatech.edu/wp-content/uploads/2021/01/Hu21-wombat.pdf",
+      "https://www.utas.edu.au/about/news-and-stories/articles/2021/scientists-get-to-the-bottom-of-wombat-cubed-poo-mystery2"
+    ],
+    "title": [
+      "DES CROTTES",
+      "EN FORME DE CUBES ?"
+    ],
+    "accentTerms": [
+      "wombats",
+      "cubiques",
+      "carré",
+      "intestin",
+      "rigidité",
+      "contractions",
+      "faces",
+      "coins",
+      "cubes"
+    ],
+    "callouts": [
+      {
+        "start": 2.487,
+        "end": 4.625,
+        "eyebrow": "FAUSSE PISTE",
+        "title": "PAS D’ANUS CARRÉ"
+      },
+      {
+        "start": 4.625,
+        "end": 12.525,
+        "eyebrow": "ÇA SE PASSE ICI",
+        "title": "DANS L’INTESTIN"
+      },
+      {
+        "start": 12.525,
+        "end": 20.012,
+        "eyebrow": "LE MÉCANISME",
+        "title": "ÉTIRER + COMPRIMER"
+      },
+      {
+        "start": 20.012,
+        "end": 25.75,
+        "eyebrow": "RÉSULTAT",
+        "title": "DES CUBES STABLES"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 1.2685000000000002,
+        "text": "Pourquoi les wombats font-ils",
+        "accent": "wombats"
+      },
+      {
+        "id": "caption-02",
+        "start": 1.2685000000000002,
+        "end": 2.487,
+        "text": "des crottes cubiques ?",
+        "accent": "cubiques"
+      },
+      {
+        "id": "caption-03",
+        "start": 2.487,
+        "end": 3.7087142857142856,
+        "text": "Non, ils n'ont pas",
+        "accent": "pas"
+      },
+      {
+        "id": "caption-04",
+        "start": 3.7087142857142856,
+        "end": 4.625,
+        "text": "un anus carré.",
+        "accent": "carré."
+      },
+      {
+        "id": "caption-05",
+        "start": 4.625,
+        "end": 6.029,
+        "text": "Les cubes se forment bien",
+        "accent": "cubes"
+      },
+      {
+        "id": "caption-06",
+        "start": 6.029,
+        "end": 7.433,
+        "text": "avant la sortie, dans la",
+        "accent": "la"
+      },
+      {
+        "id": "caption-07",
+        "start": 7.433,
+        "end": 8.837,
+        "text": "dernière partie de leur intestin.",
+        "accent": "intestin."
+      },
+      {
+        "id": "caption-08",
+        "start": 8.837,
+        "end": 10.255461538461539,
+        "text": "Là, les parois n'ont pas",
+        "accent": "pas"
+      },
+      {
+        "id": "caption-09",
+        "start": 10.255461538461539,
+        "end": 11.390230769230769,
+        "text": "partout la même épaisseur",
+        "accent": "épaisseur"
+      },
+      {
+        "id": "caption-10",
+        "start": 11.390230769230769,
+        "end": 12.525,
+        "text": "ni la même rigidité.",
+        "accent": "rigidité."
+      },
+      {
+        "id": "caption-11",
+        "start": 12.525,
+        "end": 14.25576923076923,
+        "text": "Pendant les contractions, certaines zones",
+        "accent": "contractions,"
+      },
+      {
+        "id": "caption-12",
+        "start": 14.25576923076923,
+        "end": 15.640384615384615,
+        "text": "étirent la matière tandis",
+        "accent": "tandis"
+      },
+      {
+        "id": "caption-13",
+        "start": 15.640384615384615,
+        "end": 17.025,
+        "text": "que d'autres la compriment.",
+        "accent": "compriment."
+      },
+      {
+        "id": "caption-14",
+        "start": 17.025,
+        "end": 18.684444444444445,
+        "text": "En séchant lentement, les faces",
+        "accent": "faces"
+      },
+      {
+        "id": "caption-15",
+        "start": 18.684444444444445,
+        "end": 20.012,
+        "text": "et les coins apparaissent.",
+        "accent": "coins"
+      },
+      {
+        "id": "caption-16",
+        "start": 20.012,
+        "end": 21.257454545454546,
+        "text": "Ces cubes servent ensuite",
+        "accent": "cubes"
+      },
+      {
+        "id": "caption-17",
+        "start": 21.257454545454546,
+        "end": 22.502909090909093,
+        "text": "de marques odorantes et",
+        "accent": "et"
+      },
+      {
+        "id": "caption-18",
+        "start": 22.502909090909093,
+        "end": 23.437,
+        "text": "roulent moins facilement.",
+        "accent": "facilement."
+      },
+      {
+        "id": "caption-19",
+        "start": 23.437,
+        "end": 24.758714285714287,
+        "text": "Le wombat les fabrique",
+        "accent": "fabrique"
+      },
+      {
+        "id": "caption-20",
+        "start": 24.758714285714287,
+        "end": 25.75,
+        "text": "donc de l'intérieur.",
+        "accent": "l'intérieur."
+      },
+      {
+        "id": "caption-21",
+        "start": 25.75,
+        "end": 28.15,
+        "text": "Abonne-toi pour d'autres questions insolites.",
+        "accent": "insolites."
+      }
+    ],
+    "voiceEnd": 28.15,
+    "jingleStart": 27.95
+  },
+  {
+    "id": "chat-gout-sucre",
+    "question": "Pourquoi les chats ne sentent-ils presque pas le goût sucré ?",
+    "script": "Pourquoi les chats ne sentent-ils presque pas le goût sucré ? Ce n'est pas une question de caractère. Chez la plupart des mammifères, deux protéines s'assemblent pour former le récepteur qui détecte le sucre. Chez les chats, le gène qui fabrique l'une d'elles ne fonctionne plus correctement. Le récepteur est donc incomplet et le goût sucré devient presque invisible. Si un chat lèche une crème, il peut être attiré par le gras, l'odeur ou la texture, pas par le sucre lui-même. Il vit dans un monde presque sans saveur sucrée. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#FF7A45",
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/16103917/",
+      "https://sites.tufts.edu/petfoodology/2022/04/25/can-my-pet-have-sweets/"
+    ],
+    "title": [
+      "LES CHATS SENTENT-ILS",
+      "LE GOÛT SUCRÉ ?"
+    ],
+    "accentTerms": [
+      "chats",
+      "sucré",
+      "mammifères",
+      "protéines",
+      "récepteur",
+      "gène",
+      "incomplet",
+      "gras",
+      "odeur",
+      "texture"
+    ],
+    "callouts": [
+      {
+        "start": 2.65,
+        "end": 4.737,
+        "eyebrow": "CE N’EST PAS",
+        "title": "DU CARACTÈRE"
+      },
+      {
+        "start": 4.737,
+        "end": 13.987,
+        "eyebrow": "LA CAUSE",
+        "title": "UN GÈNE INACTIF"
+      },
+      {
+        "start": 13.987,
+        "end": 17.687,
+        "eyebrow": "CONSÉQUENCE",
+        "title": "RÉCEPTEUR INCOMPLET"
+      },
+      {
+        "start": 23.325,
+        "end": 25.95,
+        "eyebrow": "EN CLAIR",
+        "title": "PRESQUE PAS DE SUCRÉ"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 0.9954545454545456,
+        "text": "Pourquoi les chats ne",
+        "accent": "chats"
+      },
+      {
+        "id": "caption-02",
+        "start": 0.9954545454545456,
+        "end": 1.9409090909090911,
+        "text": "sentent-ils presque pas le",
+        "accent": "le"
+      },
+      {
+        "id": "caption-03",
+        "start": 1.9409090909090911,
+        "end": 2.65,
+        "text": "goût sucré ?",
+        "accent": "sucré"
+      },
+      {
+        "id": "caption-04",
+        "start": 2.65,
+        "end": 3.8425714285714285,
+        "text": "Ce n'est pas une",
+        "accent": "une"
+      },
+      {
+        "id": "caption-05",
+        "start": 3.8425714285714285,
+        "end": 4.737,
+        "text": "question de caractère.",
+        "accent": "caractère."
+      },
+      {
+        "id": "caption-06",
+        "start": 4.737,
+        "end": 6.084,
+        "text": "Chez la plupart des",
+        "accent": "des"
+      },
+      {
+        "id": "caption-07",
+        "start": 6.084,
+        "end": 7.431,
+        "text": "mammifères, deux protéines s'assemblent",
+        "accent": "mammifères,"
+      },
+      {
+        "id": "caption-08",
+        "start": 7.431,
+        "end": 8.778,
+        "text": "pour former le récepteur",
+        "accent": "récepteur"
+      },
+      {
+        "id": "caption-09",
+        "start": 8.778,
+        "end": 10.125,
+        "text": "qui détecte le sucre.",
+        "accent": "sucre."
+      },
+      {
+        "id": "caption-10",
+        "start": 10.125,
+        "end": 11.610384615384616,
+        "text": "Chez les chats, le gène",
+        "accent": "chats,"
+      },
+      {
+        "id": "caption-11",
+        "start": 11.610384615384616,
+        "end": 12.798692307692308,
+        "text": "qui fabrique l'une d'elles",
+        "accent": "d'elles"
+      },
+      {
+        "id": "caption-12",
+        "start": 12.798692307692308,
+        "end": 13.987,
+        "text": "ne fonctionne plus correctement.",
+        "accent": "correctement."
+      },
+      {
+        "id": "caption-13",
+        "start": 13.987,
+        "end": 15.220333333333334,
+        "text": "Le récepteur est donc",
+        "accent": "récepteur"
+      },
+      {
+        "id": "caption-14",
+        "start": 15.220333333333334,
+        "end": 16.453666666666667,
+        "text": "incomplet et le goût",
+        "accent": "incomplet"
+      },
+      {
+        "id": "caption-15",
+        "start": 16.453666666666667,
+        "end": 17.687,
+        "text": "sucré devient presque invisible.",
+        "accent": "sucré"
+      },
+      {
+        "id": "caption-16",
+        "start": 17.687,
+        "end": 18.968363636363637,
+        "text": "Si un chat lèche une",
+        "accent": "une"
+      },
+      {
+        "id": "caption-17",
+        "start": 18.968363636363637,
+        "end": 20.249727272727274,
+        "text": "crème, il peut être attiré",
+        "accent": "attiré"
+      },
+      {
+        "id": "caption-18",
+        "start": 20.249727272727274,
+        "end": 21.274818181818183,
+        "text": "par le gras, l'odeur",
+        "accent": "gras,"
+      },
+      {
+        "id": "caption-19",
+        "start": 21.274818181818183,
+        "end": 22.29990909090909,
+        "text": "ou la texture, pas",
+        "accent": "texture,"
+      },
+      {
+        "id": "caption-20",
+        "start": 22.29990909090909,
+        "end": 23.325,
+        "text": "par le sucre lui-même.",
+        "accent": "lui-même."
+      },
+      {
+        "id": "caption-21",
+        "start": 23.325,
+        "end": 24.78333333333333,
+        "text": "Il vit dans un monde",
+        "accent": "monde"
+      },
+      {
+        "id": "caption-22",
+        "start": 24.78333333333333,
+        "end": 25.95,
+        "text": "presque sans saveur sucrée.",
+        "accent": "sucrée."
+      },
+      {
+        "id": "caption-23",
+        "start": 25.95,
+        "end": 28.337,
+        "text": "Abonne-toi pour d'autres questions insolites.",
+        "accent": "insolites."
+      }
+    ],
+    "voiceEnd": 28.337,
+    "jingleStart": 28.137
+  },
+  {
+    "id": "oignon-larmes",
+    "question": "Pourquoi un oignon peut-il te faire pleurer sans te toucher ?",
+    "script": "Pourquoi un oignon peut-il te faire pleurer sans même te toucher ? Quand tu le coupes, la lame brise ses cellules et mélange des substances qui étaient séparées. Une série de réactions produit alors un composé soufré très volatil : le syn-propanéthial-S-oxyde. Ce gaz monte jusqu'à tes yeux et irrite leur surface. Tes glandes lacrymales déclenchent aussitôt des larmes pour le diluer et l'évacuer. Un oignon refroidi ou une bonne ventilation peuvent limiter l'effet. Ce n'est pas l'émotion : c'est la chimie de l'oignon. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#D9FF5B",
+    "sources": [
+      "https://www.acs.org/molecule-of-the-week/archive/p/syn-propanethial-s-oxide.html",
+      "https://pubs.acs.org/doi/10.1021/acschembio.7b00336"
+    ],
+    "title": [
+      "POURQUOI L’OIGNON",
+      "FAIT-IL PLEURER ?"
+    ],
+    "accentTerms": [
+      "oignon",
+      "pleurer",
+      "lame",
+      "cellules",
+      "soufré",
+      "gaz",
+      "yeux",
+      "larmes",
+      "chimie"
+    ],
+    "callouts": [
+      {
+        "start": 2.95,
+        "end": 7.062,
+        "eyebrow": "LE DÉCLENCHEUR",
+        "title": "LES CELLULES SE BRISENT"
+      },
+      {
+        "start": 7.062,
+        "end": 12.95,
+        "eyebrow": "LE COUPABLE",
+        "title": "UN GAZ SOUFRÉ"
+      },
+      {
+        "start": 12.95,
+        "end": 19.825,
+        "eyebrow": "RÉACTION",
+        "title": "TES YEUX SE PROTÈGENT"
+      },
+      {
+        "start": 23.125,
+        "end": 25.875,
+        "eyebrow": "VERDICT",
+        "title": "C’EST DE LA CHIMIE"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 1.0166666666666668,
+        "text": "Pourquoi un oignon peut-il",
+        "accent": "oignon"
+      },
+      {
+        "id": "caption-02",
+        "start": 1.0166666666666668,
+        "end": 1.9833333333333336,
+        "text": "te faire pleurer sans",
+        "accent": "pleurer"
+      },
+      {
+        "id": "caption-03",
+        "start": 1.9833333333333336,
+        "end": 2.95,
+        "text": "même te toucher ?",
+        "accent": "?"
+      },
+      {
+        "id": "caption-04",
+        "start": 2.95,
+        "end": 3.978,
+        "text": "Quand tu le coupes,",
+        "accent": "coupes,"
+      },
+      {
+        "id": "caption-05",
+        "start": 3.978,
+        "end": 5.006,
+        "text": "la lame brise ses",
+        "accent": "lame"
+      },
+      {
+        "id": "caption-06",
+        "start": 5.006,
+        "end": 6.034000000000001,
+        "text": "cellules et mélange des",
+        "accent": "cellules"
+      },
+      {
+        "id": "caption-07",
+        "start": 6.034000000000001,
+        "end": 7.062,
+        "text": "substances qui étaient séparées.",
+        "accent": "séparées."
+      },
+      {
+        "id": "caption-08",
+        "start": 7.062,
+        "end": 9.164857142857143,
+        "text": "Une série de réactions produit",
+        "accent": "produit"
+      },
+      {
+        "id": "caption-09",
+        "start": 9.164857142857143,
+        "end": 11.267714285714286,
+        "text": "alors un composé soufré très",
+        "accent": "soufré"
+      },
+      {
+        "id": "caption-10",
+        "start": 11.267714285714286,
+        "end": 12.95,
+        "text": "volatil : le syn-propanéthial-S-oxyde.",
+        "accent": "syn-propanéthial-S-oxyde."
+      },
+      {
+        "id": "caption-11",
+        "start": 12.95,
+        "end": 14.405999999999999,
+        "text": "Ce gaz monte jusqu'à tes",
+        "accent": "gaz"
+      },
+      {
+        "id": "caption-12",
+        "start": 14.405999999999999,
+        "end": 15.862,
+        "text": "yeux et irrite leur surface.",
+        "accent": "yeux"
+      },
+      {
+        "id": "caption-13",
+        "start": 15.862,
+        "end": 17.183,
+        "text": "Tes glandes lacrymales déclenchent",
+        "accent": "déclenchent"
+      },
+      {
+        "id": "caption-14",
+        "start": 17.183,
+        "end": 18.503999999999998,
+        "text": "aussitôt des larmes pour",
+        "accent": "larmes"
+      },
+      {
+        "id": "caption-15",
+        "start": 18.503999999999998,
+        "end": 19.825,
+        "text": "le diluer et l'évacuer.",
+        "accent": "l'évacuer."
+      },
+      {
+        "id": "caption-16",
+        "start": 19.825,
+        "end": 21.475,
+        "text": "Un oignon refroidi ou une",
+        "accent": "oignon"
+      },
+      {
+        "id": "caption-17",
+        "start": 21.475,
+        "end": 23.125,
+        "text": "bonne ventilation peuvent limiter l'effet.",
+        "accent": "l'effet."
+      },
+      {
+        "id": "caption-18",
+        "start": 23.125,
+        "end": 24.5,
+        "text": "Ce n'est pas l'émotion :",
+        "accent": ":"
+      },
+      {
+        "id": "caption-19",
+        "start": 24.5,
+        "end": 25.875,
+        "text": "c'est la chimie de l'oignon.",
+        "accent": "chimie"
+      },
+      {
+        "id": "caption-20",
+        "start": 25.875,
+        "end": 28.312,
+        "text": "Abonne-toi pour d'autres questions insolites.",
+        "accent": "insolites."
+      }
+    ],
+    "voiceEnd": 28.312,
+    "jingleStart": 28.112000000000002
+  },
+  {
+    "id": "canard-pattes-froides",
+    "question": "Pourquoi les pattes des canards ne gèlent-elles pas ?",
+    "script": "Pourquoi les pattes des canards ne gèlent-elles pas dans l'eau glacée ? Elles ne restent pas chaudes comme les nôtres. Dans leurs jambes, les artères qui descendent longent les veines qui remontent. Le sang chaud cède une partie de sa chaleur au sang froid qui revient du pied. Le corps conserve ainsi sa chaleur, tandis que les pattes restent assez froides pour perdre très peu d'énergie, mais suffisamment alimentées pour ne pas geler. Ce système s'appelle l'échange thermique à contre-courant : une véritable récupération de chaleur intégrée. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#66E3C4",
+    "sources": [
+      "https://www.si.edu/stories/keeping-warm-winter-birds",
+      "https://beyondpenguins.ehe.osu.edu/issue/arctic-and-anarctic-birds/how-do-birds-stay-warm"
+    ],
+    "title": [
+      "LEURS PATTES",
+      "NE GÈLENT PAS ?"
+    ],
+    "accentTerms": [
+      "canards",
+      "gèlent",
+      "glacée",
+      "artères",
+      "veines",
+      "sang",
+      "chaleur",
+      "froides",
+      "contre-courant"
+    ],
+    "callouts": [
+      {
+        "start": 2.812,
+        "end": 4.975,
+        "eyebrow": "LA SURPRISE",
+        "title": "ELLES RESTENT FROIDES"
+      },
+      {
+        "start": 4.975,
+        "end": 12.175,
+        "eyebrow": "SOUS LA PEAU",
+        "title": "ARTÈRES ↕ VEINES"
+      },
+      {
+        "start": 12.175,
+        "end": 19.1,
+        "eyebrow": "L’ASTUCE",
+        "title": "RÉCUPÉRER LA CHALEUR"
+      },
+      {
+        "start": 19.1,
+        "end": 24.437,
+        "eyebrow": "LE SYSTÈME",
+        "title": "CONTRE-COURANT"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 0.9706666666666668,
+        "text": "Pourquoi les pattes des",
+        "accent": "des"
+      },
+      {
+        "id": "caption-02",
+        "start": 0.9706666666666668,
+        "end": 1.8913333333333335,
+        "text": "canards ne gèlent-elles pas",
+        "accent": "canards"
+      },
+      {
+        "id": "caption-03",
+        "start": 1.8913333333333335,
+        "end": 2.8120000000000003,
+        "text": "dans l'eau glacée ?",
+        "accent": "glacée"
+      },
+      {
+        "id": "caption-04",
+        "start": 2.8120000000000003,
+        "end": 3.8935,
+        "text": "Elles ne restent pas",
+        "accent": "pas"
+      },
+      {
+        "id": "caption-05",
+        "start": 3.8935,
+        "end": 4.975,
+        "text": "chaudes comme les nôtres.",
+        "accent": "nôtres."
+      },
+      {
+        "id": "caption-06",
+        "start": 4.975,
+        "end": 6.187333333333333,
+        "text": "Dans leurs jambes, les",
+        "accent": "les"
+      },
+      {
+        "id": "caption-07",
+        "start": 6.187333333333333,
+        "end": 7.399666666666667,
+        "text": "artères qui descendent longent",
+        "accent": "artères"
+      },
+      {
+        "id": "caption-08",
+        "start": 7.399666666666667,
+        "end": 8.612,
+        "text": "les veines qui remontent.",
+        "accent": "veines"
+      },
+      {
+        "id": "caption-09",
+        "start": 8.612,
+        "end": 9.50275,
+        "text": "Le sang chaud cède",
+        "accent": "sang"
+      },
+      {
+        "id": "caption-10",
+        "start": 9.50275,
+        "end": 10.3935,
+        "text": "une partie de sa",
+        "accent": "sa"
+      },
+      {
+        "id": "caption-11",
+        "start": 10.3935,
+        "end": 11.28425,
+        "text": "chaleur au sang froid",
+        "accent": "chaleur"
+      },
+      {
+        "id": "caption-12",
+        "start": 11.28425,
+        "end": 12.175,
+        "text": "qui revient du pied.",
+        "accent": "pied."
+      },
+      {
+        "id": "caption-13",
+        "start": 12.175,
+        "end": 13.56,
+        "text": "Le corps conserve ainsi sa",
+        "accent": "sa"
+      },
+      {
+        "id": "caption-14",
+        "start": 13.56,
+        "end": 14.945,
+        "text": "chaleur, tandis que les pattes",
+        "accent": "chaleur,"
+      },
+      {
+        "id": "caption-15",
+        "start": 14.945,
+        "end": 16.330000000000002,
+        "text": "restent assez froides pour perdre",
+        "accent": "froides"
+      },
+      {
+        "id": "caption-16",
+        "start": 16.330000000000002,
+        "end": 17.715000000000003,
+        "text": "très peu d'énergie, mais suffisamment",
+        "accent": "suffisamment"
+      },
+      {
+        "id": "caption-17",
+        "start": 17.715000000000003,
+        "end": 19.1,
+        "text": "alimentées pour ne pas geler.",
+        "accent": "geler."
+      },
+      {
+        "id": "caption-18",
+        "start": 19.1,
+        "end": 21.00607142857143,
+        "text": "Ce système s'appelle l'échange thermique",
+        "accent": "thermique"
+      },
+      {
+        "id": "caption-19",
+        "start": 21.00607142857143,
+        "end": 22.912142857142857,
+        "text": "à contre-courant : une véritable",
+        "accent": "contre-courant"
+      },
+      {
+        "id": "caption-20",
+        "start": 22.912142857142857,
+        "end": 24.437,
+        "text": "récupération de chaleur intégrée.",
+        "accent": "chaleur"
+      },
+      {
+        "id": "caption-21",
+        "start": 24.437,
+        "end": 26.85,
+        "text": "Abonne-toi pour d'autres questions insolites.",
+        "accent": "insolites."
+      }
+    ],
+    "voiceEnd": 26.85,
+    "jingleStart": 26.650000000000002
+  }
+]

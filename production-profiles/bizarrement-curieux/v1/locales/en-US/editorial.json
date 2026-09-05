@@ -1,0 +1,227 @@
+[
+  {
+    "id": "octopus-blue-blood",
+    "title": [
+      "OCTOPUS BLOOD",
+      "IS ACTUALLY BLUE?"
+    ],
+    "accentTerms": [
+      "octopus",
+      "blue",
+      "hemoglobin",
+      "red",
+      "hemocyanin",
+      "copper",
+      "oxygen",
+      "hearts",
+      "gills"
+    ],
+    "callouts": [
+      {
+        "start": 2.162,
+        "end": 5.787,
+        "eyebrow": "OUR BLOOD",
+        "title": "IRON → RED"
+      },
+      {
+        "start": 5.787,
+        "end": 12.537,
+        "eyebrow": "THEIR PROTEIN",
+        "title": "COPPER → BLUE"
+      },
+      {
+        "start": 16.537,
+        "end": 22.15,
+        "eyebrow": "THE SURPRISE",
+        "title": "THREE HEARTS"
+      },
+      {
+        "start": 22.15,
+        "end": 26.7,
+        "eyebrow": "THE VERDICT",
+        "title": "REAL BLUE BLOOD"
+      }
+    ]
+  },
+  {
+    "id": "wombat-cube-poop",
+    "title": [
+      "WOMBATS MAKE",
+      "CUBE-SHAPED POOP?"
+    ],
+    "accentTerms": [
+      "wombats",
+      "cube-shaped",
+      "square",
+      "intestine",
+      "thickness",
+      "flexibility",
+      "contractions",
+      "corners",
+      "cubes"
+    ],
+    "callouts": [
+      {
+        "start": 2.887,
+        "end": 5.687,
+        "eyebrow": "NOT THE REASON",
+        "title": "NO SQUARE BACKSIDE"
+      },
+      {
+        "start": 5.687,
+        "end": 15.062,
+        "eyebrow": "WHERE IT HAPPENS",
+        "title": "LOWER INTESTINE"
+      },
+      {
+        "start": 15.062,
+        "end": 19.962,
+        "eyebrow": "THE SHAPE",
+        "title": "FACES + CORNERS"
+      },
+      {
+        "start": 19.962,
+        "end": 24.637,
+        "eyebrow": "WHY CUBES?",
+        "title": "THEY DON’T ROLL"
+      }
+    ]
+  },
+  {
+    "id": "cats-sweet-taste",
+    "title": [
+      "CATS CAN’T TASTE",
+      "SWEETNESS?"
+    ],
+    "accentTerms": [
+      "cats",
+      "sweetness",
+      "proteins",
+      "sugar",
+      "gene",
+      "receptor",
+      "incomplete",
+      "ice",
+      "cream",
+      "fat",
+      "smell",
+      "texture"
+    ],
+    "callouts": [
+      {
+        "start": 2.637,
+        "end": 6.037,
+        "eyebrow": "MOST MAMMALS",
+        "title": "TWO PROTEINS"
+      },
+      {
+        "start": 6.037,
+        "end": 15.325,
+        "eyebrow": "THE CAUSE",
+        "title": "ONE BROKEN GENE"
+      },
+      {
+        "start": 15.325,
+        "end": 22.337,
+        "eyebrow": "ICE CREAM?",
+        "title": "FAT · SMELL · TEXTURE"
+      },
+      {
+        "start": 22.337,
+        "end": 26.3,
+        "eyebrow": "THE RESULT",
+        "title": "ALMOST NO SWEETNESS"
+      }
+    ]
+  },
+  {
+    "id": "onions-make-you-cry",
+    "title": [
+      "WHY ONIONS",
+      "MAKE YOU CRY"
+    ],
+    "accentTerms": [
+      "onion",
+      "cry",
+      "cutting",
+      "cells",
+      "chemicals",
+      "sulfur",
+      "eyes",
+      "tear",
+      "tears",
+      "chemistry"
+    ],
+    "callouts": [
+      {
+        "start": 3.137,
+        "end": 7.2,
+        "eyebrow": "THE TRIGGER",
+        "title": "CELLS RUPTURE"
+      },
+      {
+        "start": 7.2,
+        "end": 11.437,
+        "eyebrow": "THE CULPRIT",
+        "title": "SULFUR COMPOUND"
+      },
+      {
+        "start": 11.437,
+        "end": 18.112,
+        "eyebrow": "YOUR DEFENSE",
+        "title": "TEARS WASH IT AWAY"
+      },
+      {
+        "start": 21.675,
+        "end": 26.3,
+        "eyebrow": "THE VERDICT",
+        "title": "ONION CHEMISTRY"
+      }
+    ]
+  },
+  {
+    "id": "ducks-cold-feet",
+    "title": [
+      "DUCKS’ FEET",
+      "DON’T FREEZE?"
+    ],
+    "accentTerms": [
+      "ducks",
+      "feet",
+      "freeze",
+      "icy",
+      "warm",
+      "arteries",
+      "veins",
+      "heat",
+      "cool",
+      "countercurrent"
+    ],
+    "callouts": [
+      {
+        "start": 3.5,
+        "end": 5.75,
+        "eyebrow": "THE SURPRISE",
+        "title": "FEET STAY COOL"
+      },
+      {
+        "start": 5.75,
+        "end": 13.862,
+        "eyebrow": "INSIDE THE LEG",
+        "title": "ARTERIES ↕ VEINS"
+      },
+      {
+        "start": 13.862,
+        "end": 20.7,
+        "eyebrow": "THE TRICK",
+        "title": "RECYCLE THE HEAT"
+      },
+      {
+        "start": 20.7,
+        "end": 24.475,
+        "eyebrow": "THE SYSTEM",
+        "title": "COUNTERCURRENT"
+      }
+    ]
+  }
+]

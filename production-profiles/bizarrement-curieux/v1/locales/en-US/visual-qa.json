@@ -1,0 +1,8 @@
+{
+  "octopus-blue-blood": {"mustShow": "identifiable octopus", "mustAvoid": ["squid presented as an octopus", "unrelated animal"]},
+  "wombat-cube-poop": {"mustShow": "identifiable wombat in every shot", "mustAvoid": ["monkey", "koala", "substitute animal"]},
+  "cats-sweet-taste": {"mustShow": "identifiable domestic cat", "mustAvoid": ["dog", "wild cat presented as a domestic cat"]},
+  "onions-make-you-cry": {"mustShow": "onion or onion cutting", "mustAvoid": ["another vegetable presented as an onion"]},
+  "ducks-cold-feet": {"mustShow": "duck and, when required by narration, water or cold conditions", "mustAvoid": ["another bird presented as a duck"]}
+}
+

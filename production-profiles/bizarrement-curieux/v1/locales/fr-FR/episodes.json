@@ -1,0 +1,52 @@
+[
+  {
+    "id": "pieuvre-sang-bleu",
+    "question": "Pourquoi le sang de la pieuvre est-il bleu ?",
+    "script": "Pourquoi le sang de la pieuvre est-il bleu ? Ce n'est pas une illusion sous-marine. Pour transporter l'oxygène, nous utilisons l'hémoglobine, une protéine riche en fer qui rend notre sang rouge. La pieuvre utilise surtout l'hémocyanine. Cette protéine contient du cuivre et devient bleue lorsqu'elle fixe l'oxygène. Elle fonctionne particulièrement bien dans les eaux froides et pauvres en oxygène. Et pour faire circuler ce sang, la pieuvre possède même trois cœurs. Sous ses tentacules se cache donc réellement un sang bleu. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#48C7FF",
+    "sources": [
+      "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "https://www.smithsonianmag.com/science-nature/ten-wild-facts-about-octopuses-they-have-three-hearts-big-brains-and-blue-blood-7625828/"
+    ]
+  },
+  {
+    "id": "wombat-cubes",
+    "question": "Pourquoi les wombats font-ils des crottes cubiques ?",
+    "script": "Pourquoi les wombats font-ils des crottes cubiques ? Non, ils n'ont pas un anus carré. Les cubes se forment bien avant la sortie, dans la dernière partie de leur intestin. Là, les parois n'ont pas partout la même épaisseur ni la même rigidité. Pendant les contractions, certaines zones étirent la matière tandis que d'autres la compriment. En séchant lentement, les faces et les coins apparaissent. Ces cubes servent ensuite de marques odorantes et roulent moins facilement. Le wombat les fabrique donc de l'intérieur. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#F5B942",
+    "sources": [
+      "https://hu.gatech.edu/wp-content/uploads/2021/01/Hu21-wombat.pdf",
+      "https://www.utas.edu.au/about/news-and-stories/articles/2021/scientists-get-to-the-bottom-of-wombat-cubed-poo-mystery2"
+    ]
+  },
+  {
+    "id": "chat-gout-sucre",
+    "question": "Pourquoi les chats ne sentent-ils presque pas le goût sucré ?",
+    "script": "Pourquoi les chats ne sentent-ils presque pas le goût sucré ? Ce n'est pas une question de caractère. Chez la plupart des mammifères, deux protéines s'assemblent pour former le récepteur qui détecte le sucre. Chez les chats, le gène qui fabrique l'une d'elles ne fonctionne plus correctement. Le récepteur est donc incomplet et le goût sucré devient presque invisible. Si un chat lèche une crème, il peut être attiré par le gras, l'odeur ou la texture, pas par le sucre lui-même. Il vit dans un monde presque sans saveur sucrée. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#FF7A45",
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/16103917/",
+      "https://sites.tufts.edu/petfoodology/2022/04/25/can-my-pet-have-sweets/"
+    ]
+  },
+  {
+    "id": "oignon-larmes",
+    "question": "Pourquoi un oignon peut-il te faire pleurer sans te toucher ?",
+    "script": "Pourquoi un oignon peut-il te faire pleurer sans même te toucher ? Quand tu le coupes, la lame brise ses cellules et mélange des substances qui étaient séparées. Une série de réactions produit alors un composé soufré très volatil : le syn-propanéthial-S-oxyde. Ce gaz monte jusqu'à tes yeux et irrite leur surface. Tes glandes lacrymales déclenchent aussitôt des larmes pour le diluer et l'évacuer. Un oignon refroidi ou une bonne ventilation peuvent limiter l'effet. Ce n'est pas l'émotion : c'est la chimie de l'oignon. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#D9FF5B",
+    "sources": [
+      "https://www.acs.org/molecule-of-the-week/archive/p/syn-propanethial-s-oxide.html",
+      "https://pubs.acs.org/doi/10.1021/acschembio.7b00336"
+    ]
+  },
+  {
+    "id": "canard-pattes-froides",
+    "question": "Pourquoi les pattes des canards ne gèlent-elles pas ?",
+    "script": "Pourquoi les pattes des canards ne gèlent-elles pas dans l'eau glacée ? Elles ne restent pas chaudes comme les nôtres. Dans leurs jambes, les artères qui descendent longent les veines qui remontent. Le sang chaud cède une partie de sa chaleur au sang froid qui revient du pied. Le corps conserve ainsi sa chaleur, tandis que les pattes restent assez froides pour perdre très peu d'énergie, mais suffisamment alimentées pour ne pas geler. Ce système s'appelle l'échange thermique à contre-courant : une véritable récupération de chaleur intégrée. Abonne-toi pour d'autres questions insolites.",
+    "accent": "#66E3C4",
+    "sources": [
+      "https://www.si.edu/stories/keeping-warm-winter-birds",
+      "https://beyondpenguins.ehe.osu.edu/issue/arctic-and-anarctic-birds/how-do-birds-stay-warm"
+    ]
+  }
+]

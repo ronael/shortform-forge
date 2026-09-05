@@ -105,6 +105,13 @@ framing and alignment remained correct throughout the video. This is a
 profile-level decision, not permanent coupling: keep the dressing contract
 replaceable and retain Revideo as the local fallback.
 
+Human review also accepted five French `curious-question` videos and requested
+their English localization for publication. The frozen provider chain, bilingual
+design direction, timing rules, and QA bar are recorded in
+`docs/CURIOUS_QUESTIONS_PROFILE.md`. Treat that document as the default for this
+format. Do not restart provider comparisons unless a concrete defect or measured
+quality/cost improvement justifies it.
+
 ## Dressing Provider Shortlist
 
 ### 1. Revideo - capability proven, first template rejected
@@ -168,8 +175,11 @@ Documentation: https://creatomate.com/docs/api/quick-start/create-a-video-by-tem
 - strong candidate for quickly testing whether professional templates beat local
   engines enough to justify a paid provider.
 
-POC only when trial credits or an API key are available. Keep its template ID and
-render payload behind a provider boundary.
+The 2026-08-30 unauthenticated render probe reached the official endpoint and
+returned the expected HTTP 401 without creating a job or consuming credits. A
+real POC still requires a project API key or connected MCP account. Keep its
+template ID and render payload behind a provider boundary. Current pricing makes
+this a quality benchmark rather than a default local dependency.
 
 ### 3. Shotstack - external JSON/template alternative
 
@@ -179,6 +189,10 @@ Documentation: https://shotstack.io/docs/guide/architecting-an-application/templ
   and render API;
 - good fit for deterministic overlays and brand templates;
 - compare with Creatomate rather than integrating both.
+
+The 2026-08-30 stage-endpoint probe returned the expected HTTP 401 without a
+stage key. No visual claim is made. The sandbox is only useful after account
+creation and still requires an active credit balance.
 
 ### 4. Remotion and OverlayMotion - direct POC completed
 
@@ -201,6 +215,147 @@ the preferred `DressingProvider` candidate for structured ranking videos. Rechec
 the current Remotion license before making it a core dependency; OverlayMotion
 may reduce template work but does not remove that consideration.
 
+OverlayMotion 0.8.0 was then tested directly on 2026-08-30. Its update check,
+143 tests, and TypeScript check passed. A real 1080x1920, 30 fps render combined
+the free `hero-title` and `logo-sting` templates with bundled sound effects and a
+CC0 jingle. The output and exact spec are retained under
+`output/benchmarks/provider-sweep-2026-08-30/overlaymotion/`. This validates it
+as a useful Remotion template kit, not as a replacement editor. Its first
+production comparison should add only the question open, restrained callouts,
+and branded outro over a MoneyPrinterTurbo real-footage edit.
+
+That production-scale comparison was completed on 2026-08-31 against the
+accepted 30-second flamingo hybrid. OverlayMotion replaced the opening with a
+question card and the ending with a branded `logo-sting`, while preserving the
+Vivienne voice, main edit, captions, music, and existing jingle. The result is
+30.06 seconds and is retained at
+`output/benchmarks/overlaymotion-full-video-poc/`. Initial human feedback is
+strongly positive. The test also confirms that the logo, account name, tagline,
+accent, and theme are render properties: a transparent PNG or SVG can replace
+the temporary generated `CM` monogram without changing the engine.
+
+A V2 follow-up replaced the white opening and ending plates with central crops
+from the authorized flamingo footage, protected by a 55 percent black scrim and
+a restrained 3.5 percent move. This keeps the topic visually identifiable while
+the registered `hero-title` and `logo-sting` remain dominant. The 30.06-second
+render passed format, checkpoint, and audio QA at -15.0 LUFS / -1.3 dBTP and is
+retained at `output/benchmarks/overlaymotion-full-video-v2-poc/`. Prefer this
+illustrated treatment over a flat white plate for future OverlayMotion opens and
+outros. Human phone review is still the final acceptance gate.
+
+OverlayMotion can also own callouts, ranking titles, lower thirds, and caption
+templates. The retained flamingo source already had internal titles burned in,
+so this comparison intentionally changed only the opening and ending. Preserve
+a clean pre-dressing master in future productions before moving all editorial
+text into OverlayMotion. Treat it as the preferred reusable template library to
+integrate behind the existing `DressingProvider` boundary, not as the primary
+editor.
+
+OverlayMotion is source-available rather than OSI open source. Rendered outputs
+may be commercialized, but source redistribution and hosted-template use are
+restricted. Preserve its notices and recheck both its license and Remotion's
+license before adoption.
+
+## OpenMontage and HyperFrames POC
+
+OpenMontage was installed from a temporary checkout on 2026-08-30. Its 1,210
+contract tests passed with seven skips, HyperFrames 0.8.20 passed its runtime
+doctor, and the pre-authored `code-to-screen` Remotion demo rendered successfully
+at 1920x1080 for 25.05 seconds. This proves the renderer and package graph, not
+automatic short-form production. Image generation, video generation, and most
+TTS providers remained unconfigured in the provider preflight.
+
+The OpenMontage HyperFrames adapter also completed a six-second 1080x1920 render
+with lint, browser validation, and WCAG contrast checks passing. The resulting
+vertical typography is much too small for a phone. The adapter's input schema
+also documents `tiktok_vertical`, while the actual media profile registry accepts
+`tiktok`. HyperFrames is therefore a valid local renderer but not a production
+provider through this adapter yet. Retained evidence is under
+`output/benchmarks/provider-sweep-2026-08-30/openmontage/`.
+
+A second direct HyperFrames POC on 2026-08-31 used ten seconds of the real
+MoneyPrinterTurbo actors ranking instead of an automatically generated layout.
+It produced a large animated hook, progress rail, rank, name, and amount over the
+existing footage. Lint passed with no errors or warnings, and browser runtime,
+layout, and contrast checks passed with no findings at the sampled frames. The
+result at `output/benchmarks/hyperframes-concrete-poc/` proves HyperFrames can
+produce phone-ready bespoke dressing when the layout is deliberately authored.
+It remains more engineering-heavy than OverlayMotion, so keep it as an
+experimental alternative for custom motion systems rather than the default.
+
+Piper `fr_FR-siwis-medium` produced a local French WAV successfully, but human
+review found it noticeably more robotic than the accepted Vivienne voice. Reject
+it for publication output. It may remain a zero-cost offline draft or emergency
+fallback only.
+
+OpenMontage is AGPL-3.0 and agent-first. Its full production pipelines also add
+their own proposal and approval governance. Use it as an experimental complete
+system or a source of provider ideas, not as a core dependency hidden behind a
+thin `EditingProvider` adapter. Human review of the pre-authored demo also found
+multiple color, text-background, and sizing problems. Do not integrate it into
+the default production path from the current evidence.
+
+## WanGP / Wan2GP Static POC
+
+Repository: https://github.com/deepbeepmeep/Wan2GP
+
+WanGP 12.647 was audited at revision
+`071ce70aab1169c61cc14bbefd71bdda3a04a9e9` on 2026-08-31. It is not an editor
+or dressing provider. Its relevant role is an external `VideoProvider` for short
+shots that cannot be sourced economically from authorized real footage.
+
+The integration surface is unusually strong for this category: an in-process
+Python API with structured jobs and progress, JSON/ZIP headless queue processing,
+and an MCP server. The static POC confirmed that the API exposes single-task and
+batch submission plus model metadata/schema discovery. Built-in resolution
+choices include 480x832, 544x960, 720x1280, and 1088x1920, so portrait output
+does not require a horizontal-first workaround.
+
+The Apple M1 Max was detected correctly as the supported MPS/SDPA profile, then
+a real temporary environment generated a 49-frame, 480x832, 16 fps clip with
+Wan2.1 T2V 1.3B. Twenty steps took 25 minutes 12 seconds after weights were
+present. The temporary checkout, environment, and auto-downloaded checkpoints
+reached 20 GB; macOS reported a 7.52 GB maximum RSS and 18.98 GB peak memory
+footprint. The first headless run also exposed a real contract defect:
+`force_fps` is numeric in the API example, but the CLI generation path calls
+`len()` and requires a string.
+
+The retained clip is technically valid and stable, but it fails editorial QA.
+Its centered object becomes a bright hollow shape without a readable shell
+rupture or coherent popcorn expansion. It would not improve the accepted stock
+edit, so Wan2.1 T2V 1.3B on this Mac is rejected for publication use. Evidence
+and exact settings are under `output/benchmarks/wangp-mps-poc/`; the 20 GB
+runtime and model cache were deleted after measurement. Static checks still
+passed for 474 JSON files and bundled shell scripts, while compilation found one
+unrelated indentation error in the optional LongCat block-sparse module.
+
+Run the first GPU benchmark on the 16 GB RTX 4080 with Wan 2.2 TI2V 5B FastWan,
+profile 4, SDPA, 121 frames, three steps, and 720x1280 output. Compare one
+text-to-video clip and one image-to-video clip at the same seed, then optionally
+repeat with SageAttention. The retained benchmark plan is at
+`output/benchmarks/wangp-static-poc/rtx4080-poc-manifest.json`. Generated footage
+must remain a replaceable input to MoneyPrinterTurbo; Remotion or OverlayMotion
+continues to own captions and editorial dressing.
+
+WanGP uses a custom community license rather than an OSI license. Private and
+internal production use plus publication of outputs are allowed. Paid hosted,
+API, embedded, white-label, or SaaS access to WanGP is restricted, and direct
+sales of generated outputs require reasonable WanGP credit. Model, checkpoint,
+LoRA, and dataset licenses remain separate and must be recorded per generation.
+
+## HeliosGen POC
+
+HeliosGen installed, built, and served locally in guest mode on 2026-08-30. The
+gallery UI responded successfully. A video request stopped truthfully with a
+missing Kie.ai key, and the legacy image route stopped with a missing Replicate
+token. No model-quality claim is possible without those paid credentials.
+
+Its optional `codex-imagegen-cli` path passed a dry-run but only 22 of 23 upstream
+tests passed. More importantly, the alpha wrapper calls a private ChatGPT Codex
+backend endpoint directly. Do not adopt that wrapper as a production provider.
+HeliosGen remains useful as an orchestration/UI reference and can be compared
+later when a Kie.ai or Replicate budget is explicitly approved.
+
 ## Topic-Only MoneyPrinterTurbo POC
 
 The first truthful topic-only run used only a French subject and no prepared
@@ -209,6 +364,12 @@ script generation because no Moonshot API key was configured. The retained
 evidence is under `output/benchmarks/moneyprinterturbo-topic-only-poc/`. This
 validates the CLI entry path only; automatic script and asset quality remain
 untested until one supported LLM and one stock provider are configured.
+
+Current MoneyPrinterTurbo upstream now supports keyless Ollama and LiteLLM for
+script generation. This machine has no running Ollama service or downloaded
+model, and stock search still needs a provider key unless local media is supplied.
+The future RTX 4080 host is a sensible place to test Ollama, but it does not
+remove the separate stock-footage requirement.
 
 ## Social-Question Popcorn Comparison
 
@@ -253,10 +414,12 @@ rate result still lacks energy.
 Repository: https://github.com/mifi/editly
 
 Editly is MIT-licensed and supports declarative text, Canvas/Fabric.js overlays,
-transitions, picture-in-picture, audio ducking, and 9:16 output. Its repository
-was less active than Revideo when reviewed, and its default letterboxing overlaps
-with a weakness already observed in MoneyPrinterTurbo. Use it only if Revideo is
-too costly or unreliable to operate locally.
+transitions, picture-in-picture, audio ducking, and 9:16 output. Version
+0.15.0-rc.1 could not install on the current Apple Silicon toolchain: its native
+`gl` dependency had no compatible prebuilt binary and failed to compile against
+modern Node/V8 headers. A compatibility attempt was intentionally stopped after
+the same native boundary failed. Reject it for this project; Remotion and
+OverlayMotion already cover the useful capability with a working toolchain.
 
 Motion Canvas is not a separate first POC because Revideo already adapts its model
 for headless, parameterized video rendering. It remains relevant for bespoke

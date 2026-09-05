@@ -1,0 +1,16 @@
+{
+  "profile": "bizarrement-curieux-v1",
+  "releaseTag": "bizarrement-curieux-v1-reference",
+  "releaseUrl": null,
+  "archiveName": "bizarrement-curieux-v1-reference-media.tar.gz",
+  "archiveBytes": 495899673,
+  "archiveSha256": "b1ab6337d82a2a1bd0828b986759456b12d52573bc3073c4189d37bef78b1125",
+  "status": "local-package-only-awaiting-owner-review",
+  "contents": [
+    "five accepted French masters, voices, subtitles, contact sheets and QA report",
+    "five accepted English masters, voices, subtitles, contact sheets and QA report",
+    "the accepted music bed and outro jingle",
+    "the input episode and asset manifests retained with each reference series"
+  ],
+  "publicationPolicy": "Do not create or upload this release until the owner has reviewed the local diff and archive."
+}

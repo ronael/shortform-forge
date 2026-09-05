@@ -1,0 +1,67 @@
+{
+  "id": "bizarrement-curieux-v1",
+  "status": "frozen-human-approved",
+  "acceptedAt": "2026-08-30",
+  "providers": {
+    "voice": {
+      "name": "edge-tts",
+      "version": null,
+      "versionNote": "The original POC did not retain the package version; bit-exact reference voices are archived and must not be regenerated silently.",
+      "rate": "+0%",
+      "voices": {
+        "fr-FR": "fr-FR-VivienneMultilingualNeural",
+        "en-US": "en-US-AvaMultilingualNeural"
+      }
+    },
+    "baseEdit": {
+      "name": "MoneyPrinterTurbo",
+      "version": "1.3.5"
+    },
+    "dressing": {
+      "name": "Remotion",
+      "version": "4.0.518"
+    }
+  },
+  "referenceToolchain": {
+    "node": "24.10.0",
+    "pnpm": "10.6.5",
+    "ffmpeg": "8.0"
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationSeconds": 30,
+    "durationFrames": 900,
+    "codec": "h264",
+    "pixelFormat": "yuv420p"
+  },
+  "audio": {
+    "sampleRateHz": 48000,
+    "integratedLoudnessLufs": -15,
+    "acceptedLoudnessRangeLufs": [-16, -14],
+    "maximumTruePeakDbtp": -1
+  },
+  "safeZones": {
+    "editorial": {"left": 78, "top": 145, "width": 820, "bottom": 520},
+    "captions": {"left": 105, "top": 1470, "width": 790, "height": 168},
+    "socialRail": {"left": 900, "right": 1080},
+    "bottomReserved": {"top": 1660, "bottom": 1920}
+  },
+  "locales": {
+    "fr-FR": {
+      "brand": "Bizarrement Curieux",
+      "formatLabel": "QUESTION INSOLITE",
+      "outroLabel": "UNE QUESTION · 30 SECONDES",
+      "outroAction": "ABONNE-TOI",
+      "outroSignature": "QUESTIONS INSOLITES"
+    },
+    "en-US": {
+      "brand": "Oddly Curious",
+      "formatLabel": "CURIOUS QUESTION",
+      "outroLabel": "ONE QUESTION · 30 SECONDS",
+      "outroAction": "FOLLOW",
+      "outroSignature": "CURIOUS QUESTIONS"
+    }
+  }
+}

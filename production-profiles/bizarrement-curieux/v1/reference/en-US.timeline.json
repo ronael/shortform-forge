@@ -1,0 +1,856 @@
+[
+  {
+    "id": "octopus-blue-blood",
+    "question": "Why is octopus blood blue?",
+    "script": "Why is octopus blood blue? Our iron-rich hemoglobin makes blood appear red. Octopuses use hemocyanin instead. It contains copper and turns blue when it binds oxygen. This molecule works well in cold, oxygen-poor water. Moving that blood takes three hearts: two serve the gills, while one serves the body. So beneath those arms, an octopus really is carrying blue blood. Follow for more curious questions.",
+    "accent": "#55E6C1",
+    "sources": [
+      "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "https://www.smithsonianmag.com/science-nature/ten-wild-facts-about-octopuses-they-have-three-hearts-big-brains-and-blue-blood-7625828/"
+    ],
+    "title": [
+      "OCTOPUS BLOOD",
+      "IS ACTUALLY BLUE?"
+    ],
+    "accentTerms": [
+      "octopus",
+      "blue",
+      "hemoglobin",
+      "red",
+      "hemocyanin",
+      "copper",
+      "oxygen",
+      "hearts",
+      "gills"
+    ],
+    "callouts": [
+      {
+        "start": 2.162,
+        "end": 5.787,
+        "eyebrow": "OUR BLOOD",
+        "title": "IRON → RED"
+      },
+      {
+        "start": 5.787,
+        "end": 12.537,
+        "eyebrow": "THEIR PROTEIN",
+        "title": "COPPER → BLUE"
+      },
+      {
+        "start": 16.537,
+        "end": 22.15,
+        "eyebrow": "THE SURPRISE",
+        "title": "THREE HEARTS"
+      },
+      {
+        "start": 22.15,
+        "end": 26.7,
+        "eyebrow": "THE VERDICT",
+        "title": "REAL BLUE BLOOD"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 2.162,
+        "text": "Why is octopus blood blue?",
+        "accent": "octopus"
+      },
+      {
+        "id": "caption-02",
+        "start": 2.162,
+        "end": 4.233428571428571,
+        "text": "Our iron-rich hemoglobin makes",
+        "accent": "hemoglobin"
+      },
+      {
+        "id": "caption-03",
+        "start": 4.233428571428571,
+        "end": 5.787,
+        "text": "blood appear red.",
+        "accent": "red."
+      },
+      {
+        "id": "caption-04",
+        "start": 5.787,
+        "end": 8.475,
+        "text": "Octopuses use hemocyanin instead.",
+        "accent": "hemocyanin"
+      },
+      {
+        "id": "caption-05",
+        "start": 8.475,
+        "end": 10.506,
+        "text": "It contains copper and turns",
+        "accent": "copper"
+      },
+      {
+        "id": "caption-06",
+        "start": 10.506,
+        "end": 12.537,
+        "text": "blue when it binds oxygen.",
+        "accent": "blue"
+      },
+      {
+        "id": "caption-07",
+        "start": 12.537,
+        "end": 14.536999999999999,
+        "text": "This molecule works well",
+        "accent": "molecule"
+      },
+      {
+        "id": "caption-08",
+        "start": 14.536999999999999,
+        "end": 16.537,
+        "text": "in cold, oxygen-poor water.",
+        "accent": "oxygen-poor"
+      },
+      {
+        "id": "caption-09",
+        "start": 16.537,
+        "end": 18.407999999999998,
+        "text": "Moving that blood takes three",
+        "accent": "Moving"
+      },
+      {
+        "id": "caption-10",
+        "start": 18.407999999999998,
+        "end": 20.279,
+        "text": "hearts: two serve the gills,",
+        "accent": "hearts:"
+      },
+      {
+        "id": "caption-11",
+        "start": 20.279,
+        "end": 22.15,
+        "text": "while one serves the body.",
+        "accent": "serves"
+      },
+      {
+        "id": "caption-12",
+        "start": 22.15,
+        "end": 23.918,
+        "text": "So beneath those arms,",
+        "accent": "beneath"
+      },
+      {
+        "id": "caption-13",
+        "start": 23.918,
+        "end": 25.686,
+        "text": "an octopus really is",
+        "accent": "octopus"
+      },
+      {
+        "id": "caption-14",
+        "start": 25.686,
+        "end": 27.012,
+        "text": "carrying blue blood.",
+        "accent": "blue"
+      },
+      {
+        "id": "caption-15",
+        "start": 27.012,
+        "end": 29.262,
+        "text": "Follow for more curious questions.",
+        "accent": "questions."
+      }
+    ],
+    "voiceEnd": 29.262,
+    "jingleStart": 29.062
+  },
+  {
+    "id": "wombat-cube-poop",
+    "question": "Why do wombats make cube-shaped poop?",
+    "script": "Why do wombats make cube-shaped poop? No, they do not have square backsides. The cubes form inside the lower intestine. Its walls vary in thickness and flexibility, so contractions stretch some areas while squeezing others. As moisture disappears, flat faces and corners emerge. The cubes roll less easily, helping wombats mark rocks and logs. A wombat shapes each cube from the inside. Follow for more curious questions.",
+    "accent": "#7EF29A",
+    "sources": [
+      "https://hu.gatech.edu/wp-content/uploads/2021/01/Hu21-wombat.pdf",
+      "https://www.utas.edu.au/about/news-and-stories/articles/2021/scientists-get-to-the-bottom-of-wombat-cubed-poo-mystery2"
+    ],
+    "title": [
+      "WOMBATS MAKE",
+      "CUBE-SHAPED POOP?"
+    ],
+    "accentTerms": [
+      "wombats",
+      "cube-shaped",
+      "square",
+      "intestine",
+      "thickness",
+      "flexibility",
+      "contractions",
+      "corners",
+      "cubes"
+    ],
+    "callouts": [
+      {
+        "start": 2.887,
+        "end": 5.687,
+        "eyebrow": "NOT THE REASON",
+        "title": "NO SQUARE BACKSIDE"
+      },
+      {
+        "start": 5.687,
+        "end": 15.062,
+        "eyebrow": "WHERE IT HAPPENS",
+        "title": "LOWER INTESTINE"
+      },
+      {
+        "start": 15.062,
+        "end": 19.962,
+        "eyebrow": "THE SHAPE",
+        "title": "FACES + CORNERS"
+      },
+      {
+        "start": 19.962,
+        "end": 24.637,
+        "eyebrow": "WHY CUBES?",
+        "title": "THEY DON’T ROLL"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 1.4685000000000001,
+        "text": "Why do wombats",
+        "accent": "wombats"
+      },
+      {
+        "id": "caption-02",
+        "start": 1.4685000000000001,
+        "end": 2.887,
+        "text": "make cube-shaped poop?",
+        "accent": "cube-shaped"
+      },
+      {
+        "id": "caption-03",
+        "start": 2.887,
+        "end": 4.487,
+        "text": "No, they do not",
+        "accent": "No,"
+      },
+      {
+        "id": "caption-04",
+        "start": 4.487,
+        "end": 5.687,
+        "text": "have square backsides.",
+        "accent": "square"
+      },
+      {
+        "id": "caption-05",
+        "start": 5.687,
+        "end": 7.272714285714286,
+        "text": "The cubes form inside",
+        "accent": "cubes"
+      },
+      {
+        "id": "caption-06",
+        "start": 7.272714285714286,
+        "end": 8.462,
+        "text": "the lower intestine.",
+        "accent": "intestine."
+      },
+      {
+        "id": "caption-07",
+        "start": 8.462,
+        "end": 10.661999999999999,
+        "text": "Its walls vary in thickness",
+        "accent": "thickness"
+      },
+      {
+        "id": "caption-08",
+        "start": 10.661999999999999,
+        "end": 12.861999999999998,
+        "text": "and flexibility, so contractions stretch",
+        "accent": "flexibility,"
+      },
+      {
+        "id": "caption-09",
+        "start": 12.861999999999998,
+        "end": 15.062,
+        "text": "some areas while squeezing others.",
+        "accent": "squeezing"
+      },
+      {
+        "id": "caption-10",
+        "start": 15.062,
+        "end": 17.512,
+        "text": "As moisture disappears, flat",
+        "accent": "disappears,"
+      },
+      {
+        "id": "caption-11",
+        "start": 17.512,
+        "end": 19.962,
+        "text": "faces and corners emerge.",
+        "accent": "corners"
+      },
+      {
+        "id": "caption-12",
+        "start": 19.962,
+        "end": 21.662,
+        "text": "The cubes roll less",
+        "accent": "cubes"
+      },
+      {
+        "id": "caption-13",
+        "start": 21.662,
+        "end": 23.362000000000002,
+        "text": "easily, helping wombats mark",
+        "accent": "wombats"
+      },
+      {
+        "id": "caption-14",
+        "start": 23.362000000000002,
+        "end": 24.637,
+        "text": "rocks and logs.",
+        "accent": "rocks"
+      },
+      {
+        "id": "caption-15",
+        "start": 24.637,
+        "end": 26.0995,
+        "text": "A wombat shapes each",
+        "accent": "wombat"
+      },
+      {
+        "id": "caption-16",
+        "start": 26.0995,
+        "end": 27.562,
+        "text": "cube from the inside.",
+        "accent": "inside."
+      },
+      {
+        "id": "caption-17",
+        "start": 27.562,
+        "end": 29.8,
+        "text": "Follow for more curious questions.",
+        "accent": "questions."
+      }
+    ],
+    "voiceEnd": 29.8,
+    "jingleStart": 29.6
+  },
+  {
+    "id": "cats-sweet-taste",
+    "question": "Why can cats barely taste sweetness?",
+    "script": "Why can cats barely taste sweetness? Most mammals use two proteins to detect sugar. In cats, the gene responsible for one no longer works properly. Their sweet receptor is incomplete, making sugary flavors almost invisible. If a cat wants ice cream, it may be following the fat, smell, or texture, not the sugar itself. Cats live in a sensory world with almost no sweetness. Follow for more curious questions.",
+    "accent": "#52D6FF",
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/16103917/",
+      "https://sites.tufts.edu/petfoodology/2022/04/25/can-my-pet-have-sweets/"
+    ],
+    "title": [
+      "CATS CAN’T TASTE",
+      "SWEETNESS?"
+    ],
+    "accentTerms": [
+      "cats",
+      "sweetness",
+      "proteins",
+      "sugar",
+      "gene",
+      "receptor",
+      "incomplete",
+      "ice",
+      "cream",
+      "fat",
+      "smell",
+      "texture"
+    ],
+    "callouts": [
+      {
+        "start": 2.637,
+        "end": 6.037,
+        "eyebrow": "MOST MAMMALS",
+        "title": "TWO PROTEINS"
+      },
+      {
+        "start": 6.037,
+        "end": 15.325,
+        "eyebrow": "THE CAUSE",
+        "title": "ONE BROKEN GENE"
+      },
+      {
+        "start": 15.325,
+        "end": 22.337,
+        "eyebrow": "ICE CREAM?",
+        "title": "FAT · SMELL · TEXTURE"
+      },
+      {
+        "start": 22.337,
+        "end": 26.3,
+        "eyebrow": "THE RESULT",
+        "title": "ALMOST NO SWEETNESS"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 1.3435000000000001,
+        "text": "Why can cats",
+        "accent": "cats"
+      },
+      {
+        "id": "caption-02",
+        "start": 1.3435000000000001,
+        "end": 2.637,
+        "text": "barely taste sweetness?",
+        "accent": "sweetness?"
+      },
+      {
+        "id": "caption-03",
+        "start": 2.637,
+        "end": 4.337,
+        "text": "Most mammals use two",
+        "accent": "mammals"
+      },
+      {
+        "id": "caption-04",
+        "start": 4.337,
+        "end": 6.037,
+        "text": "proteins to detect sugar.",
+        "accent": "proteins"
+      },
+      {
+        "id": "caption-05",
+        "start": 6.037,
+        "end": 7.591545454545455,
+        "text": "In cats, the gene",
+        "accent": "cats,"
+      },
+      {
+        "id": "caption-06",
+        "start": 7.591545454545455,
+        "end": 9.146090909090908,
+        "text": "responsible for one no",
+        "accent": "responsible"
+      },
+      {
+        "id": "caption-07",
+        "start": 9.146090909090908,
+        "end": 10.312,
+        "text": "longer works properly.",
+        "accent": "properly."
+      },
+      {
+        "id": "caption-08",
+        "start": 10.312,
+        "end": 12.8185,
+        "text": "Their sweet receptor is incomplete,",
+        "accent": "receptor"
+      },
+      {
+        "id": "caption-09",
+        "start": 12.8185,
+        "end": 15.325,
+        "text": "making sugary flavors almost invisible.",
+        "accent": "invisible."
+      },
+      {
+        "id": "caption-10",
+        "start": 15.325,
+        "end": 17.170263157894738,
+        "text": "If a cat wants ice",
+        "accent": "ice"
+      },
+      {
+        "id": "caption-11",
+        "start": 17.170263157894738,
+        "end": 19.015526315789472,
+        "text": "cream, it may be following",
+        "accent": "cream,"
+      },
+      {
+        "id": "caption-12",
+        "start": 19.015526315789472,
+        "end": 20.86078947368421,
+        "text": "the fat, smell, or texture,",
+        "accent": "fat,"
+      },
+      {
+        "id": "caption-13",
+        "start": 20.86078947368421,
+        "end": 22.337,
+        "text": "not the sugar itself.",
+        "accent": "sugar"
+      },
+      {
+        "id": "caption-14",
+        "start": 22.337,
+        "end": 24.424500000000002,
+        "text": "Cats live in a sensory",
+        "accent": "Cats"
+      },
+      {
+        "id": "caption-15",
+        "start": 24.424500000000002,
+        "end": 26.512,
+        "text": "world with almost no sweetness.",
+        "accent": "sweetness."
+      },
+      {
+        "id": "caption-16",
+        "start": 26.512,
+        "end": 28.762,
+        "text": "Follow for more curious questions.",
+        "accent": "questions."
+      }
+    ],
+    "voiceEnd": 28.762,
+    "jingleStart": 28.562
+  },
+  {
+    "id": "onions-make-you-cry",
+    "question": "Why can an onion make you cry without touching you?",
+    "script": "Why can an onion make you cry without touching you? Cutting it ruptures cells and mixes chemicals stored separately. The reaction creates a volatile sulfur compound that rises upward. When it reaches your eyes, it irritates their surface. Your tear glands produce tears to wash it away. Chilling it or improving ventilation can reduce the effect. Those tears are simply your eyes defending themselves from onion chemistry. Follow for more curious questions.",
+    "accent": "#B8F34A",
+    "sources": [
+      "https://www.acs.org/molecule-of-the-week/archive/p/syn-propanethial-s-oxide.html",
+      "https://pubs.acs.org/doi/10.1021/acschembio.7b00336"
+    ],
+    "title": [
+      "WHY ONIONS",
+      "MAKE YOU CRY"
+    ],
+    "accentTerms": [
+      "onion",
+      "cry",
+      "cutting",
+      "cells",
+      "chemicals",
+      "sulfur",
+      "eyes",
+      "tear",
+      "tears",
+      "chemistry"
+    ],
+    "callouts": [
+      {
+        "start": 3.137,
+        "end": 7.2,
+        "eyebrow": "THE TRIGGER",
+        "title": "CELLS RUPTURE"
+      },
+      {
+        "start": 7.2,
+        "end": 11.437,
+        "eyebrow": "THE CULPRIT",
+        "title": "SULFUR COMPOUND"
+      },
+      {
+        "start": 11.437,
+        "end": 18.112,
+        "eyebrow": "YOUR DEFENSE",
+        "title": "TEARS WASH IT AWAY"
+      },
+      {
+        "start": 21.675,
+        "end": 26.3,
+        "eyebrow": "THE VERDICT",
+        "title": "ONION CHEMISTRY"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 1.5935000000000001,
+        "text": "Why can an onion make",
+        "accent": "onion"
+      },
+      {
+        "id": "caption-02",
+        "start": 1.5935000000000001,
+        "end": 3.137,
+        "text": "you cry without touching you?",
+        "accent": "cry"
+      },
+      {
+        "id": "caption-03",
+        "start": 3.137,
+        "end": 5.394222222222222,
+        "text": "Cutting it ruptures cells and",
+        "accent": "Cutting"
+      },
+      {
+        "id": "caption-04",
+        "start": 5.394222222222222,
+        "end": 7.200000000000001,
+        "text": "mixes chemicals stored separately.",
+        "accent": "chemicals"
+      },
+      {
+        "id": "caption-05",
+        "start": 7.2,
+        "end": 9.3185,
+        "text": "The reaction creates a volatile",
+        "accent": "reaction"
+      },
+      {
+        "id": "caption-06",
+        "start": 9.3185,
+        "end": 11.437,
+        "text": "sulfur compound that rises upward.",
+        "accent": "sulfur"
+      },
+      {
+        "id": "caption-07",
+        "start": 11.437,
+        "end": 13.395333333333333,
+        "text": "When it reaches your eyes,",
+        "accent": "eyes,"
+      },
+      {
+        "id": "caption-08",
+        "start": 13.395333333333333,
+        "end": 14.962,
+        "text": "it irritates their surface.",
+        "accent": "irritates"
+      },
+      {
+        "id": "caption-09",
+        "start": 14.962,
+        "end": 16.712,
+        "text": "Your tear glands produce tears",
+        "accent": "tear"
+      },
+      {
+        "id": "caption-10",
+        "start": 16.712,
+        "end": 18.112,
+        "text": "to wash it away.",
+        "accent": "wash"
+      },
+      {
+        "id": "caption-11",
+        "start": 18.112,
+        "end": 20.091444444444445,
+        "text": "Chilling it or improving ventilation",
+        "accent": "ventilation"
+      },
+      {
+        "id": "caption-12",
+        "start": 20.091444444444445,
+        "end": 21.675,
+        "text": "can reduce the effect.",
+        "accent": "reduce"
+      },
+      {
+        "id": "caption-13",
+        "start": 21.675,
+        "end": 23.488454545454545,
+        "text": "Those tears are simply",
+        "accent": "tears"
+      },
+      {
+        "id": "caption-14",
+        "start": 23.488454545454545,
+        "end": 25.301909090909092,
+        "text": "your eyes defending themselves",
+        "accent": "eyes"
+      },
+      {
+        "id": "caption-15",
+        "start": 25.301909090909092,
+        "end": 26.662,
+        "text": "from onion chemistry.",
+        "accent": "onion"
+      },
+      {
+        "id": "caption-16",
+        "start": 26.662,
+        "end": 28.912,
+        "text": "Follow for more curious questions.",
+        "accent": "questions."
+      }
+    ],
+    "voiceEnd": 28.912,
+    "jingleStart": 28.712
+  },
+  {
+    "id": "ducks-cold-feet",
+    "question": "Why do ducks' feet not freeze?",
+    "script": "Why do ducks' feet not freeze in icy water? They do not stay warm like ours. Warm arteries run beside cold veins inside each leg. Heat passes between them before the blood reaches body or foot. The duck keeps most body heat, while its feet stay cool enough to lose little energy and still avoid freezing. This built-in heat recovery is called countercurrent exchange. Ducks survive by keeping their feet cool. Follow for more curious questions.",
+    "accent": "#63E6FF",
+    "sources": [
+      "https://www.si.edu/stories/keeping-warm-winter-birds",
+      "https://beyondpenguins.ehe.osu.edu/issue/arctic-and-anarctic-birds/how-do-birds-stay-warm"
+    ],
+    "title": [
+      "DUCKS’ FEET",
+      "DON’T FREEZE?"
+    ],
+    "accentTerms": [
+      "ducks",
+      "feet",
+      "freeze",
+      "icy",
+      "warm",
+      "arteries",
+      "veins",
+      "heat",
+      "cool",
+      "countercurrent"
+    ],
+    "callouts": [
+      {
+        "start": 3.5,
+        "end": 5.75,
+        "eyebrow": "THE SURPRISE",
+        "title": "FEET STAY COOL"
+      },
+      {
+        "start": 5.75,
+        "end": 13.862,
+        "eyebrow": "INSIDE THE LEG",
+        "title": "ARTERIES ↕ VEINS"
+      },
+      {
+        "start": 13.862,
+        "end": 20.7,
+        "eyebrow": "THE TRICK",
+        "title": "RECYCLE THE HEAT"
+      },
+      {
+        "start": 20.7,
+        "end": 24.475,
+        "eyebrow": "THE SYSTEM",
+        "title": "COUNTERCURRENT"
+      }
+    ],
+    "captions": [
+      {
+        "id": "caption-01",
+        "start": 0.05,
+        "end": 1.9666666666666668,
+        "text": "Why do ducks' feet not",
+        "accent": "ducks'"
+      },
+      {
+        "id": "caption-02",
+        "start": 1.9666666666666668,
+        "end": 3.5,
+        "text": "freeze in icy water?",
+        "accent": "freeze"
+      },
+      {
+        "id": "caption-03",
+        "start": 3.5,
+        "end": 4.785714285714286,
+        "text": "They do not stay",
+        "accent": "stay"
+      },
+      {
+        "id": "caption-04",
+        "start": 4.785714285714286,
+        "end": 5.75,
+        "text": "warm like ours.",
+        "accent": "warm"
+      },
+      {
+        "id": "caption-05",
+        "start": 5.75,
+        "end": 8.048333333333334,
+        "text": "Warm arteries run beside cold",
+        "accent": "Warm"
+      },
+      {
+        "id": "caption-06",
+        "start": 8.048333333333334,
+        "end": 9.887,
+        "text": "veins inside each leg.",
+        "accent": "veins"
+      },
+      {
+        "id": "caption-07",
+        "start": 9.887,
+        "end": 11.332454545454546,
+        "text": "Heat passes between them",
+        "accent": "Heat"
+      },
+      {
+        "id": "caption-08",
+        "start": 11.332454545454546,
+        "end": 12.777909090909091,
+        "text": "before the blood reaches",
+        "accent": "reaches"
+      },
+      {
+        "id": "caption-09",
+        "start": 12.777909090909091,
+        "end": 13.862,
+        "text": "body or foot.",
+        "accent": "body"
+      },
+      {
+        "id": "caption-10",
+        "start": 13.862,
+        "end": 15.5715,
+        "text": "The duck keeps most body",
+        "accent": "keeps"
+      },
+      {
+        "id": "caption-11",
+        "start": 15.5715,
+        "end": 17.281,
+        "text": "heat, while its feet stay",
+        "accent": "heat,"
+      },
+      {
+        "id": "caption-12",
+        "start": 17.281,
+        "end": 18.990499999999997,
+        "text": "cool enough to lose little",
+        "accent": "cool"
+      },
+      {
+        "id": "caption-13",
+        "start": 18.990499999999997,
+        "end": 20.7,
+        "text": "energy and still avoid freezing.",
+        "accent": "freezing."
+      },
+      {
+        "id": "caption-14",
+        "start": 20.7,
+        "end": 22.5875,
+        "text": "This built-in heat recovery",
+        "accent": "heat"
+      },
+      {
+        "id": "caption-15",
+        "start": 22.5875,
+        "end": 24.475,
+        "text": "is called countercurrent exchange.",
+        "accent": "countercurrent"
+      },
+      {
+        "id": "caption-16",
+        "start": 24.475,
+        "end": 25.96757142857143,
+        "text": "Ducks survive by keeping",
+        "accent": "Ducks"
+      },
+      {
+        "id": "caption-17",
+        "start": 25.96757142857143,
+        "end": 27.087,
+        "text": "their feet cool.",
+        "accent": "feet"
+      },
+      {
+        "id": "caption-18",
+        "start": 27.087,
+        "end": 29.325,
+        "text": "Follow for more curious questions.",
+        "accent": "questions."
+      }
+    ],
+    "voiceEnd": 29.325,
+    "jingleStart": 29.125
+  }
+]

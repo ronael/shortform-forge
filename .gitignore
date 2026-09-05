@@ -3,9 +3,12 @@ dist/
 output/
 samples/
 .sf-cache/
+.sf-dashboard/
+dashboard/dist/
 .venv-tts/
 .venv-chatterbox/
 .tts-models/
 .env
 .DS_Store
 *.log
+:memory:.ses

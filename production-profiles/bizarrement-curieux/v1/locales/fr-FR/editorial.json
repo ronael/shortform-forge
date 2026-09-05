@@ -1,0 +1,221 @@
+[
+  {
+    "id": "pieuvre-sang-bleu",
+    "title": [
+      "LE SANG DE LA PIEUVRE",
+      "EST-IL VRAIMENT BLEU ?"
+    ],
+    "accentTerms": [
+      "bleu",
+      "fer",
+      "rouge",
+      "hémocyanine",
+      "cuivre",
+      "oxygène",
+      "cœurs"
+    ],
+    "callouts": [
+      {
+        "start": 4.037,
+        "end": 9.987,
+        "eyebrow": "NOTRE SANG",
+        "title": "FER → ROUGE"
+      },
+      {
+        "start": 9.987,
+        "end": 16.337,
+        "eyebrow": "SON SECRET",
+        "title": "CUIVRE → BLEU"
+      },
+      {
+        "start": 19.975,
+        "end": 23.725,
+        "eyebrow": "ET EN PLUS",
+        "title": "TROIS CŒURS"
+      },
+      {
+        "start": 23.725,
+        "end": 26.525,
+        "eyebrow": "EN CLAIR",
+        "title": "UN VRAI SANG BLEU"
+      }
+    ]
+  },
+  {
+    "id": "wombat-cubes",
+    "title": [
+      "DES CROTTES",
+      "EN FORME DE CUBES ?"
+    ],
+    "accentTerms": [
+      "wombats",
+      "cubiques",
+      "carré",
+      "intestin",
+      "rigidité",
+      "contractions",
+      "faces",
+      "coins",
+      "cubes"
+    ],
+    "callouts": [
+      {
+        "start": 2.487,
+        "end": 4.625,
+        "eyebrow": "FAUSSE PISTE",
+        "title": "PAS D’ANUS CARRÉ"
+      },
+      {
+        "start": 4.625,
+        "end": 12.525,
+        "eyebrow": "ÇA SE PASSE ICI",
+        "title": "DANS L’INTESTIN"
+      },
+      {
+        "start": 12.525,
+        "end": 20.012,
+        "eyebrow": "LE MÉCANISME",
+        "title": "ÉTIRER + COMPRIMER"
+      },
+      {
+        "start": 20.012,
+        "end": 25.75,
+        "eyebrow": "RÉSULTAT",
+        "title": "DES CUBES STABLES"
+      }
+    ]
+  },
+  {
+    "id": "chat-gout-sucre",
+    "title": [
+      "LES CHATS SENTENT-ILS",
+      "LE GOÛT SUCRÉ ?"
+    ],
+    "accentTerms": [
+      "chats",
+      "sucré",
+      "mammifères",
+      "protéines",
+      "récepteur",
+      "gène",
+      "incomplet",
+      "gras",
+      "odeur",
+      "texture"
+    ],
+    "callouts": [
+      {
+        "start": 2.65,
+        "end": 4.737,
+        "eyebrow": "CE N’EST PAS",
+        "title": "DU CARACTÈRE"
+      },
+      {
+        "start": 4.737,
+        "end": 13.987,
+        "eyebrow": "LA CAUSE",
+        "title": "UN GÈNE INACTIF"
+      },
+      {
+        "start": 13.987,
+        "end": 17.687,
+        "eyebrow": "CONSÉQUENCE",
+        "title": "RÉCEPTEUR INCOMPLET"
+      },
+      {
+        "start": 23.325,
+        "end": 25.95,
+        "eyebrow": "EN CLAIR",
+        "title": "PRESQUE PAS DE SUCRÉ"
+      }
+    ]
+  },
+  {
+    "id": "oignon-larmes",
+    "title": [
+      "POURQUOI L’OIGNON",
+      "FAIT-IL PLEURER ?"
+    ],
+    "accentTerms": [
+      "oignon",
+      "pleurer",
+      "lame",
+      "cellules",
+      "soufré",
+      "gaz",
+      "yeux",
+      "larmes",
+      "chimie"
+    ],
+    "callouts": [
+      {
+        "start": 2.95,
+        "end": 7.062,
+        "eyebrow": "LE DÉCLENCHEUR",
+        "title": "LES CELLULES SE BRISENT"
+      },
+      {
+        "start": 7.062,
+        "end": 12.95,
+        "eyebrow": "LE COUPABLE",
+        "title": "UN GAZ SOUFRÉ"
+      },
+      {
+        "start": 12.95,
+        "end": 19.825,
+        "eyebrow": "RÉACTION",
+        "title": "TES YEUX SE PROTÈGENT"
+      },
+      {
+        "start": 23.125,
+        "end": 25.875,
+        "eyebrow": "VERDICT",
+        "title": "C’EST DE LA CHIMIE"
+      }
+    ]
+  },
+  {
+    "id": "canard-pattes-froides",
+    "title": [
+      "LEURS PATTES",
+      "NE GÈLENT PAS ?"
+    ],
+    "accentTerms": [
+      "canards",
+      "gèlent",
+      "glacée",
+      "artères",
+      "veines",
+      "sang",
+      "chaleur",
+      "froides",
+      "contre-courant"
+    ],
+    "callouts": [
+      {
+        "start": 2.812,
+        "end": 4.975,
+        "eyebrow": "LA SURPRISE",
+        "title": "ELLES RESTENT FROIDES"
+      },
+      {
+        "start": 4.975,
+        "end": 12.175,
+        "eyebrow": "SOUS LA PEAU",
+        "title": "ARTÈRES ↕ VEINES"
+      },
+      {
+        "start": 12.175,
+        "end": 19.1,
+        "eyebrow": "L’ASTUCE",
+        "title": "RÉCUPÉRER LA CHALEUR"
+      },
+      {
+        "start": 19.1,
+        "end": 24.437,
+        "eyebrow": "LE SYSTÈME",
+        "title": "CONTRE-COURANT"
+      }
+    ]
+  }
+]

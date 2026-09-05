@@ -9,6 +9,14 @@ Use this skill to execute the existing Shortform Forge workflow, not to invent n
 
 ## Production Provider Selection
 
+For a Bizarrement Curieux or Oddly Curious episode, read
+`production-profiles/bizarrement-curieux/v1/NEW_CONVERSATION.md` and run
+`pnpm curious:v1 doctor --locale <locale>` before production. The V1 recipe is
+human-approved and frozen: do not change its providers, voices, Remotion
+components, caption geometry, or audio targets. New subjects get new scripts,
+measured timelines, footage, and focal crops. OverlayMotion belongs to the
+inactive V2 profile and must not be selected without explicit owner approval.
+
 Read `docs/PRODUCTION_PROVIDERS.md` before choosing a renderer. For a
 `narrated-montage` brief (voice-led explainer, facts, story, advice, travel,
 motivation, simple listicle, faceless stock footage, or simple product

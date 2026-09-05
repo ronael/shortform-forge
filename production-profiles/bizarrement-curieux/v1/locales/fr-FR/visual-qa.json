@@ -1,0 +1,8 @@
+{
+  "pieuvre-sang-bleu": {"mustShow": "pieuvre identifiable", "mustAvoid": ["calmar présenté comme une pieuvre", "animal hors sujet"]},
+  "wombat-cubes": {"mustShow": "wombat identifiable sur chaque plan", "mustAvoid": ["singe", "koala", "animal de remplacement"]},
+  "chat-gout-sucre": {"mustShow": "chat domestique identifiable", "mustAvoid": ["chien", "félin sauvage présenté comme un chat domestique"]},
+  "oignon-larmes": {"mustShow": "oignon ou découpe d'oignon", "mustAvoid": ["autre légume présenté comme un oignon"]},
+  "canard-pattes-froides": {"mustShow": "canard et, lorsque la narration l'exige, eau ou environnement froid", "mustAvoid": ["autre oiseau présenté comme un canard"]}
+}
+

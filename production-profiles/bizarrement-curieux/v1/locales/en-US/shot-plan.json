@@ -1,0 +1,55 @@
+{
+  "defaults": {"durationSeconds": 4, "focalPoint": {"x": 0.5, "y": 0.5}},
+  "episodes": {
+    "octopus-blue-blood": [
+      ["pexels/17841948.mp4", 1, "horizontal"],
+      ["pexels/1312397.mp4", 4, "horizontal"],
+      ["pexels/857157.mp4", 8, "horizontal"],
+      ["pexels/17841948.mp4", 6, "horizontal"],
+      ["pexels/1312397.mp4", 12, "horizontal"],
+      ["pexels/857157.mp4", 18, "horizontal"],
+      ["pexels/17841948.mp4", 10, "horizontal"],
+      ["pexels/1312397.mp4", 20, "horizontal"]
+    ],
+    "wombat-cube-poop": [
+      ["candidates/20616586.mp4", 1, "vertical"],
+      ["candidates/18741132.mp4", 1, "horizontal"],
+      ["candidates/20616586.mp4", 5, "vertical"],
+      ["candidates/18741132.mp4", 5, "horizontal"],
+      ["candidates/20616586.mp4", 8, "vertical"],
+      ["candidates/18741132.mp4", 9, "horizontal"],
+      ["candidates/20616586.mp4", 2, "vertical"],
+      ["candidates/18741132.mp4", 12, "horizontal"]
+    ],
+    "cats-sweet-taste": [
+      ["pexels/5306162.mp4", 2, "horizontal"],
+      ["pexels/35595266.mp4", 1, "vertical"],
+      ["pexels/33791303.mp4", 5, "horizontal"],
+      ["pexels/5306162.mp4", 12, "horizontal"],
+      ["pexels/35595266.mp4", 3, "vertical"],
+      ["pexels/33791303.mp4", 11, "horizontal"],
+      ["pexels/5306162.mp4", 22, "horizontal"],
+      ["pexels/35595266.mp4", 5, "vertical"]
+    ],
+    "onions-make-you-cry": [
+      ["pexels/3195946.mp4", 1, "horizontal"],
+      ["pexels/8862081.mp4", 3, "horizontal"],
+      ["pexels/5262792.mp4", 0, "vertical"],
+      ["pexels/3195946.mp4", 6, "horizontal"],
+      ["pexels/8862081.mp4", 8, "horizontal"],
+      ["pexels/5262792.mp4", 4, "vertical"],
+      ["pexels/3195946.mp4", 10, "horizontal"],
+      ["pexels/8862081.mp4", 13, "horizontal"]
+    ],
+    "ducks-cold-feet": [
+      ["pexels/36480396.mp4", 10, "vertical"],
+      ["pexels/19389647.mp4", 0, "horizontal"],
+      ["pexels/31647765.mp4", 4, "vertical"],
+      ["pexels/19389647.mp4", 2, "horizontal"],
+      ["pexels/36480396.mp4", 3, "vertical"],
+      ["pexels/31647765.mp4", 11, "vertical"],
+      ["pexels/19389647.mp4", 4, "horizontal"],
+      ["pexels/36480396.mp4", 17, "vertical"]
+    ]
+  }
+}

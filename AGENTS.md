@@ -8,7 +8,7 @@ It is also not an agent. It is a capability toolkit: business capabilities (`dis
 
 Conceptual workflow: `DISCOVER -> DECIDE/SCORE -> PRODUCE -> QA -> HUMAN REVIEW -> PUBLISH -> MEASURE/LEARN`.
 
-Current V0 scope: manually triggered discovery of content signals plus clipping of authorized source media into a vertical candidate with captions, structured artifacts, and QA. Do not build autonomous 24/7 automation, fragile scraping, publishing APIs, dashboards, cloud infrastructure, billing, auth, or speculative platform abstractions yet.
+Current scope: manually triggered discovery and production of authorized short-form media, structured QA, plus a local operator dashboard for review, device download, and explicitly triggered TikTok draft upload. Do not build autonomous 24/7 automation, fragile scraping, scheduled/direct publishing, public dashboard hosting, cloud infrastructure, billing, multi-user auth, or speculative platform abstractions yet.
 
 Principle: LLM for judgment; deterministic code/tools for execution. Prefer mature OSS/GitHub tools before paid services. Do not reimplement generic media, ASR, codec, subtitle, or probing primitives when a maintained package/CLI exists. MCPIMP may be used when it helps discover or reuse a relevant capability, skill, or MCP.
 
@@ -27,6 +27,7 @@ Before adding a significant dependency, check license, maintenance, adoption, ac
 - Engineering practices: `docs/ENGINEERING.md`
 - Roadmap boundaries: `docs/ROADMAP.md`
 - Production provider decisions: `docs/PRODUCTION_PROVIDERS.md`
+- Mac/Windows execution policy: `docs/WORKSTATIONS.md`
 - Workflow skill: `.agents/skills/shortform-forge-workflow/SKILL.md`
 
 ## Required Validation

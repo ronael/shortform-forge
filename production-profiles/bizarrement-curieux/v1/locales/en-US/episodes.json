@@ -1,0 +1,52 @@
+[
+  {
+    "id": "octopus-blue-blood",
+    "question": "Why is octopus blood blue?",
+    "script": "Why is octopus blood blue? Our iron-rich hemoglobin makes blood appear red. Octopuses use hemocyanin instead. It contains copper and turns blue when it binds oxygen. This molecule works well in cold, oxygen-poor water. Moving that blood takes three hearts: two serve the gills, while one serves the body. So beneath those arms, an octopus really is carrying blue blood. Follow for more curious questions.",
+    "accent": "#55E6C1",
+    "sources": [
+      "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "https://www.smithsonianmag.com/science-nature/ten-wild-facts-about-octopuses-they-have-three-hearts-big-brains-and-blue-blood-7625828/"
+    ]
+  },
+  {
+    "id": "wombat-cube-poop",
+    "question": "Why do wombats make cube-shaped poop?",
+    "script": "Why do wombats make cube-shaped poop? No, they do not have square backsides. The cubes form inside the lower intestine. Its walls vary in thickness and flexibility, so contractions stretch some areas while squeezing others. As moisture disappears, flat faces and corners emerge. The cubes roll less easily, helping wombats mark rocks and logs. A wombat shapes each cube from the inside. Follow for more curious questions.",
+    "accent": "#7EF29A",
+    "sources": [
+      "https://hu.gatech.edu/wp-content/uploads/2021/01/Hu21-wombat.pdf",
+      "https://www.utas.edu.au/about/news-and-stories/articles/2021/scientists-get-to-the-bottom-of-wombat-cubed-poo-mystery2"
+    ]
+  },
+  {
+    "id": "cats-sweet-taste",
+    "question": "Why can cats barely taste sweetness?",
+    "script": "Why can cats barely taste sweetness? Most mammals use two proteins to detect sugar. In cats, the gene responsible for one no longer works properly. Their sweet receptor is incomplete, making sugary flavors almost invisible. If a cat wants ice cream, it may be following the fat, smell, or texture, not the sugar itself. Cats live in a sensory world with almost no sweetness. Follow for more curious questions.",
+    "accent": "#52D6FF",
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/16103917/",
+      "https://sites.tufts.edu/petfoodology/2022/04/25/can-my-pet-have-sweets/"
+    ]
+  },
+  {
+    "id": "onions-make-you-cry",
+    "question": "Why can an onion make you cry without touching you?",
+    "script": "Why can an onion make you cry without touching you? Cutting it ruptures cells and mixes chemicals stored separately. The reaction creates a volatile sulfur compound that rises upward. When it reaches your eyes, it irritates their surface. Your tear glands produce tears to wash it away. Chilling it or improving ventilation can reduce the effect. Those tears are simply your eyes defending themselves from onion chemistry. Follow for more curious questions.",
+    "accent": "#B8F34A",
+    "sources": [
+      "https://www.acs.org/molecule-of-the-week/archive/p/syn-propanethial-s-oxide.html",
+      "https://pubs.acs.org/doi/10.1021/acschembio.7b00336"
+    ]
+  },
+  {
+    "id": "ducks-cold-feet",
+    "question": "Why do ducks' feet not freeze?",
+    "script": "Why do ducks' feet not freeze in icy water? They do not stay warm like ours. Warm arteries run beside cold veins inside each leg. Heat passes between them before the blood reaches body or foot. The duck keeps most body heat, while its feet stay cool enough to lose little energy and still avoid freezing. This built-in heat recovery is called countercurrent exchange. Ducks survive by keeping their feet cool. Follow for more curious questions.",
+    "accent": "#63E6FF",
+    "sources": [
+      "https://www.si.edu/stories/keeping-warm-winter-birds",
+      "https://beyondpenguins.ehe.osu.edu/issue/arctic-and-anarctic-birds/how-do-birds-stay-warm"
+    ]
+  }
+]

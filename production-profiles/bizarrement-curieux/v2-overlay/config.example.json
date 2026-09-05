@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "profileId": "bizarrement-curieux-v2-overlay",
+  "logoPath": null,
+  "accountName": "Bizarrement Curieux",
+  "tagline": "Une question. Trente secondes.",
+  "theme": "illustrated-dark",
+  "accentColor": "#F5B942",
+  "openingImagePath": null,
+  "outroImagePath": null,
+  "scrimOpacity": 0.55,
+  "templates": {
+    "opening": "hero-title",
+    "outro": "logo-sting"
+  }
+}

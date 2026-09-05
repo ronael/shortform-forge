@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-08-30",
+  "localizationStrategy": "The English editions use the same licensed source pool but change the opening shot and at least two additional segment selections per episode.",
+  "pexelsLicense": "https://www.pexels.com/license/",
+  "pixabayLicense": "https://pixabay.com/service/license-summary/",
+  "sourceManifest": "../../questions-insolites-fr-v1/input/assets.json",
+  "additionalEnglishAssets": [
+    {
+      "id": "20616586",
+      "downloadPage": "https://www.pexels.com/download/video/20616586/",
+      "discoveryPage": "https://www.pexels.com/search/videos/wombat/",
+      "source": "Pexels",
+      "content": "close vertical footage of a common wombat"
+    },
+    {
+      "id": "18741132",
+      "downloadPage": "https://www.pexels.com/download/video/18741132/",
+      "discoveryPage": "https://www.pexels.com/search/videos/wombat/",
+      "source": "Pexels",
+      "content": "wide footage of a wombat walking in vegetation"
+    }
+  ]
+}

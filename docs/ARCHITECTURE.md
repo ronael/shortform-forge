@@ -36,3 +36,10 @@ Production may also delegate a complete baseline render to an external pipeline.
 Voiceover (`src/application/generateVoiceover.ts`) synthesizes and measures one audio file per section through `TextToSpeechProvider`. Measured speech controls caption timing, but no longer replaces the editorial video duration. New artifacts allocate the remaining budget as short visual holds and real audio padding; legacy artifacts remain contiguous and hold only the final scene. Providers may expose `synthesizeBatch`, used by the command batch adapter to load expensive local models once and clean its temporary request. Templates remain plain composition strategies, not a template engine.
 
 Shortform Forge is a capability toolkit, not an agent: it exposes CLI commands and application functions that an external orchestrator (Codex, Claude Code, Kimi, MCP, a human) calls. It never schedules, loops, or decides on its own.
+
+The optional operator dashboard is a local adapter over generated artifacts. It
+indexes immutable files from `output/`, stores human decisions separately by
+checksum, and exposes manually triggered publishing providers. It must not
+become part of the render pipeline, mutate masters, schedule work, or make the
+final publication decision. TikTok credentials live in the operating-system
+secret store rather than artifacts or repository configuration.

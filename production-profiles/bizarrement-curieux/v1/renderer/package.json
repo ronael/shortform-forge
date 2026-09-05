@@ -1,0 +1,14 @@
+{
+  "name": "questions-insolites-fr-v1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "remotion render"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.518",
+    "remotion": "4.0.518",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  }
+}
